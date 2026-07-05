@@ -3,187 +3,451 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>渋谷・荻窪 日帰り旅行計画書</title>
+<title>微わかる展＆オーケストラ鑑賞ひとり旅｜当日撮影台本</title>
 <style>
   :root{
-    --navy:#1f3a5f; --sea:#2e6f95; --sun:#e98a3c; --coral:#d8553f;
-    --paper:#fbf7f0; --ink:#2b2b2b; --soft:#6b7280; --line:#e4ddd0;
+    --kinari:#F5EFE0; --gray:#D9D2C5; --shu:#C75B39; --green:#7A8B5A; --sumi:#3A3A3A;
   }
-  *{box-sizing:border-box;}
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
   body{
-    margin:0; font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
-    background:var(--paper); color:var(--ink); line-height:1.7;
+    margin:0;background:var(--kinari);color:var(--sumi);
+    font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
+    line-height:1.7;font-size:16px;padding-bottom:64px;
   }
-  .wrap{max-width:760px; margin:0 auto; padding:0 18px 60px;}
-  header.hero{
-    background:linear-gradient(135deg,var(--navy),var(--sea) 60%,var(--sun));
-    color:#fff; padding:42px 24px 36px; text-align:center;
+  header{
+    background:var(--shu);color:#fff;padding:18px 16px 14px;position:sticky;top:0;z-index:20;
+    box-shadow:0 2px 10px rgba(58,58,58,.18);
   }
-  .hero h1{margin:0 0 8px; font-size:1.7rem; letter-spacing:.04em;}
-  .hero .date{font-size:1rem; opacity:.95; font-weight:600;}
-  .hero .theme{
-    margin:18px auto 0; max-width:560px; font-size:.95rem;
-    background:rgba(255,255,255,.14); padding:12px 16px; border-radius:10px;
+  header h1{margin:0;font-size:18px;letter-spacing:.02em;}
+  header .sub{font-size:12.5px;opacity:.92;margin-top:4px;}
+  .wrap{max-width:720px;margin:0 auto;padding:14px 12px 0;}
+
+  .bar{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 14px;}
+  .bar button{
+    flex:1;min-width:120px;border:none;border-radius:10px;padding:10px;font-size:13px;font-weight:700;
+    background:var(--gray);color:var(--sumi);cursor:pointer;
   }
-  .meta{
-    display:flex; flex-wrap:wrap; gap:12px; justify-content:center;
-    margin:22px 0 6px;
-  }
-  .chip{
-    background:#fff; border:1px solid var(--line); border-radius:999px;
-    padding:7px 16px; font-size:.85rem; box-shadow:0 1px 3px rgba(0,0,0,.05);
-  }
-  .chip b{color:var(--sea);}
-  h2.day{
-    margin:36px 0 4px; font-size:1.25rem; color:var(--navy);
-    display:flex; align-items:center; gap:10px;
-  }
-  h2.day .dot{
-    width:30px;height:30px;border-radius:50%;background:var(--sun);
-    color:#fff;display:flex;align-items:center;justify-content:center;
-    font-size:.9rem;font-weight:700;flex:none;
-  }
-  .day-sub{color:var(--soft); font-size:.85rem; margin:0 0 14px 40px;}
-  .timeline{position:relative; margin-left:14px; padding-left:26px;
-    border-left:2px solid var(--line);}
-  .item{position:relative; padding:0 0 20px 4px;}
-  .item::before{
-    content:""; position:absolute; left:-34px; top:5px;
-    width:12px;height:12px;border-radius:50%;
-    background:var(--sea); border:3px solid var(--paper);
-  }
-  .item.hi::before{background:var(--coral); box-shadow:0 0 0 4px rgba(216,85,63,.18);}
-  .time{font-weight:700; color:var(--sea); font-size:.9rem;}
-  .item.hi .time{color:var(--coral);}
-  .ttl{font-weight:700; margin:2px 0 2px;}
-  .desc{font-size:.9rem; color:#444;}
-  .desc a{color:var(--sea); word-break:break-all;}
-  ul.mini{margin:6px 0 0; padding-left:18px; font-size:.88rem; color:#444;}
+  .bar button.reset{background:#fff;border:1px solid var(--gray);}
+  .progress{background:#fff;border:1px solid var(--gray);border-radius:12px;padding:12px 14px;margin-bottom:16px;}
+  .progress .num{font-size:22px;font-weight:800;color:var(--shu);}
+  .pbar{height:8px;border-radius:5px;background:var(--gray);overflow:hidden;margin-top:8px;}
+  .pbar > i{display:block;height:100%;background:var(--green);width:0;transition:width .3s;}
+
+  .note{background:#fff;border-left:5px solid var(--green);border-radius:8px;padding:11px 13px;font-size:13.5px;margin-bottom:16px;}
+  .note b{color:var(--green);}
+  .note.upd{border-left-color:var(--shu);}
+  .note.upd b{color:var(--shu);}
+
+  details.scene{background:#fff;border:1px solid var(--gray);border-radius:14px;margin-bottom:12px;overflow:hidden;}
+  details.scene[open]{box-shadow:0 2px 12px rgba(58,58,58,.10);}
+  summary{list-style:none;cursor:pointer;padding:14px 14px;display:flex;align-items:center;gap:10px;}
+  summary::-webkit-details-marker{display:none;}
   .badge{
-    display:inline-block; font-size:.7rem; font-weight:700; color:#fff;
-    background:var(--coral); border-radius:5px; padding:1px 7px; margin-left:6px;
-    vertical-align:middle;
+    flex:none;width:30px;height:30px;border-radius:50%;background:var(--shu);color:#fff;
+    display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;
   }
-  .badge.go{background:var(--sun);}
-  footer{margin-top:40px; text-align:center; color:var(--soft); font-size:.8rem;}
-  .note{
-    background:#fff; border:1px solid var(--line); border-radius:12px;
-    padding:14px 18px; margin-top:14px; font-size:.88rem;
+  .climax .badge{background:var(--green);}
+  .newsc .badge{background:#b8860b;}
+  summary .title{font-weight:800;font-size:15px;flex:1;}
+  summary .time{font-size:11px;color:#fff;background:var(--sumi);padding:2px 8px;border-radius:20px;flex:none;}
+  summary .chev{flex:none;color:var(--gray);transition:transform .2s;font-size:13px;}
+  details[open] summary .chev{transform:rotate(90deg);color:var(--shu);}
+  .tagnew{font-size:9.5px;font-weight:800;background:#b8860b;color:#fff;border-radius:4px;padding:1px 5px;margin-left:4px;}
+
+  .body{padding:2px 14px 16px;}
+  .lead{font-size:13px;color:#6a665c;font-style:italic;margin:2px 0 12px;}
+
+  .sec-h{font-size:13px;font-weight:800;margin:14px 0 7px;display:flex;align-items:center;gap:6px;}
+  .sec-h.cam{color:var(--shu);}
+  .sec-h.sub{color:var(--sumi);}
+  .sec-h.warn{color:#a8431f;}
+
+  ul.mat{list-style:none;padding:0;margin:0;}
+  ul.mat li{display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-bottom:1px dashed var(--gray);font-size:14px;}
+  ul.mat li:last-child{border-bottom:none;}
+  ul.mat input{
+    appearance:none;-webkit-appearance:none;flex:none;width:22px;height:22px;margin-top:1px;
+    border:2px solid var(--green);border-radius:6px;background:#fff;cursor:pointer;position:relative;
   }
-  .note b{color:var(--coral);}
+  ul.mat input:checked{background:var(--green);}
+  ul.mat input:checked::after{content:"✓";color:#fff;font-size:14px;font-weight:900;position:absolute;left:3px;top:-2px;}
+  ul.mat input:checked + span{color:#9a958a;text-decoration:line-through;}
+
+  .subs{display:flex;flex-direction:column;gap:7px;}
+  .sub-line{padding:8px 11px;border-radius:9px;font-size:13.5px;}
+  .sub-yobi{background:#eef0e6;border-left:4px solid var(--green);}
+  .sub-tame{background:#faf3ea;border-left:4px solid var(--shu);}
+  .sub-info{background:#fff;border:1.5px solid var(--sumi);border-radius:9px;font-size:12.5px;}
+  .tag{font-size:10.5px;font-weight:800;padding:1px 6px;border-radius:5px;margin-right:6px;vertical-align:middle;}
+  .tag-yobi{background:var(--green);color:#fff;}
+  .tag-tame{background:var(--shu);color:#fff;}
+  .tag-info{background:var(--sumi);color:#fff;}
+
+  .meta{font-size:13px;background:#f7f4ec;border-radius:9px;padding:9px 11px;margin-top:6px;}
+  .meta div{margin:3px 0;}
+  .meta .k{font-weight:800;}
+  .warnbox{background:#fdf0eb;border:1px solid #e3b8a8;border-radius:9px;padding:9px 11px;font-size:13px;margin-top:8px;}
+
+  .legend{background:#fff;border:1px solid var(--gray);border-radius:12px;padding:12px 14px;margin:4px 0 18px;font-size:12.5px;}
+  .legend span{display:inline-block;margin:3px 8px 3px 0;}
+  .dot{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:4px;vertical-align:middle;}
+
+  footer{text-align:center;font-size:11.5px;color:#8a8678;padding:20px 16px 8px;}
+  .foot-fixed{position:fixed;left:0;right:0;bottom:0;background:var(--sumi);color:#fff;text-align:center;font-size:12px;padding:9px;z-index:30;}
+  .foot-fixed b{color:#ffd9cd;}
 </style>
 </head>
 <body>
-<header class="hero">
+<header>
   <h1>🎻 微わかる展＆クラシックコンサート ひとり旅</h1>
-  <div class="date">2026年7月19日（日）／日帰り</div>
-  <div class="theme">「三連休の中日に、渋谷で話題の体験型展示を楽しんで、荻窪でフレンチディナー、夜はクラシックコンサートで締めくくる大人の一人旅。」</div>
+  <div class="sub">当日撮影台本｜2026/7/19(日)　渋谷 Start → 荻窪 End｜顔出しNG・字幕主体</div>
 </header>
 
 <div class="wrap">
-  <div class="meta">
-    <span class="chip">🎨 微わかる展2＋小さいすぎるよ展（渋谷）</span>
-    <span class="chip">🍽️ ディナー<b>予約済み</b>（ORCHESTRA荻窪）</span>
-    <span class="chip">🎼 コンサート<b>無料・任意寄付</b>（要teket登録）</span>
-    <span class="chip">🚆 本厚木スタート（小田急・JR）</span>
+
+  <div class="bar">
+    <button onclick="toggleAll(true)">▼ 全部ひらく</button>
+    <button onclick="toggleAll(false)">▲ 全部とじる</button>
+    <button class="reset" onclick="resetChecks()">☐ チェック全消し</button>
   </div>
 
-  <!-- DAY 1 -->
-  <h2 class="day"><span class="dot">1</span>7/19（日）・日帰り</h2>
-  <p class="day-sub">移動 → 体験型展示 → 移動 → 荻窪散策 → フレンチディナー → クラシックコンサート → 帰路</p>
-  <div class="timeline">
+  <div class="progress">
+    <div>撮影クリア　<span class="num" id="pcount">0</span> / <span id="ptotal">0</span> カット</div>
+    <div class="pbar"><i id="pfill"></i></div>
+  </div>
 
-    <div class="item">
-      <div class="time">10:30</div>
-      <div class="ttl">本厚木駅 出発（小田急線）🚆</div>
-      <div class="desc">本厚木 → 新宿。所要目安45分。時刻は乗換案内で近づいたら要確認（時刻は目安、指定席なし）。</div>
-    </div>
-
-    <div class="item">
-      <div class="time">11:15〜11:30</div>
-      <div class="ttl">新宿 → 渋谷（JR山手線）🚆</div>
-      <div class="desc">新宿でJR山手線に乗り換え。所要約10〜15分。</div>
-    </div>
-
-    <div class="item">
-      <div class="time">11:30〜14:00</div>
-      <div class="ttl">🎨 微わかる展2＋小さいすぎるよ展 <span class="badge go">確定：見学</span></div>
-      <div class="desc">会場：西武渋谷店 B館4階。SNSで大反響を呼んだ体験型展示の続編。「微妙にわかるかも…わからないかも？」という絶妙な違和感を楽しむ内容。<br>
-      <span style="color:#3a7d44;">営業 10:00〜20:00（最終入場19:30）／料金：休日2,100円</span><br>
-      見終わったタイミングで切り上げてOK。時間に余裕を持たせてあります。</div>
-    </div>
-
-    <div class="item">
-      <div class="time">14:00〜14:15</div>
-      <div class="ttl">渋谷 → 新宿（JR山手線）🚆</div>
-    </div>
-
-    <div class="item">
-      <div class="time">14:15〜14:35</div>
-      <div class="ttl">新宿 → 荻窪（JR中央線快速）🚆</div>
-      <div class="desc">新宿でJR中央線快速に乗り換え。所要約15〜20分。</div>
-    </div>
-
-    <div class="item">
-      <div class="time">14:35〜16:50</div>
-      <div class="ttl">荻窪で時間調整・街歩き</div>
-      <div class="desc">書店を覗いたり、カフェで一息ついたり。展示の切り上げが早ければこの時間は自由に伸縮可。</div>
-    </div>
-
-    <div class="item">
-      <div class="time">17:00〜18:30</div>
-      <div class="ttl">夕食 ・ ORCHESTRA荻窪 <span class="badge">予約済み</span></div>
-      <div class="desc">荻窪駅南口から徒歩2分のフレンチビストロ。カウンター席希望・1名で17時から予約済み。<br>
-      注文予定メニュー：季節の前菜盛り合わせ（1,300円）／金目鯛のカツレツ デュグレレソース（1,200円）／鹿肉ボロネーゼのラザニア（1,700円）＝食事のみ計4,200円。<br>
-      予約時に上記メニューと、食事中に自分の手元・お料理だけを動画に残したい旨（店内・他のお客様・スタッフは映さない配慮）を事前に伝達済み。</div>
-    </div>
-
-    <div class="item">
-      <div class="time">18:35〜18:45</div>
-      <div class="ttl">徒歩で杉並公会堂へ</div>
-      <div class="desc">ORCHESTRA荻窪から杉並公会堂まで、荻窪駅経由で徒歩約7〜10分。</div>
-    </div>
-
-    <div class="item">
-      <div class="time">19:00</div>
-      <div class="ttl">杉並公会堂 大ホール 開場</div>
-      <div class="desc">住所：東京都杉並区上荻1-23-15（荻窪駅北口徒歩7分）。</div>
-    </div>
-
-    <div class="item hi">
-      <div class="time">19:30〜21:00</div>
-      <div class="ttl">🎼 オーケストラ・ファンダメンタルズ第4回演奏会 <span class="badge go">要teket登録</span></div>
-      <div class="desc">「シューマン もう1つのピアノ協奏曲と秘曲集」。指揮・ピアノ：平林遼（音楽監督・常任指揮者）。<br>
-      プログラム：シューマン「ピアノ小協奏曲 序奏とアレグロ・アパッショナート」「ヘルマンとドロテア」序曲「マンフレッド」序曲、メンデルスゾーン「美しいメルジーネの物語」「フィンガルの洞窟」「静かな海と楽しい航海」。<br>
-      入場は無料・任意寄付制（teketで無料会員登録の上、事前予約推奨）。この旅いちばんの感動の瞬間。<br>
-      <a href="https://teket.jp/6363/53911">チケット・詳細</a></div>
-    </div>
-
-    <div class="item">
-      <div class="time">21:10</div>
-      <div class="ttl">荻窪発 → 新宿 → 本厚木 🚆</div>
-      <div class="desc">荻窪（JR中央線快速）→ 新宿 → （小田急線）→ 本厚木。所要目安80分。</div>
-    </div>
-
-    <div class="item">
-      <div class="time">22:30頃</div>
-      <div class="ttl">本厚木駅 到着</div>
-    </div>
+  <div class="note upd">
+    <b>今回の編集方針</b>：自宅最寄り駅がわからないよう、動画は<b>渋谷スタート・荻窪エンドで</b>。自宅→渋谷の移動区間と、荻窪からの帰路は撮影・使用しない（撮る場合も編集で丸ごとカット）。
   </div>
 
   <div class="note">
-    📌 <b>予約・確認メモ：</b>
-    <br>・<b>コンサート</b>は入場無料・任意寄付制ですが、teketでの無料会員登録＋事前予約が必要。当日21:00まで購入可能ですが、埋まる可能性もあるので早めの確保が安心。
-    <br>・<b>ORCHESTRA荻窪</b>は17:00・1名・カウンター席希望で予約済み。注文メニューと動画撮影（手元・料理のみ、他のお客様やスタッフは映さない）の了承依頼を予約時に伝達済み。
-    <br>・電車の時刻はすべて目安（指定席なし・本数の多い路線のため直前確認で十分）。出発が近づいたら乗換案内アプリで最新時刻を確認すると安心。
-    <br>・展示会は最終入場19:30までなので、当日の混雑状況次第で見学時間を前後にずらしても問題なし。
-    <br>・屋内中心のプランのため、雨天でも大きな影響はなし。
-    <br>・<b>予算目安</b>：交通費約2,260円＋展示2,100円＋ディナー4,200円（＋グラスワイン等）＋コンサート（無料・任意寄付）＝合計8,600〜9,500円前後。
+    <b>今回の流れ（感情の波）</b>：体験型展示の「わかるようなわからないような」小さな違和感→フレンチディナーで持ち直し→生演奏の感動でクライマックス。自己紹介は移動シーンに3分割。📋情報字幕は全体で4枚。
   </div>
 
+  <div class="legend">
+    <b>字幕の色分け</b><br>
+    <span><span class="dot" style="background:var(--green)"></span>語りかけ＝敬語</span>
+    <span><span class="dot" style="background:var(--shu)"></span>自分語り＝タメ口</span>
+    <span><span class="dot" style="background:var(--sumi)"></span>📋情報字幕（白枠）</span><br>
+    <span style="color:#6a665c">📦のチェックは自動保存（同じ端末で次に開いても残るよ）</span>
+  </div>
+
+  <!-- ① -->
+  <details class="scene" open>
+    <summary><span class="badge">①</span><span class="title">オープニング（無人カット）</span><span class="time">渋谷で撮影</span><span class="chev">▶</span></summary>
+    <div class="body">
+      <p class="lead">まだ言葉はいらない。渋谷の風景だけで「今日の一人旅」へ。自宅方面のカットは撮らない。</p>
+      <div class="sec-h cam">📦 撮る画</div>
+      <ul class="mat">
+        <li><input type="checkbox"><span>渋谷駅前・スクランブル交差点付近の風景（無人に近い引き／10秒以上）</span></li>
+        <li><input type="checkbox"><span>駅名標・案内表示の寄り（インサート／5秒）</span></li>
+        <li><input type="checkbox"><span>夜のコンサートホールの灯りを一瞬だけ先出し（予告／2〜3秒、撮れれば）</span></li>
+        <li><input type="checkbox"><span>空・雲など季節感のインサート（5〜10秒）</span></li>
+      </ul>
+      <div class="sec-h sub">💬 字幕案</div>
+      <div class="subs">
+        <div class="sub-line sub-tame"><span class="tag tag-tame">タメ</span>（最後に1枚だけ）今日は渋谷と荻窪、日帰りで巡ってきました。</div>
+      </div>
+      <div class="meta">
+        <div><span class="k">🎵 音：</span>音楽オン。</div>
+        <div><span class="k">🎙 声：</span>なし　<span class="k">✅ 許可：</span>不要（無人に近い画のみ）</div>
+      </div>
+      <div class="warnbox">⚠ 自宅最寄り駅・移動区間はここでは撮らない／使わない。「渋谷から始まった」ように見える画だけでOK。</div>
+    </div>
+  </details>
+
+  <!-- ② -->
+  <details class="scene">
+    <summary><span class="badge">②</span><span class="title">渋谷 到着</span><span class="time">スタート地点</span><span class="chev">▶</span></summary>
+    <div class="body">
+      <p class="lead">実況風に「着いた」感を出す。ここが動画上の旅のスタート。自己紹介パート1をここで小出しに。</p>
+      <div class="sec-h cam">📦 撮る画</div>
+      <ul class="mat">
+        <li><input type="checkbox"><span>渋谷駅の改札を出る足元・後ろ姿（主観・引き／5〜10秒）</span></li>
+        <li><input type="checkbox"><span>ハチ公・スクランブル交差点など渋谷らしい引きの画（10秒）</span></li>
+        <li><input type="checkbox"><span>西武渋谷店方面へ歩く足元（カスタム1／10秒）</span></li>
+      </ul>
+      <div class="sec-h sub">💬 字幕案</div>
+      <div class="subs">
+        <div class="sub-line sub-yobi"><span class="tag tag-yobi">敬語</span>渋谷にやってきました〜！</div>
+        <div class="sub-line sub-tame"><span class="tag tag-tame">タメ</span>（自己紹介①）はじめまして！休みの日に出かけるのが好きです！</div>
+      </div>
+      <div class="meta">
+        <div><span class="k">🎵 音：</span>音楽オン。駅前の雑踏も少し。</div>
+        <div><span class="k">🎙 声：</span>とっさのみ　<span class="k">✅ 許可：</span>不要（公共の場）</div>
+      </div>
+    </div>
+  </details>
+
+  <!-- ③ -->
+  <details class="scene">
+    <summary><span class="badge">③</span><span class="title">🎨 微わかる展2＋小さいすぎるよ展</span><span class="time">11:30〜14:00</span><span class="chev">▶</span></summary>
+    <div class="body">
+      <p class="lead">期待→違和感の小さな下げ。「わかるようなわからないような」感覚を字幕で楽しむ。</p>
+      <div class="sec-h cam">📦 撮る画</div>
+      <ul class="mat">
+        <li><input type="checkbox"><span>西武渋谷店の外観・入口看板（引き／10秒）</span></li>
+        <li><input type="checkbox"><span>チケット購入・入場の主観（5〜10秒）</span></li>
+        <li><input type="checkbox"><span>展示会場入口の看板の寄り</span></li>
+        <li><input type="checkbox"><span>展示を眺める後ろ姿・手元（許可が下りた範囲で）</span></li>
+        <li><input type="checkbox"><span>「わかるようなわからないような」表情が出そうな展示物のインサート</span></li>
+      </ul>
+      <div class="sec-h sub">💬 字幕案</div>
+      <div class="subs">
+        <div class="sub-line sub-tame"><span class="tag tag-tame">タメ</span>微わかる展、来てみました！</div>
+        <div class="sub-line sub-tame"><span class="tag tag-tame">タメ</span>…え、これ微妙にわかる？わからない？</div>
+        <div class="sub-line sub-yobi"><span class="tag tag-yobi">敬語</span>そういえば、皆さんはこの違和感、伝わりますか？</div>
+        <div class="sub-line sub-info"><span class="tag tag-info">📋①</span>営業10:00〜20:00（最終入場19:30）／休日料金2,100円</div>
+      </div>
+      <div class="meta">
+        <div><span class="k">🎵 音：</span>音楽オフ（没入させたい場面）。館内のざわめきは控えめに。</div>
+        <div><span class="k">🎙 声：</span>「あ、これ…わかるかも！」などとっさのみ</div>
+      </div>
+      <div class="warnbox">⚠ 館内撮影は事前に施設側へ確認必須（体験型展示は展示物ごとに撮影可否が異なる場合あり）。🅱 撮影NGの場合は外観・入口・チケット・出てきた後の感想字幕のみで構成。</div>
+    </div>
+  </details>
+
+  <!-- ④ -->
+  <details class="scene">
+    <summary><span class="badge">④</span><span class="title">移動：渋谷→新宿→荻窪（JR）</span><span class="time">14:00〜14:35</span><span class="chev">▶</span></summary>
+    <div class="body">
+      <p class="lead">自己紹介パート2をここで小出しに。</p>
+      <div class="sec-h cam">📦 撮る画</div>
+      <ul class="mat">
+        <li><input type="checkbox"><span>渋谷→新宿の車窓</span></li>
+        <li><input type="checkbox"><span>新宿での乗り換え（案内板・改札）</span></li>
+        <li><input type="checkbox"><span>中央線快速の車窓（カスタム1広角／10秒以上）</span></li>
+      </ul>
+      <div class="sec-h sub">💬 字幕案</div>
+      <div class="subs">
+        <div class="sub-line sub-yobi"><span class="tag tag-yobi">敬語</span>渋谷から荻窪へ、新宿経由で移動です。</div>
+        <div class="sub-line sub-tame"><span class="tag tag-tame">タメ</span>（自己紹介②）温泉とか神社とか、ローカル線とか。のんびりしたのが好きなんです。</div>
+      </div>
+      <div class="meta">
+        <div><span class="k">🎵 音：</span>音楽オン。</div>
+        <div><span class="k">🎙 声：</span>なし</div>
+      </div>
+    </div>
+  </details>
+
+  <!-- ⑤ -->
+  <details class="scene">
+    <summary><span class="badge">⑤</span><span class="title">荻窪 街歩き・時間調整</span><span class="time">14:35〜16:50</span><span class="chev">▶</span></summary>
+    <div class="body">
+      <p class="lead">のんびり寄り道。語りかけ字幕で人柄がにじむゾーン。</p>
+      <div class="sec-h cam">📦 撮る画</div>
+      <ul class="mat">
+        <li><input type="checkbox"><span>荻窪駅前の引き（10秒）</span></li>
+        <li><input type="checkbox"><span>書店の外観・店内（許可の範囲で棚の寄りなど）</span></li>
+        <li><input type="checkbox"><span>カフェでの一息（ドリンクの寄り、手元の主観）</span></li>
+        <li><input type="checkbox"><span>街の看板・のれんなどのインサート数点</span></li>
+      </ul>
+      <div class="sec-h sub">💬 字幕案</div>
+      <div class="subs">
+        <div class="sub-line sub-tame"><span class="tag tag-tame">タメ</span>荻窪、時間があるので書店とカフェでのんびりします。</div>
+        <div class="sub-line sub-yobi"><span class="tag tag-yobi">敬語</span>そういえば、寄り道してるとなんか得した気分になりませんか？</div>
+      </div>
+      <div class="meta">
+        <div><span class="k">🎵 音：</span>控えめ〜オフ。街歩きの環境音を活かす。</div>
+        <div><span class="k">🎙 声：</span>基本なし（交流の声：注文時の「すみません」程度はOK）</div>
+      </div>
+      <div class="warnbox">⚠ 店内撮影は入店時に一声確認。🅱 断られた場合は外観・のれん・看板のみ使用。</div>
+    </div>
+  </details>
+
+  <!-- ⑥ -->
+  <details class="scene climax">
+    <summary><span class="badge">⑥</span><span class="title">夕食・ORCHESTRA荻窪（予約済み）★山</span><span class="time">17:00〜18:30</span><span class="chev">▶</span></summary>
+    <div class="body">
+      <p class="lead">食の見せ場。食事は流れで（配膳→引き→寄り→ひとくち→リアクション）。ギャップからの持ち直し。</p>
+      <div class="sec-h cam">📦 撮る画</div>
+      <ul class="mat">
+        <li><input type="checkbox"><span>店の外観・看板の引き（10秒）／のれん・メニュー看板の寄り</span></li>
+        <li><input type="checkbox"><span>配膳される瞬間（主観／5〜10秒）</span></li>
+        <li><input type="checkbox"><span>前菜盛り合わせの寄り（10秒以上）</span></li>
+        <li><input type="checkbox"><span>金目鯛のカツレツの寄り（10秒以上）</span></li>
+        <li><input type="checkbox"><span>鹿肉ボロネーゼのラザニアの寄り（10秒以上）</span></li>
+        <li><input type="checkbox"><span>ひとくち食べる手元の主観（各料理5〜10秒）</span></li>
+        <li><input type="checkbox"><span>グラスの寄り</span></li>
+      </ul>
+      <div class="sec-h sub">💬 字幕案</div>
+      <div class="subs">
+        <div class="sub-line sub-tame"><span class="tag tag-tame">タメ</span>本日のディナーは、ORCHESTRA荻窪さん！</div>
+        <div class="sub-line sub-tame"><span class="tag tag-tame">タメ</span>うまっ</div>
+        <div class="sub-line sub-yobi"><span class="tag tag-yobi">敬語</span>そういえば、皆さんは一人ディナーでフルコース攻めたことありますか？</div>
+        <div class="sub-line sub-info"><span class="tag tag-info">📋②</span>季節の前菜盛り合わせ／金目鯛のカツレツ デュグレレソース／鹿肉ボロネーゼのラザニア</div>
+      </div>
+      <div class="meta">
+        <div><span class="k">🎵 音：</span>入店まで音楽オン→料理が来たら<b>音楽オフ</b>（没入）。</div>
+        <div><span class="k">🎙 声：</span>「うまっ」など短いリアクション＋注文・お礼の声はOK</div>
+      </div>
+      <div class="warnbox">⚠ 予約時に「手元・料理のみ撮影、他のお客様・スタッフは映さない」旨を伝達済み。撮影許可を得ている旨を字幕で一言添えると信頼度アップ。🅱 混んでいて撮りづらい場合は料理の寄りと手元のみに絞る。</div>
+    </div>
+  </details>
+
+  <!-- ⑦ -->
+  <details class="scene">
+    <summary><span class="badge">⑦</span><span class="title">徒歩で杉並公会堂へ（開場待ち）</span><span class="time">18:35〜19:00</span><span class="chev">▶</span></summary>
+    <div class="body">
+      <p class="lead">満腹のまま歩いて、今日いちばんの楽しみへ。期待を持たせる。</p>
+      <div class="sec-h cam">📦 撮る画</div>
+      <ul class="mat">
+        <li><input type="checkbox"><span>荻窪駅前を歩く足元・後ろ姿（10秒）</span></li>
+        <li><input type="checkbox"><span>杉並公会堂の外観（引き／10秒以上）</span></li>
+        <li><input type="checkbox"><span>開場を待つ人の列・入口看板（人物が特定されない範囲で）</span></li>
+      </ul>
+      <div class="sec-h sub">💬 字幕案</div>
+      <div class="subs">
+        <div class="sub-line sub-tame"><span class="tag tag-tame">タメ</span>お腹いっぱいのまま、歩いて杉並公会堂へ。</div>
+        <div class="sub-line sub-tame"><span class="tag tag-tame">タメ</span>ここから今日いちばんの楽しみです。</div>
+      </div>
+      <div class="meta">
+        <div><span class="k">🎵 音：</span>音楽オン（移動〜到着）。夜の街の音、ロビーのざわめきも。</div>
+        <div><span class="k">🎙 声：</span>なし</div>
+      </div>
+      <div class="warnbox">⚠ ロビー内の撮影可否は当日スタッフに確認。🅱 確認が取れない場合は外観と入口看板のみ。</div>
+    </div>
+  </details>
+
+  <!-- ⑧ -->
+  <details class="scene climax">
+    <summary><span class="badge">⑧</span><span class="title">🎼 オーケストラ・ファンダメンタルズ第4回演奏会（クライマックス）★この旅いちばん</span><span class="time">19:30〜21:00</span><span class="chev">▶</span></summary>
+    <div class="body">
+      <p class="lead">頂点。演奏中の撮影は基本NG想定なので、開演前後の空気感で勝負する。</p>
+      <div class="sec-h cam">📦 撮る画</div>
+      <ul class="mat">
+        <li><input type="checkbox"><span>開演前のホール外観・ロビーの余韻カット（無人があれば理想／10秒）</span></li>
+        <li><input type="checkbox"><span>プログラムやチケット（teket画面）の寄り</span></li>
+        <li><input type="checkbox"><span>※演奏中は撮影せず。終演後のロビー・拍手の余韻の空気感（許可が取れれば）</span></li>
+      </ul>
+      <div class="sec-h sub">💬 字幕案（最小限に）</div>
+      <div class="subs">
+        <div class="sub-line sub-tame"><span class="tag tag-tame">タメ</span>シューマンのもう1つのピアノ協奏曲、生で聴けるの楽しみすぎる…！</div>
+        <div class="sub-line sub-info"><span class="tag tag-info">📋③</span>入場無料・任意寄付制。teketで無料会員登録の上、事前予約推奨。</div>
+        <div class="sub-line sub-tame"><span class="tag tag-tame">タメ</span>（終演後）今日いちばん、心が動いた時間でした。</div>
+        <div class="sub-line sub-yobi"><span class="tag tag-yobi">敬語</span>皆さんも、ふらっと立ち寄れる無料のコンサート、探してみませんか？</div>
+      </div>
+      <div class="meta">
+        <div><span class="k">🎵 音：</span><b>音楽オフ</b>（演奏そのものは映像には基本使えない前提）。</div>
+        <div><span class="k">🎙 声：</span>演奏中は声を出さない。解説は厳禁。</div>
+      </div>
+      <div class="warnbox">⚠★最重要：クラシックコンサートは著作権・他の観客への配慮から演奏中の撮影・録音は基本NGの会場が多い。事前に主催・会場へ撮影可否を必ず確認。🅱 NGの場合は開演前ロビー・外観・チケット・プログラムのみで構成し、感想はすべて字幕で。「許可を得て撮影しています」と言えない場合は演奏中カットを一切使わない判断を。</div>
+    </div>
+  </details>
+
+  <!-- ⑨ -->
+  <details class="scene">
+    <summary><span class="badge">⑨</span><span class="title">エンディング（無人カット）</span><span class="time">荻窪で撮影・締め</span><span class="chev">▶</span></summary>
+    <div class="body">
+      <p class="lead">感情の波を前向きに着地させて締める。自己紹介パート3・コメント誘導もここで。動画は荻窪で終わり、帰路（自宅方面）は撮らない／使わない。</p>
+      <div class="sec-h cam">📦 撮る画</div>
+      <ul class="mat">
+        <li><input type="checkbox"><span>荻窪駅前・夜の街並みなど、人が入らない綺麗な画（10秒以上）</span></li>
+        <li><input type="checkbox"><span>杉並公会堂〜荻窪駅方面の夜景インサート（撮れれば）</span></li>
+      </ul>
+      <div class="sec-h sub">💬 字幕案</div>
+      <div class="subs">
+        <div class="sub-line sub-tame"><span class="tag tag-tame">タメ</span>展示もディナーもオーケストラも、全部行ってよかったです。</div>
+        <div class="sub-line sub-tame"><span class="tag tag-tame">タメ</span>（自己紹介③）気になった場所を、のんびり巡っていくので。よかったら一緒に楽しんでください！</div>
+        <div class="sub-line sub-yobi"><span class="tag tag-yobi">敬語</span>コメントで、皆さんのおすすめコンサートも教えてください。</div>
+      </div>
+      <div class="meta">
+        <div><span class="k">🎵 音：</span>音楽オン（エンディングテーマ、フェードアウト）。</div>
+        <div><span class="k">🎙 声：</span>なし</div>
+      </div>
+      <div class="warnbox">⚠ ここで動画は終了。荻窪→自宅方面の電車・駅カットは撮らない、または撮っても編集で使わない。</div>
+    </div>
+  </details>
+
+  <!-- 撮影前チェック -->
+  <details class="scene">
+    <summary><span class="badge" style="background:var(--sumi)">✓</span><span class="title">撮影前・最終チェック</span><span class="time">事前</span><span class="chev">▶</span></summary>
+    <div class="body">
+      <div class="sec-h warn">📋 予約・確保</div>
+      <ul class="mat">
+        <li><input type="checkbox"><span>ORCHESTRA荻窪 17:00・1名・カウンター席の予約確認</span></li>
+        <li><input type="checkbox"><span>オーケストラ・ファンダメンタルズ teket 無料会員登録＋事前予約</span></li>
+      </ul>
+      <div class="sec-h warn">📋 撮影許可（取れたら字幕で一言）</div>
+      <ul class="mat">
+        <li><input type="checkbox"><span>微わかる展 館内撮影の可否を現地で確認</span></li>
+        <li><input type="checkbox"><span>ORCHESTRA荻窪 手元・料理のみの撮影、予約時に伝達済み（当日も一声）</span></li>
+        <li><input type="checkbox"><span>杉並公会堂 演奏中の撮影可否を必ず事前確認（基本NG想定）</span></li>
+      </ul>
+      <div class="sec-h warn">📋 プライバシー配慮（今回の要）</div>
+      <div class="meta">
+        <div>・動画は<b>渋谷スタート・荻窪エンド</b>で構成。自宅最寄り駅・自宅→渋谷間の移動・荻窪→自宅間の帰路は撮影しない、または撮っても編集で使用しない</div>
+        <div>・自己紹介や語りかけ字幕でも、自宅の地域が特定できる固有名詞は避ける</div>
+      </div>
+      <div class="sec-h warn">📋 時間の注意</div>
+      <div class="meta">
+        <div>・展示は最終入場19:30までなので、混雑状況次第で見学時間を前後にずらしても問題なし</div>
+        <div>・コンサートは無料・任意寄付制だが、当日21:00まで購入可能でも埋まる可能性あり。早めの確保が安心</div>
+        <div>・電車の時刻はすべて目安（指定席なし・本数の多い路線）。出発前に乗換案内アプリで最新時刻を確認</div>
+      </div>
+      <div class="sec-h warn">📋 天気・その他</div>
+      <ul class="mat">
+        <li><input type="checkbox"><span>屋内中心のプランのため雨天でも大きな影響なし（念のため折り畳み傘）</span></li>
+      </ul>
+      <div class="sec-h warn">📋 機材プリセット早見</div>
+      <div class="meta">
+        <div><span class="k">カスタム1（広角）：</span>風景・車窓・歩き</div>
+        <div><span class="k">カスタム2（狭角）：</span>物撮り・手元・料理の寄り</div>
+        <div><span class="k">カスタム3（120fps）：</span>グラスの結露・湯気など余韻スロー</div>
+        <div><span class="k">カスタム4：</span>揺れを活かしたいシーン</div>
+      </div>
+      <div class="sec-h warn">📋 撮り忘れ防止の合言葉</div>
+      <div class="meta">
+        <div>・1カットは長め（動き5〜10秒／止め画10秒以上）</div>
+        <div>・同じ対象は「引き・寄り・主観」3点セット</div>
+        <div>・移動＝出発→道中→到着／食事＝配膳→引き→寄り→ひとくち→リアクション</div>
+        <div>・オープニング用・締め用の“無人の綺麗な画”を渋谷・荻窪それぞれで確保</div>
+        <div>・コンサートは演奏中カットが撮れない前提で、開演前後の素材を多めに確保しておく</div>
+      </div>
+      <div class="warnbox">📦 持ち物：カメラ／予備バッテリー／microSD／モバイルバッテリー／ミニ三脚／PLフィルター／レンズクロス／モバイルSuica／teketのチケット画面（スクショ推奨）</div>
+    </div>
+  </details>
+
   <footer>
-    渋谷・荻窪 日帰り旅行計画書 ／ 2026.07.19
+    ※情報は撮影時点のものです。最新は公式でご確認ください。<br>
+    えなみん！の旅びより ／ 行ってよかった！を集めてます
   </footer>
 </div>
+
+<div class="foot-fixed">困ったら<b>多めに撮る</b>。「使うか分からないけど一応」を現場で潰す方が、後悔より安い。</div>
+
+<script>
+  const KEY = "shibuya_ogikubo_biwakaru_concert_2026_v2_checks";
+  const boxes = Array.from(document.querySelectorAll('input[type=checkbox]'));
+  boxes.forEach((b,i)=> b.dataset.k = "c"+i);
+
+  function load(){
+    let saved = {};
+    try{ saved = JSON.parse(localStorage.getItem(KEY)) || {}; }catch(e){}
+    boxes.forEach(b=>{ if(saved[b.dataset.k]) b.checked = true; });
+  }
+  function save(){
+    const o = {};
+    boxes.forEach(b=>{ if(b.checked) o[b.dataset.k]=1; });
+    try{ localStorage.setItem(KEY, JSON.stringify(o)); }catch(e){}
+  }
+  function updateProgress(){
+    const camBoxes = boxes.filter(b=> b.closest('.scene') && !b.closest('.scene').querySelector('.sec-h.warn'));
+    const done = camBoxes.filter(b=>b.checked).length;
+    document.getElementById('pcount').textContent = done;
+    document.getElementById('ptotal').textContent = camBoxes.length;
+    document.getElementById('pfill').style.width = (done/camBoxes.length*100)+"%";
+  }
+  boxes.forEach(b=> b.addEventListener('change', ()=>{ save(); updateProgress(); }));
+
+  function toggleAll(open){ document.querySelectorAll('details.scene').forEach(d=> d.open = open); }
+  function resetChecks(){
+    if(!confirm("チェックを全部消す？")) return;
+    boxes.forEach(b=> b.checked=false);
+    save(); updateProgress();
+  }
+
+  load(); updateProgress();
+</script>
 </body>
 </html>
