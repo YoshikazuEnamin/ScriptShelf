@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>えなみん！の旅びより｜台本置き場</title>
+<style>
+  :root{
+    --kinari:#F5EFE0; --gray:#D9D2C5; --shu:#C75B39; --green:#7A8B5A; --sumi:#3A3A3A;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+  body{
+    margin:0;background:var(--kinari);color:var(--sumi);
+    font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
+    line-height:1.7;font-size:16px;padding-bottom:48px;
+  }
+  header{
+    background:var(--shu);color:#fff;padding:22px 18px 18px;
+    box-shadow:0 2px 10px rgba(58,58,58,.18);
+  }
+  header .ch{font-size:12px;letter-spacing:.22em;opacity:.9;margin:0 0 6px;}
+  header h1{margin:0;font-size:22px;letter-spacing:.02em;}
+  header .sub{font-size:12.5px;opacity:.92;margin-top:6px;}
+  .wrap{max-width:720px;margin:0 auto;padding:16px 12px 0;}
+
+  .status{
+    background:#fff;border:1px solid var(--gray);border-radius:12px;padding:16px;margin-bottom:14px;
+    font-size:14px;color:#6a665c;text-align:center;
+  }
+  .status.err{border-color:#e3b8a8;background:#fdf0eb;color:#a8431f;text-align:left;}
+  .status code{background:#f2ede0;padding:1px 6px;border-radius:5px;font-size:12.5px;}
+
+  a.card{
+    display:block;text-decoration:none;color:inherit;
+    background:#fff;border:1px solid var(--gray);border-radius:14px;
+    padding:15px 16px;margin-bottom:12px;transition:box-shadow .15s, transform .05s;
+  }
+  a.card:hover{box-shadow:0 3px 14px rgba(58,58,58,.12);}
+  a.card:active{transform:scale(.995);}
+  .card .t{font-weight:800;font-size:16px;display:flex;align-items:center;gap:8px;}
+  .card .t .arrow{margin-left:auto;color:var(--shu);flex:none;font-weight:900;}
+  .card .s{font-size:12.5px;color:#6a665c;margin-top:5px;}
+  .card .f{display:inline-block;margin-top:8px;font-size:11px;color:#8a8678;background:#f7f4ec;
+    border-radius:6px;padding:2px 8px;}
+
+  .count{font-size:12.5px;color:#8a8678;margin:2px 4px 12px;}
+  footer{text-align:center;font-size:11.5px;color:#8a8678;padding:24px 16px 8px;}
+  .spin{display:inline-block;width:16px;height:16px;border:3px solid var(--gray);
+    border-top-color:var(--shu);border-radius:50%;animation:sp .8s linear infinite;vertical-align:-3px;margin-right:8px;}
+  @keyframes sp{to{transform:rotate(360deg);}}
+</style>
+</head>
+<body>
+<header>
+  <p class="ch">えなみん！の旅びより</p>
+  <h1>📁 台本置き場</h1>
+  <div class="sub">行った日の撮影台本、まとめ ／ 行ってよかった！を集めてます</div>
+</header>
+
+<div class="wrap">
+  <div class="count" id="count"></div>
+  <div id="list"></div>
+  <div class="status" id="status"><span class="spin"></span>台本を読み込み中…</div>
+</div>
+
+<footer>
+  ※このページはリポジトリ内のHTMLを自動で一覧表示します。<br>
+  えなみん！の旅びより
+</footer>
+
+<script>
+  // ===== 設定（リポジトリが変わったらここだけ直す）=====
+  const OWNER = "YoshikazuEnamin";
+  const REPO  = "ScriptShelf";
+  // ================================================
+
+  const listEl   = document.getElementById('list');
+  const statusEl = document.getElementById('status');
+  const countEl  = document.getElementById('count');
+
+  // ファイル名から日付っぽい部分をゆるく拾って並べ替え用キーに
+  function sortKey(name){
+    const m = name.match(/(\d{3,8})/);
+    return m ? m[1].padStart(8,'9') : name; // 数字なしは後ろへ
+  }
+
+  async function getTitle(fileName){
+    // 各HTMLの <header h1> と <header .sub>、無ければ <title> を表示名に使う
+    try{
+      const res = await fetch(fileName, {cache:"no-store"});
+      if(!res.ok) throw 0;
+      const html = await res.text();
+      const doc = new DOMParser().parseFromString(html, "text/html");
+      const h1  = doc.querySelector('header h1');
+      const sub = doc.querySelector('header .sub');
+      const title = (h1 && h1.textContent.trim()) || (doc.title || fileName).trim();
+      return { title, sub: sub ? sub.textContent.trim() : "" };
+    }catch(e){
+      return { title: fileName, sub: "" };
+    }
+  }
+
+  async function main(){
+    try{
+      const api = `https://api.github.com/repos/${OWNER}/${REPO}/contents/`;
+      const res = await fetch(api);
+      if(!res.ok) throw new Error("GitHub API " + res.status);
+      const files = await res.json();
+
+      let htmls = files.filter(f =>
+        f.type === "file" &&
+        /\.html?$/i.test(f.name) &&
+        f.name.toLowerCase() !== "index.html"
+      );
+
+      if(htmls.length === 0){
+        statusEl.textContent = "まだ台本がありません。HTMLファイルをアップロードすると、ここに自動で並びます。";
+        countEl.textContent = "";
+        return;
+      }
+
+      // 新しい日付が上に来るように降順
+      htmls.sort((a,b) => sortKey(b.name).localeCompare(sortKey(a.name)));
+
+      const metas = await Promise.all(htmls.map(f => getTitle(f.name)));
+
+      const frag = document.createDocumentFragment();
+      htmls.forEach((f, i) => {
+        const m = metas[i];
+        const a = document.createElement('a');
+        a.className = "card";
+        a.href = f.name;
+        a.innerHTML =
+          '<div class="t">' + escapeHtml(m.title) + '<span class="arrow">›</span></div>' +
+          (m.sub ? '<div class="s">' + escapeHtml(m.sub) + '</div>' : '') +
+          '<span class="f">' + escapeHtml(f.name) + '</span>';
+        frag.appendChild(a);
+      });
+      listEl.appendChild(frag);
+      statusEl.remove();
+      countEl.textContent = htmls.length + " 本の台本";
+    }catch(err){
+      statusEl.className = "status err";
+      statusEl.innerHTML =
+        "読み込みに失敗しました（" + escapeHtml(String(err.message||err)) + "）。<br>" +
+        "・リポジトリ名の設定（<code>OWNER</code> / <code>REPO</code>）が合っているか<br>" +
+        "・少し時間をおいてリロード（GitHub APIは1時間あたりの回数制限あり）<br>" +
+        "を確認してみてください。";
+      countEl.textContent = "";
+    }
+  }
+
+  function escapeHtml(s){
+    return String(s).replace(/[&<>"']/g, c => (
+      {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]
+    ));
+  }
+
+  main();
+</script>
+</body>
+</html>
