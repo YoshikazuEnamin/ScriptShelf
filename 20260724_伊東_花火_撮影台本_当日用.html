@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>伊東温泉・夢花火ひとり旅｜当日撮影台本</title>
+<style>
+  :root{
+    --kinari:#F5EFE0; --gray:#D9D2C5; --shu:#C75B39; --green:#7A8B5A; --sumi:#3A3A3A;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+  body{
+    margin:0;background:var(--kinari);color:var(--sumi);
+    font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
+    line-height:1.7;font-size:16px;padding-bottom:64px;
+  }
+  header{
+    background:var(--shu);color:#fff;padding:18px 16px 14px;position:sticky;top:0;z-index:20;
+    box-shadow:0 2px 10px rgba(58,58,58,.18);
+  }
+  header h1{margin:0;font-size:18px;letter-spacing:.02em;}
+  header .sub{font-size:12.5px;opacity:.92;margin-top:4px;}
+  .wrap{max-width:720px;margin:0 auto;padding:14px 12px 0;}
+
+  .bar{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 14px;}
+  .bar button{
+    flex:1;min-width:120px;border:none;border-radius:10px;padding:10px;font-size:13px;font-weight:700;
+    background:var(--gray);color:var(--sumi);cursor:pointer;
+  }
+  .bar button.reset{background:#fff;border:1px solid var(--gray);}
+  .progress{background:#fff;border:1px solid var(--gray);border-radius:12px;padding:12px 14px;margin-bottom:16px;}
+  .progress .num{font-size:22px;font-weight:800;color:var(--shu);}
+  .pbar{height:8px;border-radius:5px;background:var(--gray);overflow:hidden;margin-top:8px;}
+  .pbar > i{display:block;height:100%;background:var(--green);width:0;transition:width .3s;}
+
+  .note{background:#fff;border-left:5px solid var(--green);border-radius:8px;padding:11px 13px;font-size:13.5px;margin-bottom:16px;}
+  .note b{color:var(--green);}
+  .note.upd{border-left-color:var(--shu);}
+  .note.upd b{color:var(--shu);}
+
+  details.scene{background:#fff;border:1px solid var(--gray);border-radius:14px;margin-bottom:12px;overflow:hidden;}
+  details.scene[open]{box-shadow:0 2px 12px rgba(58,58,58,.10);}
+  summary{list-style:none;cursor:pointer;padding:14px 14px;display:flex;align-items:center;gap:10px;}
+  summary::-webkit-details-marker{display:none;}
+  .badge{
+    flex:none;width:30px;height:30px;border-radius:50%;background:var(--shu);color:#fff;
+    display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;
+  }
+  .climax .badge{background:var(--green);}
+  .newsc .badge{background:#b8860b;}
+  summary .title{font-weight:800;font-size:15px;flex:1;}
+  summary .time{font-size:11px;color:#fff;background:var(--sumi);padding:2px 8px;border-radius:20px;flex:none;}
+  summary .chev{flex:none;color:var(--gray);transition:transform .2s;font-size:13px;}
+  details[open] summary .chev{transform:rotate(90deg);color:var(--shu);}
+  .tagnew{font-size:9.5px;font-weight:800;background:#b8860b;color:#fff;border-radius:4px;padding:1px 5px;margin-left:4px;}
+
+  .body{padding:2px 14px 16px;}
+  .lead{font-size:13px;color:#6a665c;font-style:italic;margin:2px 0 12px;}
+
+  .sec-h{font-size:13px;font-weight:800;margin:14px 0 7px;display:flex;align-items:center;gap:6px;}
+  .sec-h.cam{color:var(--shu);}
+  .sec-h.sub{color:var(--sumi);}
+  .sec-h.warn{color:#a8431f;}
+
+  ul.mat{list-style:none;padding:0;margin:0;}
+  ul.mat li{display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-bottom:1px dashed var(--gray);font-size:14px;}
+  ul.mat li:last-child{border-bottom:none;}
+  ul.mat input{
+    appearance:none;-webkit-appearance:none;flex:none;width:22px;height:22px;margin-top:1px;
+    border:2px solid var(--green);border-radius:6px;background:#fff;cursor:pointer;position:relative;
+  }
+  ul.mat input:checked{background:var(--green);}
+  ul.mat input:checked::after{content:"✓";color:#fff;font-size:14px;font-weight:900;position:absolute;left:3px;top:-2px;}
+  ul.mat input:checked + span{color:#9a958a;text-decoration:line-through;}
+
+  .subs{display:flex;flex-direction:column;gap:7px;}
+  .sub-line{padding:8px 11px;border-radius:9px;font-size:13.5px;}
+  .sub-yobi{background:#eef0e6;border-left:4px solid var(--green);}
+  .sub-tame{background:#faf3ea;border-left:4px solid var(--shu);}
+  .sub-info{background:#fff;border:1.5px solid var(--sumi);border-radius:9px;font-size:12.5px;}
+  .tag{font-size:10.5px;font-weight:800;padding:1px 6px;border-radius:5px;margin-right:6px;vertical-align:middle;}
+  .tag-yobi{background:var(--green);color:#fff;}
+  .tag-tame{background:var(--shu);color:#fff;}
+  .tag-info{background:var(--sumi);color:#fff;}
+
+  .meta{font-size:13px;background:#f7f4ec;border-radius:9px;padding:9px 11px;margin-top:6px;}
+  .meta div{margin:3px 0;}
+  .meta .k{font-weight:800;}
+  .warnbox{background:#fdf0eb;border:1px solid #e3b8a8;border-radius:9px;padding:9px 11px;font-size:13px;margin-top:8px;}
+
+  .legend{background:#fff;border:1px solid var(--gray);border-radius:12px;padding:12px 14px;margin:4px 0 18px;font-size:12.5px;}
+  .legend span{display:inline-block;margin:3px 8px 3px 0;}
+  .dot{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:4px;vertical-align:middle;}
+
+  footer{text-align:center;font-size:11.5px;color:#8a8678;padding:20px 16px 8px;}
+  .foot-fixed{position:fixed;left:0;right:0;bottom:0;background:var(--sumi);color:#fff;text-align:center;font-size:12px;padding:9px;z-index:30;}
+  .foot-fixed b{color:#ffd9cd;}
+</style>
+</head>
+<body>
+<header>
+  <h1>🎆 伊東温泉・夢花火ひとり旅</h1>
+  <div class="sub">当日撮影台本｜2026/7/24(金)〜25(土)　小田原 → 伊東駅｜顔出しNG・字幕主体</div>
+</header>
+
+<div class="wrap">
+
+  <div class="bar">
+    <button onclick="toggleAll(true)">▼ 全部ひらく</button>
+    <button onclick="toggleAll(false)">▲ 全部とじる</button>
+    <button class="reset" onclick="resetChecks()">☐ チェック全消し</button>
+  </div>
+
+  <div class="progress">
+    <div>撮影クリア　<span class="num" id="pcount">0</span> / <span id="ptotal">0</span> カット</div>
+    <div class="pbar"><i id="pfill"></i></div>
+  </div>
+
+  <div class="note upd">
+    <b>今回の更新</b>：小田原城 立ち寄り観光／踊り子 小田原<b>11:31</b>発→伊東<b>12:13</b>着／🎋竹あかり＆音無神社／夕涼みわくわく市／朝市オプションを追加。
+  </div>
+
+  <div class="note">
+    <b>光の軸（今回の武器）</b>：昼の日差し→夕暮れの竹あかり→夜のイラスト提灯→花火、と灯りが色づく流れ。<b>自己紹介はナシ</b>。📋情報字幕は全体で5枚まで。
+  </div>
+
+  <div class="legend">
+    <b>字幕の色分け</b><br>
+    <span><span class="dot" style="background:var(--green)"></span>語りかけ＝敬語</span>
+    <span><span class="dot" style="background:var(--shu)"></span>自分語り＝タメ口</span>
+    <span><span class="dot" style="background:var(--sumi)"></span>📋情報字幕（白枠）</span><br>
+    <span style="color:#6a665c">📦のチェックは自動保存（同じ端末で次に開いても残るよ）</span>
+  </div>
+
+  <!-- ① -->
+  <details class="scene" open>
+    <summary><span class="badge">①</span><span class="title">オープニング（無人カット）</span><span class="time">開始前撮影</span><span class="chev">▶</span></summary>
+    <div class="body">
+      <p class="lead">まだ言葉はいらない。綺麗な画だけで「夏の伊東」へ。</p>
+      <div class="sec-h cam">📦 撮る画</div>
+      <ul class="mat">
+        <li><input type="checkbox"><span>伊東の海・水平線（無人の引き／10秒以上）※昼に</span></li>
+        <li><input type="checkbox"><span>竹あかり or 夜市の提灯の灯り（引き／10秒）※夜に撮って頭に先出し</span></li>
+        <li><input type="checkbox"><span>湯けむり or 海面のゆらぎ（カスタム3スロー／10秒）</span></li>
+        <li><input type="checkbox"><span>夜の花火を一瞬だけ先出し（予告／2〜3秒）</span></li>
+        <li><input type="checkbox"><span>駅名標・時刻表の寄り（インサート／5秒）</span></li>
+      </ul>
+      <div class="sec-h sub">💬 字幕案</div>
+      <div class="subs">
+        <div class="sub-line sub-tame"><span class="tag tag-tame">タメ</span>（最後に1枚だけ）夏の伊東に、花火を見に行ってきました。</div>
+      </div>
+      <div class="meta">
+        <div><span class="k">🎵 音：</span>音楽オン。最後の花火カットだけ環境音をチラ。</div>
+        <div><span class="k">🎙 声：</span>なし　<span class="k">✅ 許可：</span>不要（無人画のみ）</div>
+      </div>
+    </div>
+  </details>
+
+  <!-- ② -->
+  <details class="scene">
+    <summary><span class="badge">②</span><span class="title">小田原駅・出発</span><span class="time">10:11着</span><span class="chev">▶</span></summary>
+    <div class="body">
+      <p class="lead">旅のはじまり。出発の高揚を上げる。</p>
+      <div class="sec-h cam">📦 撮る画</div>
+      <ul class="mat">
+        <li><input type="checkbox"><span>小田原駅 駅名標／改札を抜ける手元・足元（主観／5〜10秒）</span></li>
+        <li><input type="checkbox"><span>駅前・城方向へ歩き出す足元（カスタム1／10秒）</span></li>
+        <li><input type="checkbox"><span>夏の空・強い日差しのインサート（光の軸の“昼”スタート／5〜10秒）</span></li>
+      </ul>
+      <div class="sec-h sub">💬 字幕案</div>
+      <div class="subs">
+        <div class="sub-line sub-yobi"><span class="tag tag-yobi">敬語</span>小田原にやってきました〜！ここから伊東を目指します</div>
+        <div class="sub-line sub-tame"><span class="tag tag-tame">タメ</span>特急まで少し時間あるし…せっかくだからお城、寄ってこ</div>
+        <div class="sub-line sub-yobi"><span class="tag tag-yobi">敬語</span>そういえば、旅の途中でお城を見つけると、つい寄りたくなりませんか？</div>
+      </div>
+      <div class="meta">
+        <div><span class="k">🎵 音：</span>音楽オン。歩き出したら足音・環境音を少し。</div>
+        <div><span class="k">🎙 声：</span>とっさのみ　<span class="k">✅ 許可：</span>不要</div>
+      </div>
+    </div>
+  </details>
+
+  <!-- ③ -->
+  <details class="scene newsc">
+    <summary><span class="badge">③</span><span class="title">小田原城 立ち寄り観光<span class="tagnew">拡張</span></span><span class="time">10:15〜11:15</span><span class="chev">▶</span></summary>
+    <div class="body">
+      <p class="lead">チラ見じゃなく、ちゃんと寄り道。ただし時間はタイト（正味35〜40分）。撮る画は絞って効率よく。</p>
+      <div class="sec-h cam">📦 撮る画</div>
+      <ul class="mat">
+        <li><input type="checkbox"><span>城址公園の入口・石垣・門（引き／10秒）</span></li>
+        <li><input type="checkbox"><span>天守を見上げる構図（引き／10秒）＋天守の寄り（5秒）</span></li>
+        <li><input type="checkbox"><span>歩く足元・階段（主観／5〜10秒）</span></li>
+        <li><input type="checkbox"><span>★天守閣に入るなら：最上階からの街・海の眺め（引き／10秒以上）</span></li>
+        <li><input type="checkbox"><span>緑・空をPLで発色よく（インサート／5秒）</span></li>
+      </ul>
+      <div class="sec-h sub">💬 字幕案</div>
+      <div class="subs">
+        <div class="sub-line sub-tame"><span class="tag tag-tame">タメ</span>小田原城、やっぱりカッコいいな〜。天守、のぼってみよ</div>
+        <div class="sub-line sub-tame"><span class="tag tag-tame">タメ</span>うわ、いい眺め！海のほうまで見える</div>
+        <div class="sub-line sub-tame"><span class="tag tag-tame">タメ</span>…おっと、特急の時間。名残惜しいけど駅に戻ろ（←急ぐ感）</div>
+        <div class="sub-line sub-info"><span class="tag tag-info">📋①</span>小田原城 天守閣／入館510円・9:00〜17:00（最終入館16:30）</div>
+      </div>
+      <div class="meta">
+        <div><span class="k">🎵 音：</span>音楽オン。天守からの眺めは一瞬音楽を引いて風の音を。</div>
+        <div><span class="k">🎙 声：</span>「うわ、いい眺め！」などとっさのみ</div>
+      </div>
+      <div class="warnbox">⚠ 正味35〜40分でタイト。🅱 混雑・時間が厳しければ天守はパス→外観＋公園散策だけ（特急に乗り遅れない方を最優先）。「今日は外観だけ、また今度ゆっくり」と正直に見せるのも味。</div>
+    </div>
+  </details>
+
+  <!-- ④ -->
+  <details class="scene">
+    <summary><span class="badge">④</span><span class="title">踊り子号・車窓 → 伊東到着</span><span class="time">11:31→12:13</span><span class="chev">▶</span></summary>
+    <div class="body">
+      <p class="lead">移動の3点セット（出発→道中→到着）。海の車窓が旅のハイライト。</p>
+      <div class="sec-h cam">📦 撮る画</div>
+      <ul class="mat">
+        <li><input type="checkbox"><span>ホームに踊り子号が入ってくる（引き／10秒以上たっぷり）</span></li>
+        <li><input type="checkbox"><span>乗り込む足元・指定席に座る主観（5〜10秒）</span></li>
+        <li><input type="checkbox"><span>★車窓を流れる海（カスタム1広角／15秒以上）旅のハイライト</span></li>
+        <li><input type="checkbox"><span>伊東駅 駅名標／改札を出る主観（5〜10秒）</span></li>
+        <li><input type="checkbox"><span>駅前の温泉街・歩き出し＋暑さのインサート（温度計・照る路面）</span></li>
+      </ul>
+      <div class="sec-h sub">💬 字幕案</div>
+      <div class="subs">
+        <div class="sub-line sub-tame"><span class="tag tag-tame">タメ</span>（海が見えたら）海だ〜！もうこれだけでテンション上がる</div>
+        <div class="sub-line sub-yobi"><span class="tag tag-yobi">敬語</span>特急の窓から海が見えた瞬間って、いよいよ来たな〜ってなりませんか？</div>
+        <div class="sub-line sub-yobi"><span class="tag tag-yobi">敬語</span>伊東に到着です！</div>
+        <div class="sub-line sub-tame"><span class="tag tag-tame">タメ</span>うわ、あつい…さすが真夏。でも温泉と花火には最高だよね</div>
+        <div class="sub-line sub-info"><span class="tag tag-info">📋②</span>特急踊り子は全席指定。小田原11:31発→伊東12:13着（事前にきっぷの確保を）</div>
+      </div>
+      <div class="meta">
+        <div><span class="k">🎵 音：</span>音楽オン→海が見えた瞬間は引いて走行音＋「海だ〜！」。到着で戻す。</div>
+        <div><span class="k">🎙 声：</span>「海だ〜！」「あつ〜」などとっさのみ</div>
+      </div>
+    </div>
+  </details>
+
+  <!-- ⑤ -->
+  <details class="scene climax">
+    <summary><span class="badge">⑤</span><span class="title">昼食・田中屋製麺所（焼きそば三兄弟）★山</span><span class="time">12:30頃</span><span class="chev">▶</span></summary>
+    <div class="body">
+      <p class="lead">食の見せ場。食事は流れで（配膳→引き→寄り→ひとくち→リアクション）。</p>
+      <div class="sec-h cam">📦 撮る画</div>
+      <ul class="mat">
+        <li><input type="checkbox"><span>店の外観・のれん・看板（引き／10秒）＋暖簾をくぐる主観（5秒）</span></li>
+        <li><input type="checkbox"><span>注文する手元 or メニューの寄り（5秒）</span></li>
+        <li><input type="checkbox"><span>焼きそばの配膳の瞬間（引き／5〜10秒）</span></li>
+        <li><input type="checkbox"><span>三兄弟 全体の引き（10秒）→ 麺・湯気の寄り（10秒以上）</span></li>
+        <li><input type="checkbox"><span>★すすろうとする手元の主観（5〜10秒）</span></li>
+        <li><input type="checkbox"><span>ジュー音・すする音を単体でも録る（音素材）</span></li>
+      </ul>
+      <div class="sec-h sub">💬 字幕案</div>
+      <div class="subs">
+        <div class="sub-line sub-yobi"><span class="tag tag-yobi">敬語</span>お昼は、ずっと食べたかった伊東温泉焼きそば！</div>
+        <div class="sub-line sub-tame"><span class="tag tag-tame">タメ</span>“三兄弟”って名前、なんかいいよね</div>
+        <div class="sub-line sub-tame"><span class="tag tag-tame">タメ</span>……うまっ。これこれ！</div>
+        <div class="sub-line sub-yobi"><span class="tag tag-yobi">敬語</span>思ったんですけど、旅先の一発目のごはんって、いちばんワクワクしませんか？</div>
+        <div class="sub-line sub-info"><span class="tag tag-info">📋③</span>田中屋製麺所／営業10:00–20:00・木曜定休（7/24金は営業）</div>
+      </div>
+      <div class="meta">
+        <div><span class="k">🎵 音：</span>入店まで音楽オン→料理が来たら<b>音楽オフ</b>（没入）。</div>
+        <div><span class="k">🎙 声：</span>「うまっ」など短いリアクションのみ</div>
+      </div>
+      <div class="warnbox">⚠ 店内撮影は事前に一声。他のお客さんは写さない。🅱 NGなら外観＋持ち帰り＋麺の寄りで構成。</div>
+    </div>
+  </details>
+
+  <!-- ⑥ -->
+  <details class="scene">
+    <summary><span class="badge">⑥</span><span class="title">街歩き・東海館＆海＆地酒</span><span class="time">13:15〜15:00</span><span class="chev">▶</span></summary>
+    <div class="body">
+      <p class="lead">のんびり寄り道。語りかけ字幕で人柄がにじむゾーン。松川沿いは夜の竹あかりと同じ道＝昼夜の対比に。</p>
+      <div class="sec-h cam">📦 撮る画</div>
+      <ul class="mat">
+        <li><input type="checkbox"><span>東海館 外観（引き／10秒）＋木造の細部・川面の反射（PL・寄り）</span></li>
+        <li><input type="checkbox"><span>★松川沿い・路地を歩く足元（カスタム1／10秒以上）夜と同じ道を昼にも</span></li>
+        <li><input type="checkbox"><span>なぎさ公園・オレンジビーチの海（無人の引き／10秒以上）流用OK</span></li>
+        <li><input type="checkbox"><span>波のゆらぎ（カスタム3スロー／10秒）</span></li>
+        <li><input type="checkbox"><span>谷口酒店：店構え引き／地酒の棚の寄り／選ぶ手元（主観）／袋の手元</span></li>
+        <li><input type="checkbox"><span>商店街の看板・のれん（インサート／各5秒）</span></li>
+      </ul>
+      <div class="sec-h sub">💬 字幕案</div>
+      <div class="subs">
+        <div class="sub-line sub-tame"><span class="tag tag-tame">タメ</span>東海館、いい雰囲気…昭和の温泉旅館って感じ</div>
+        <div class="sub-line sub-yobi"><span class="tag tag-yobi">敬語</span>温泉とかローカル線とか、こういう寄り道、つい時間を忘れちゃいませんか？</div>
+        <div class="sub-line sub-tame"><span class="tag tag-tame">タメ</span>夜の宿用に、地酒を一本。何にしようかな〜（これが楽しい）</div>
+        <div class="sub-line sub-tame"><span class="tag tag-tame">タメ</span>この松川沿い、夜は竹あかりが灯るらしい。あとで通るの楽しみ（←夜への伏線）</div>
+        <div class="sub-line sub-info"><span class="tag tag-info">📋④</span>谷口酒店／伊東駅 徒歩2分・金11:30–21:00（水休）</div>
+      </div>
+      <div class="meta">
+        <div><span class="k">🎵 音：</span>歩き＝音楽オン。海辺では音楽を引いて波音だけの間を。</div>
+        <div><span class="k">🎙 声：</span>基本なし</div>
+      </div>
+      <div class="warnbox">⚠ 東海館の館内・酒店の店内は一声。外観・道・海は不要。🅱 店内NGなら外観＋袋の手元でOK。</div>
+    </div>
+  </details>
+
+  <!-- ⑦ -->
+  <details class="scene">
+    <summary><span class="badge">⑦</span><span class="title">ホテルIN＆温泉</span><span class="time">15:00〜17:00</span><span class="chev">▶</span></summary>
+    <div class="body">
+      <p class="lead">静のゾーン。温泉は“音で浸らせる”見せ場。効能は断定しない。</p>
+      <div class="sec-h cam">📦 撮る画</div>
+      <ul class="mat">
+        <li><input type="checkbox"><span>ホテル外観・エントランス（引き／10秒）</span></li>
+        <li><input type="checkbox"><span>客室からの景色（引き）／鍵・荷ほどきの手元（インサート）</span></li>
+        <li><input type="checkbox"><span>温泉：湯けむり・湯面のゆらぎ（カスタム3スロー／10秒以上）</span></li>
+        <li><input type="checkbox"><span>かけ湯の手元・足元（主観）</span></li>
+        <li><input type="checkbox"><span>窓の外の空・光の変化（軸用／10秒）</span></li>
+        <li><input type="checkbox"><span>あれば温泉分析書の掲示を寄りで（効能の根拠）</span></li>
+      </ul>
+      <div class="sec-h sub">💬 字幕案</div>
+      <div class="subs">
+        <div class="sub-line sub-tame"><span class="tag tag-tame">タメ</span>チェックイン完了。…部屋からの景色、最高じゃん</div>
+        <div class="sub-line sub-tame"><span class="tag tag-tame">タメ</span>花火の前に、ひとっ風呂。これが旅の特権だよね</div>
+        <div class="sub-line sub-tame"><span class="tag tag-tame">タメ</span>※美肌の湯と言われているそうです（正式な効能は現地の分析書で）</div>
+        <div class="sub-line sub-yobi" style="border-left-color:var(--gray);background:#f3f1ea"><span class="tag" style="background:var(--gray);color:var(--sumi)">控えめ</span>かけ湯のシーンは字幕を控えて湯の音に浸らせる</div>
+      </div>
+      <div class="meta">
+        <div><span class="k">🎵 音：</span>移動・到着は音楽オン→<b>温泉は音楽オフ</b>（湯の音だけ）。</div>
+        <div><span class="k">🎙 声：</span>「ふぅ〜」など短い吐息のみ</div>
+      </div>
+      <div class="warnbox">⚠ 浴室撮影は施設の事前許可が必須・他のお客さんは絶対写さない・許可済みの旨を字幕で。🅱 NGなら客室の景色＋部屋飲み＋外観で表現。</div>
+    </div>
+  </details>
+
+  <!-- ⑧ -->
+  <details class="scene">
+    <summary><span class="badge">⑧</span><span class="title">夕食・ストウ家の食卓（地魚＆地酒）</span><span class="time">17:15〜18:45</span><span class="chev">▶</span></summary>
+    <div class="body">
+      <p class="lead">暮れていく食事。光が昼→夕に変わる軸を効かせる。</p>
+      <div class="sec-h cam">📦 撮る画</div>
+      <ul class="mat">
+        <li><input type="checkbox"><span>店の外観・暖簾（引き／10秒）※まだ明るい夕方の空も一緒に</span></li>
+        <li><input type="checkbox"><span>地魚の配膳（引き）→ お造りの寄り（10秒以上）→ 箸の手元主観</span></li>
+        <li><input type="checkbox"><span>日本酒を注ぐ手元・グラスの寄り（5〜10秒）</span></li>
+        <li><input type="checkbox"><span>料理の湯気・音素材を単体でも</span></li>
+        <li><input type="checkbox"><span>店を出るときの暗くなりかけた空（竹あかりへの繋ぎ）</span></li>
+      </ul>
+      <div class="sec-h sub">💬 字幕案</div>
+      <div class="subs">
+        <div class="sub-line sub-yobi"><span class="tag tag-yobi">敬語</span>夜は、地魚と日本酒でゆっくり。予約しておいて正解でした</div>
+        <div class="sub-line sub-tame"><span class="tag tag-tame">タメ</span>お刺身ぷりっぷり…伊東来た〜って感じ</div>
+        <div class="sub-line sub-tame"><span class="tag tag-tame">タメ</span>うま。お酒すすむやつだ、これ</div>
+        <div class="sub-line sub-yobi"><span class="tag tag-yobi">敬語</span>ひとり旅のごはんって、気楽でいいんですよね。みなさんはひとりごはん、好きですか？</div>
+      </div>
+      <div class="meta">
+        <div><span class="k">🎵 音：</span>入店まで音楽オン→料理が来たら<b>音楽オフ</b>。</div>
+        <div><span class="k">🎙 声：</span>短いリアクション＋注文・お礼の声はOK</div>
+      </div>
+      <div class="warnbox">⚠ 要予約＋店内撮影は一声。他のお客さんは写さない。🅱 NGなら料理の寄り・手元だけ or 外観＋持ち帰りで。</div>
+    </div>
+  </details>
+
+  <!-- ⑨ -->
+  <details class="scene newsc">
+    <summary><span class="badge">⑨</span><span class="title">🎋 竹あかり夜さんぽ＆音無神社<span class="tagnew">新規</span></span><span class="time">18:45〜19:00</span><span class="chev">▶</span></summary>
+    <div class="body">
+      <p class="lead">松川遊歩道の竹あかりの中を歩いて会場へ。神社好きにたまらない、静かで幻想的なゾーン。光の軸のいちばん美しいところ。</p>
+      <div class="sec-h cam">📦 撮る画</div>
+      <ul class="mat">
+        <li><input type="checkbox"><span>★竹あかり（約500本）の灯り（引き／10秒以上）＋一本の寄り・漏れる光（10秒）</span></li>
+        <li><input type="checkbox"><span>灯りの中を歩く足元（カスタム1／10秒以上）“一緒に歩いてる感”</span></li>
+        <li><input type="checkbox"><span>竹あかりのゆらぎ（カスタム3スロー／10秒）</span></li>
+        <li><input type="checkbox"><span>音無神社：鳥居・社の引き（10秒）／参道を歩く足元（主観）</span></li>
+        <li><input type="checkbox"><span>ハート型絵馬を掛ける手元・絵馬の寄り（主観5〜10秒）※奉納するなら</span></li>
+        <li><input type="checkbox"><span>川面に映る灯り（PL・引き／10秒）</span></li>
+      </ul>
+      <div class="sec-h sub">💬 字幕案</div>
+      <div class="subs">
+        <div class="sub-line sub-tame"><span class="tag tag-tame">タメ</span>うわ…竹あかり、きれい。さっき昼に通った道と全然ちがう（←昼の伏線回収）</div>
+        <div class="sub-line sub-yobi"><span class="tag tag-yobi">敬語</span>昼間歩いた道が夜に灯りで変わるの、なんだかドキッとしませんか？</div>
+        <div class="sub-line sub-tame"><span class="tag tag-tame">タメ</span>音無神社、ちょっと寄っていこ。ハートの絵馬、かわいいな</div>
+        <div class="sub-line sub-info"><span class="tag tag-info">📋⑤</span>竹あかりは18:00〜22:00点灯（松川遊歩道・音無神社ほか）／ハート型絵馬は600円・現金</div>
+      </div>
+      <div class="meta">
+        <div><span class="k">🎵 音：</span><b>音楽は静かめ or 一部オフ</b>。虫の声・川の音・足音でしっとり。字幕も少なめに。</div>
+        <div><span class="k">🎙 声：</span>「きれい…」などとっさのみ</div>
+        <div><span class="k">✅ 許可：</span>不要（公共の遊歩道・参道）。他の参拝客は写さない。</div>
+      </div>
+      <div class="warnbox">🅱 絵馬を書かなくても、竹あかりと鳥居の画だけで十分に情緒が出る。夜は明るさ確保にミニ三脚推奨。</div>
+    </div>
+  </details>
+
+  <!-- ⑩ -->
+  <details class="scene newsc">
+    <summary><span class="badge">⑩</span><span class="title">夕涼みわくわく市（松川藤の広場）<span class="tagnew">差替</span></span><span class="time">19:00〜20:00</span><span class="chev">▶</span></summary>
+    <div class="body">
+      <p class="lead">一転してにぎやかな夏の夜市。イラスト提灯と盆踊りで“夏祭りの高揚”。花火直前のボルテージ上げ。</p>
+      <div class="sec-h cam">📦 撮る画</div>
+      <ul class="mat">
+        <li><input type="checkbox"><span>★イラスト提灯（約500個・子どもの絵）の灯り（引き／10秒以上）＋提灯の寄り（かわいい絵アップ／5秒）</span></li>
+        <li><input type="checkbox"><span>屋台の灯り・焼ける食べ物の湯気（寄り／10秒）／買ったものを持つ手元</span></li>
+        <li><input type="checkbox"><span>盆踊り・音楽ステージ（引き／10秒）※顔は写さず提灯や雰囲気で</span></li>
+        <li><input type="checkbox"><span>広場の全体の賑わい（引き／10秒）</span></li>
+      </ul>
+      <div class="sec-h sub">💬 字幕案</div>
+      <div class="subs">
+        <div class="sub-line sub-tame"><span class="tag tag-tame">タメ</span>提灯、ぜんぶ子どもが描いたんだって。あったかい灯りだな〜</div>
+        <div class="sub-line sub-tame"><span class="tag tag-tame">タメ</span>屋台のにおい、ずるい。ちょっとつまんじゃお</div>
+        <div class="sub-line sub-yobi"><span class="tag tag-yobi">敬語</span>夏祭りのこの空気、いくつになってもワクワクしませんか？</div>
+      </div>
+      <div class="meta">
+        <div><span class="k">🎵 音：</span>音楽オン→盆踊りの生の音・お囃子が拾えるなら環境音を主役に。花火への助走。</div>
+        <div><span class="k">🎙 声：</span>とっさ＋注文・お礼の声はOK</div>
+        <div><span class="k">✅ 許可：</span>不要（入場無料の公共イベント）。人の顔は写さない。</div>
+      </div>
+    </div>
+  </details>
+
+  <!-- ⑪ -->
+  <details class="scene climax">
+    <summary><span class="badge">⑪</span><span class="title">場所取り → 🎆 夢花火（クライマックス）★この旅いちばん</span><span class="time">20:00〜20:50</span><span class="chev">▶</span></summary>
+    <div class="body">
+      <p class="lead">頂点。字幕は最小限。花火と音に全部もっていかせる。</p>
+      <div class="sec-h cam">📦 撮る画</div>
+      <ul class="mat">
+        <li><input type="checkbox"><span>場所取りの足元・三脚をセットする手元（主観／5秒）</span></li>
+        <li><input type="checkbox"><span>開始前のざわめき・夜の海（引き／10秒）※顔は写さない</span></li>
+        <li><input type="checkbox"><span>★打ち上がる海上花火（広角の引き／切らず長回し）</span></li>
+        <li><input type="checkbox"><span>水面に映る花火（PL・引き／10秒以上）</span></li>
+        <li><input type="checkbox"><span>見上げる構図（後ろ姿・三脚越し・手元のシルエットで“いる感”）</span></li>
+        <li><input type="checkbox"><span>フィナーレの連発（引き／たっぷり長回し）</span></li>
+        <li><input type="checkbox"><span>花火の“音”を単体でも意識して収録（ドン＋余韻）</span></li>
+      </ul>
+      <div class="sec-h sub">💬 字幕案（最小限に）</div>
+      <div class="subs">
+        <div class="sub-line sub-tame"><span class="tag tag-tame">タメ</span>いい場所、空いてるかな…→よし、キープ！あとは待つだけ</div>
+        <div class="sub-line sub-tame"><span class="tag tag-tame">タメ</span>うわ……すごい／きれい……（ぽつりと一言だけ）</div>
+        <div class="sub-line sub-yobi"><span class="tag tag-yobi">敬語</span>（フィナーレ後に1枚だけ）……来てよかったです、ほんとに。</div>
+      </div>
+      <div class="meta">
+        <div><span class="k">🎵 音：</span><b>音楽オフ推奨</b>。炸裂音・波音・どよめきが主役。盛らない。</div>
+        <div><span class="k">🎙 声：</span>思わず出る「すごい」「きれい」のみ。解説は厳禁。</div>
+        <div><span class="k">✅ 許可：</span>不要。三脚は周囲の迷惑にならない場所で。</div>
+      </div>
+    </div>
+  </details>
+
+  <!-- ⑫ -->
+  <details class="scene">
+    <summary><span class="badge">⑫</span><span class="title">2日目・朝（朝風呂→朝食→朝市→もう一湯）</span><span class="time">6:00〜10:00</span><span class="chev">▶</span></summary>
+    <div class="body">
+      <p class="lead">一転して静かな朝。昨夜の高揚との対比で余韻を深める。朝市に寄るかは“おとぼけ迷い”で見せても◎。</p>
+      <div class="sec-h cam">📦 撮る画</div>
+      <ul class="mat">
+        <li><input type="checkbox"><span>★早朝の海・無人の水平線（引き／10秒以上）軸を締める静かな海</span></li>
+        <li><input type="checkbox"><span>朝風呂の湯けむり（カスタム3スロー／10秒）／窓の朝の光</span></li>
+        <li><input type="checkbox"><span>朝食：料理を取る手元（寄り）／お盆の引き／ひとくちの手元</span></li>
+        <li><input type="checkbox"><span>（朝市に行くなら）さんぱりお・朝市の様子（引き）／干物・みかんの寄り／手に取る手元</span></li>
+        <li><input type="checkbox"><span>カーテンを開ける手元など朝の所作（インサート）</span></li>
+      </ul>
+      <div class="sec-h sub">💬 字幕案</div>
+      <div class="subs">
+        <div class="sub-line sub-tame"><span class="tag tag-tame">タメ</span>おはようございます。朝風呂って、なんでこんなに気持ちいいんだろう</div>
+        <div class="sub-line sub-tame"><span class="tag tag-tame">タメ</span>朝市も気になる…でももう一回温泉も入りたい。うーん、迷う（笑）</div>
+        <div class="sub-line sub-tame"><span class="tag tag-tame">タメ</span>朝ごはんビュッフェ、つい欲張っちゃう…これも旅の幸せ</div>
+        <div class="sub-line sub-yobi"><span class="tag tag-yobi">敬語</span>旅先の朝って、いつもよりちょっと早起きできませんか？</div>
+      </div>
+      <div class="meta">
+        <div><span class="k">🎵 音：</span>朝＝静かめ音楽オン。温泉カットだけ音楽オフ。</div>
+        <div><span class="k">🎙 声：</span>「ふぅ」など短く</div>
+      </div>
+      <div class="warnbox">⚠ 浴室は前日同様、許可範囲のみ。朝食会場・朝市は他のお客さんを写さない。🅱 朝市は土日7:30–10:30・天候で中止あり。スキップして温泉優先でも自然。</div>
+    </div>
+  </details>
+
+  <!-- ⑬ -->
+  <details class="scene">
+    <summary><span class="badge">⑬</span><span class="title">ちっ茶カフェ＆海辺さんぽ</span><span class="time">12:00頃</span><span class="chev">▶</span></summary>
+    <div class="body">
+      <p class="lead">帰る前のもうひと寄り道。締めへの助走。</p>
+      <div class="sec-h cam">📦 撮る画</div>
+      <ul class="mat">
+        <li><input type="checkbox"><span>海辺を歩く足元（カスタム1／10秒）／波のゆらぎ（スロー）</span></li>
+        <li><input type="checkbox"><span>カフェのツートン外観（引き／10秒）／看板・入口の寄り</span></li>
+        <li><input type="checkbox"><span>ドリンク・スイーツの配膳→引き→寄り→ひとくちの手元</span></li>
+        <li><input type="checkbox"><span>窓際からの景色・湯気・グラスの結露（インサート）</span></li>
+      </ul>
+      <div class="sec-h sub">💬 字幕案</div>
+      <div class="subs">
+        <div class="sub-line sub-tame"><span class="tag tag-tame">タメ</span>最後に、気になってたカフェへ。…このツートン、かわいいな</div>
+        <div class="sub-line sub-yobi"><span class="tag tag-yobi">敬語</span>旅の最後にカフェでひと息つくの、なんだか名残惜しくて好きなんですよね</div>
+      </div>
+      <div class="meta">
+        <div><span class="k">🎵 音：</span>音楽オン。ひとくちの瞬間だけ環境音をチラ。</div>
+        <div><span class="k">🎙 声：</span>とっさ＋注文・お礼の声はOK</div>
+      </div>
+      <div class="warnbox">⚠ 店内撮影は一声。他のお客さんは写さない。🅱 ちっ茶カフェは不定休。休みなら海辺さんぽだけで締めへ。</div>
+    </div>
+  </details>
+
+  <!-- ⑭ -->
+  <details class="scene">
+    <summary><span class="badge">⑭</span><span class="title">エンディング・伊東駅で締め</span><span class="time">13:05発</span><span class="chev">▶</span></summary>
+    <div class="body">
+      <p class="lead">帰路。出発（小田原）と対の“到着→出発”の駅画で閉じる。</p>
+      <div class="sec-h cam">📦 撮る画（締め）</div>
+      <ul class="mat">
+        <li><input type="checkbox"><span>伊東駅 駅名標／ホームの引き（10秒）</span></li>
+        <li><input type="checkbox"><span>踊り子号が入ってくる（引き／10秒以上）／乗り込む足元の主観</span></li>
+        <li><input type="checkbox"><span>★車窓を流れる海（カスタム1広角／たっぷり）オープニングと対に</span></li>
+        <li><input type="checkbox"><span>締め用無人カット：朝の海 or 竹あかり・花火の余韻を一瞬（2〜3秒）</span></li>
+      </ul>
+      <div class="sec-h sub">💬 字幕案</div>
+      <div class="subs">
+        <div class="sub-line sub-tame"><span class="tag tag-tame">タメ</span>さて、帰ります。あっという間だったな〜</div>
+        <div class="sub-line sub-yobi"><span class="tag tag-yobi">敬語</span>焼きそばに、温泉に、竹あかりに、花火。…伊東、また来たいです。</div>
+        <div class="sub-line sub-yobi"><span class="tag tag-yobi">敬語</span>みなさんの“また行きたい場所”、よかったらコメントで教えてください</div>
+        <div class="sub-line sub-tame"><span class="tag tag-tame">タメ</span>（最後の無人カットに1枚）行ってよかった！</div>
+      </div>
+      <div class="meta">
+        <div><span class="k">🎵 音：</span>音楽オン（締めの余韻）。最後の無人カットで音を抜いて終わる。</div>
+        <div><span class="k">🎙 声：</span>なし</div>
+      </div>
+    </div>
+  </details>
+
+  <!-- 撮影前チェック -->
+  <details class="scene">
+    <summary><span class="badge" style="background:var(--sumi)">✓</span><span class="title">撮影前・最終チェック</span><span class="time">事前</span><span class="chev">▶</span></summary>
+    <div class="body">
+      <div class="sec-h warn">📋 予約・確保</div>
+      <ul class="mat">
+        <li><input type="checkbox"><span>踊り子 行き（小田原11:31発）の指定席 ※時刻変更・取り直し注意</span></li>
+        <li><input type="checkbox"><span>踊り子 帰り（伊東13:05発）の指定席</span></li>
+        <li><input type="checkbox"><span>夕食「ストウ家の食卓」電話予約 ☎0557-28-0124</span></li>
+      </ul>
+      <div class="sec-h warn">📋 撮影許可（取れたら字幕で一言）</div>
+      <ul class="mat">
+        <li><input type="checkbox"><span>田中屋製麺所 店内撮影 一声</span></li>
+        <li><input type="checkbox"><span>ストウ家の食卓 店内撮影 一声</span></li>
+        <li><input type="checkbox"><span>ちっ茶カフェ 店内撮影 一声</span></li>
+        <li><input type="checkbox"><span>ホテル浴室 事前許可（NGなら客室・外観でB）</span></li>
+      </ul>
+      <div class="sec-h warn">📋 時間の注意（今回の要）</div>
+      <div class="meta">
+        <div>・小田原城：10:11着→11:31発の正味35〜40分。天守閣は駆け足30分／混雑・時間厳しければ外観だけに即切替（乗り遅れ厳禁）</div>
+        <div>・音無神社のハート絵馬は現金600円（東海館か伊東駅観光案内所で購入）</div>
+        <div>・竹あかり点灯18:00〜22:00／夕涼みわくわく市19:00〜（入場無料）</div>
+      </div>
+      <div class="sec-h warn">📋 天気・運行</div>
+      <ul class="mat">
+        <li><input type="checkbox"><span>前日〜当日：花火の開催可否を伊豆・伊東観光ガイドで確認</span></li>
+        <li><input type="checkbox"><span>朝市は土日7:30–10:30・天候で中止あり（行くなら当日朝に様子見）</span></li>
+        <li><input type="checkbox"><span>当日朝：JR運行情報を再チェック</span></li>
+      </ul>
+      <div class="sec-h warn">📋 機材プリセット早見</div>
+      <div class="meta">
+        <div><span class="k">カスタム1（広角）：</span>風景・車窓・歩き</div>
+        <div><span class="k">カスタム2（狭角）：</span>物撮り・手元・丼の寄り</div>
+        <div><span class="k">カスタム3（120fps）：</span>波・湯面・竹あかり・提灯・花火の余韻スロー</div>
+        <div><span class="k">カスタム4：</span>揺れを活かしたいシーン</div>
+        <div><span class="k">PLフィルター：</span>海・湯・ガラス・川面の反射対策</div>
+        <div><span class="k">夜（竹あかり・提灯）：</span>明るさ確保にミニ三脚推奨</div>
+      </div>
+      <div class="sec-h warn">📋 撮り忘れ防止の合言葉</div>
+      <div class="meta">
+        <div>・1カットは長め（動き5〜10秒／止め画10秒以上）</div>
+        <div>・同じ対象は「引き・寄り・主観」3点セット</div>
+        <div>・移動＝出発→道中→到着／食事＝配膳→引き→寄り→ひとくち→リアクション</div>
+        <div>・オープニング用・締め用の“無人の綺麗な画”を必ず確保</div>
+        <div>・音素材（すする音・湯の音・お囃子・花火の音）は単体でも録る</div>
+        <div>・★昼に歩いた松川沿いは夜（竹あかり）にも撮る＝昼夜の対比が今回の見どころ</div>
+      </div>
+      <div class="warnbox">📦 持ち物：カメラ／予備バッテリー／microSD／モバイルバッテリー／ミニ三脚／PLフィルター／レンズクロス／モバイルSuica／着替え／絵馬用の現金</div>
+    </div>
+  </details>
+
+  <footer>
+    ※情報は撮影時点のものです。最新は公式でご確認ください。<br>
+    えなみん！の旅びより ／ 行ってよかった！を集めてます
+  </footer>
+</div>
+
+<div class="foot-fixed">困ったら<b>多めに撮る</b>。「使うか分からないけど一応」を現場で潰す方が、後悔より安い。</div>
+
+<script>
+  const KEY = "ito_hanabi_2026_v2_checks";
+  const boxes = Array.from(document.querySelectorAll('input[type=checkbox]'));
+  boxes.forEach((b,i)=> b.dataset.k = "c"+i);
+
+  function load(){
+    let saved = {};
+    try{ saved = JSON.parse(localStorage.getItem(KEY)) || {}; }catch(e){}
+    boxes.forEach(b=>{ if(saved[b.dataset.k]) b.checked = true; });
+  }
+  function save(){
+    const o = {};
+    boxes.forEach(b=>{ if(b.checked) o[b.dataset.k]=1; });
+    try{ localStorage.setItem(KEY, JSON.stringify(o)); }catch(e){}
+  }
+  function updateProgress(){
+    const camBoxes = boxes.filter(b=> b.closest('.scene') && !b.closest('.scene').querySelector('.sec-h.warn'));
+    const done = camBoxes.filter(b=>b.checked).length;
+    document.getElementById('pcount').textContent = done;
+    document.getElementById('ptotal').textContent = camBoxes.length;
+    document.getElementById('pfill').style.width = (done/camBoxes.length*100)+"%";
+  }
+  boxes.forEach(b=> b.addEventListener('change', ()=>{ save(); updateProgress(); }));
+
+  function toggleAll(open){ document.querySelectorAll('details.scene').forEach(d=> d.open = open); }
+  function resetChecks(){
+    if(!confirm("チェックを全部消す？")) return;
+    boxes.forEach(b=> b.checked=false);
+    save(); updateProgress();
+  }
+
+  load(); updateProgress();
+</script>
+</body>
+</html>
