@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>微わかる展＆オーケストラ鑑賞ひとり旅｜当日撮影台本</title>
+<style>
+  :root{
+    --kinari:#F5EFE0; --gray:#D9D2C5; --shu:#C75B39; --green:#7A8B5A; --sumi:#3A3A3A;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+  body{
+    margin:0;background:var(--kinari);color:var(--sumi);
+    font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
+    line-height:1.7;font-size:16px;padding-bottom:64px;
+  }
+  header{
+    background:var(--shu);color:#fff;padding:18px 16px 14px;position:sticky;top:0;z-index:20;
+    box-shadow:0 2px 10px rgba(58,58,58,.18);
+  }
+  header h1{margin:0;font-size:18px;letter-spacing:.02em;}
+  header .sub{font-size:12.5px;opacity:.92;margin-top:4px;}
+  .wrap{max-width:720px;margin:0 auto;padding:14px 12px 0;}
+
+  .bar{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 14px;}
+  .bar button{
+    flex:1;min-width:120px;border:none;border-radius:10px;padding:10px;font-size:13px;font-weight:700;
+    background:var(--gray);color:var(--sumi);cursor:pointer;
+  }
+  .bar button.reset{background:#fff;border:1px solid var(--gray);}
+  .progress{background:#fff;border:1px solid var(--gray);border-radius:12px;padding:12px 14px;margin-bottom:16px;}
+  .progress .num{font-size:22px;font-weight:800;color:var(--shu);}
+  .pbar{height:8px;border-radius:5px;background:var(--gray);overflow:hidden;margin-top:8px;}
+  .pbar > i{display:block;height:100%;background:var(--green);width:0;transition:width .3s;}
+
+  .note{background:#fff;border-left:5px solid var(--green);border-radius:8px;padding:11px 13px;font-size:13.5px;margin-bottom:16px;}
+  .note b{color:var(--green);}
+  .note.upd{border-left-color:var(--shu);}
+  .note.upd b{color:var(--shu);}
+
+  details.scene{background:#fff;border:1px solid var(--gray);border-radius:14px;margin-bottom:12px;overflow:hidden;}
+  details.scene[open]{box-shadow:0 2px 12px rgba(58,58,58,.10);}
+  summary{list-style:none;cursor:pointer;padding:14px 14px;display:flex;align-items:center;gap:10px;}
+  summary::-webkit-details-marker{display:none;}
+  .badge{
+    flex:none;width:32px;height:32px;border-radius:50%;background:var(--shu);color:#fff;
+    display:flex;align-items:center;justify-content:center;font-weight:800;font-size:12px;
+  }
+  .climax .badge{background:var(--green);}
+  .newsc .badge{background:#b8860b;}
+  summary .title{font-weight:800;font-size:15px;flex:1;}
+  summary .time{font-size:11px;color:#fff;background:var(--sumi);padding:2px 8px;border-radius:20px;flex:none;}
+  summary .chev{flex:none;color:var(--gray);transition:transform .2s;font-size:13px;}
+  details[open] summary .chev{transform:rotate(90deg);color:var(--shu);}
+  .tagnew{font-size:9.5px;font-weight:800;background:#b8860b;color:#fff;border-radius:4px;padding:1px 5px;margin-left:4px;}
+
+  .body{padding:2px 14px 16px;}
+  .lead{font-size:13px;color:#6a665c;font-style:italic;margin:2px 0 12px;}
+
+  .sec-h{font-size:13px;font-weight:800;margin:14px 0 7px;display:flex;align-items:center;gap:6px;}
+  .sec-h.cam{color:var(--shu);}
+  .sec-h.sub{color:var(--sumi);}
+  .sec-h.warn{color:#a8431f;}
+
+  ul.mat{list-style:none;padding:0;margin:0;}
+  ul.mat li{display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-bottom:1px dashed var(--gray);font-size:14px;}
+  ul.mat li:last-child{border-bottom:none;}
+  ul.mat input{
+    appearance:none;-webkit-appearance:none;flex:none;width:22px;height:22px;margin-top:1px;
+    border:2px solid var(--green);border-radius:6px;background:#fff;cursor:pointer;position:relative;
+  }
+  ul.mat input:checked{background:var(--green);}
+  ul.mat input:checked::after{content:"✓";color:#fff;font-size:14px;font-weight:900;position:absolute;left:3px;top:-2px;}
+  ul.mat input:checked + span{color:#9a958a;text-decoration:line-through;}
+
+  .subs{display:flex;flex-direction:column;gap:7px;}
+  .sub-line{padding:8px 11px;border-radius:9px;font-size:13.5px;}
+  .sub-yobi{background:#eef0e6;border-left:4px solid var(--green);}
+  .sub-tame{background:#faf3ea;border-left:4px solid var(--shu);}
+  .sub-info{background:#fff;border:1.5px solid var(--sumi);border-radius:9px;font-size:12.5px;}
+  .tag{font-size:10.5px;font-weight:800;padding:1px 6px;border-radius:5px;margin-right:6px;vertical-align:middle;}
+  .tag-yobi{background:var(--green);color:#fff;}
+  .tag-tame{background:var(--shu);color:#fff;}
+  .tag-info{background:var(--sumi);color:#fff;}
+
+  .meta{font-size:13px;background:#f7f4ec;border-radius:9px;padding:9px 11px;margin-top:6px;}
+  .meta div{margin:3px 0;}
+  .meta .k{font-weight:800;}
+  .warnbox{background:#fdf0eb;border:1px solid #e3b8a8;border-radius:9px;padding:9px 11px;font-size:13px;margin-top:8px;}
+
+  .legend{background:#fff;border:1px solid var(--gray);border-radius:12px;padding:12px 14px;margin:4px 0 18px;font-size:12.5px;}
+  .legend span{display:inline-block;margin:3px 8px 3px 0;}
+  .dot{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:4px;vertical-align:middle;}
+
+  footer{text-align:center;font-size:11.5px;color:#8a8678;padding:20px 16px 8px;}
+  .foot-fixed{position:fixed;left:0;right:0;bottom:0;background:var(--sumi);color:#fff;text-align:center;font-size:12px;padding:9px;z-index:30;}
+  .foot-fixed b{color:#ffd9cd;}
+</style>
+</head>
+<body>
+<header>
+  <h1>🎻 微わかる展＆クラシックコンサート ひとり旅</h1>
+  <div class="sub">当日撮影台本｜2026/7/19(日)　下北沢 Start → 荻窪 End｜顔出しNG・字幕主体</div>
+</header>
+
+<div class="wrap">
+
+  <div class="bar">
+    <button onclick="toggleAll(true)">▼ 全部ひらく</button>
+    <button onclick="toggleAll(false)">▲ 全部とじる</button>
+    <button class="reset" onclick="resetChecks()">☐ チェック全消し</button>
+  </div>
+
+  <div class="progress">
+    <div>撮影クリア　<span class="num" id="pcount">0</span> / <span id="ptotal">0</span> カット</div>
+    <div class="pbar"><i id="pfill"></i></div>
+  </div>
+
+  <div class="note upd">
+    <b>今回の編集方針</b>：自宅最寄り駅がわからないよう、動画は<b>下北沢スタート・荻窪エンドで</b>。自宅→下北沢の移動区間と、荻窪からの帰路は撮影・使用しない（撮る場合も編集で丸ごとカット）。
+  </div>
+
+  <div class="note">
+    <b>今回の流れ（感情の波）</b>：下北沢の可愛い台湾ランチ→雨でも楽しむ屋内寄り道→体験型展示の「わかるようなわからないような」小さな違和感→カフェ＆フレンチで持ち直し→生演奏の感動でクライマックス。<b>雨予報を物語の軸</b>にして、下北沢の雨で始まり荻窪の夜で回収。自己紹介は移動シーンに3分割。📋情報字幕は全体で4枚。
+  </div>
+
+  <div class="legend">
+    <b>字幕の色分け</b><br>
+    <span><span class="dot" style="background:var(--green)"></span>語りかけ＝敬語</span>
+    <span><span class="dot" style="background:var(--shu)"></span>自分語り＝タメ口</span>
+    <span><span class="dot" style="background:var(--sumi)"></span>📋情報字幕（白枠）</span><br>
+    <span style="color:#6a665c">📦のチェックは自動保存（同じ端末で次に開いても残るよ）</span>
+  </div>
+
+  <!-- OP -->
+  <details class="scene" open>
+    <summary><span class="badge">OP</span><span class="title">オープニング（無人カット・下北沢）</span><span class="time">下北沢で撮影</span><span class="chev">▶</span></summary>
+    <div class="body">
+      <p class="lead">まだ言葉はいらない。下北沢の風景と雨で「今日の一人旅」へ。自宅方面のカットは撮らない。</p>
+      <div class="sec-h cam">📦 撮る画</div>
+      <ul class="mat">
+        <li><input type="checkbox"><span>下北沢駅の改札・駅名標・駅前の綺麗な引き（無人狙い／10秒以上・カスタム1）</span></li>
+        <li><input type="checkbox"><span>改札を出る手元・Suicaタッチの寄り（5〜10秒・カスタム2）</span></li>
+        <li><input type="checkbox"><span>歩き出す足元（雨なら濡れた路面・傘越し／5〜10秒・カスタム1）</span></li>
+        <li><input type="checkbox"><span>下北沢の街の空気が伝わる引き（看板・小道／10秒・カスタム1）</span></li>
+        <li><input type="checkbox"><span>【スロー在庫】雨の雫・傘のしずく（カスタム3）※余韻用</span></li>
+      </ul>
+      <div class="sec-h sub">💬 字幕案</div>
+      <div class="subs">
+        <div class="sub-line sub-yobi"><span class="tag tag-yobi">敬語</span>三連休の、ちょうど真ん中の日曜日。</div>
+        <div class="sub-line sub-yobi"><span class="tag tag-yobi">敬語</span>今日はひとりで、下北沢からのんびり街めぐりしてきます。</div>
+        <div class="sub-line sub-tame"><span class="tag tag-tame">タメ</span>天気は…まさかの雨。笑</div>
+        <div class="sub-line sub-tame"><span class="tag tag-tame">タメ</span>でも今日は行きたいとこ盛りだくさんだから、気分はサイコー！</div>
+        <div class="sub-line sub-yobi"><span class="tag tag-yobi">敬語</span>よかったら、一緒に楽しんでください！</div>
+      </div>
+      <div class="meta">
+        <div><span class="k">🎵 音：</span>音楽オン（旅の始まりの軽やかなBGM／甘茶の音楽工房）。雨音・駅アナウンス・足音は単体でも録る。</div>
+        <div><span class="k">🎙 声：</span>基本なし（「うわ、降ってる〜」程度のとっさは可）　<span class="k">✅ 許可：</span>不要（人を写さない配慮）</div>
+      </div>
+      <div class="warnbox">⚠ 自宅最寄り駅・移動区間はここでは撮らない／使わない。「下北沢から始まった」ように見える画だけでOK。🅱 無人が撮れなければ足元・手元中心で成立。</div>
+    </div>
+  </details>
+
+  <!-- ① -->
+  <details class="scene">
+    <summary><span class="badge">①</span><span class="title">🐈 昼食・猫米（まおみい）<span class="tagnew">追加</span></span><span class="time">11:30〜12:30</span><span class="chev">▶</span></summary>
+    <div class="body">
+      <p class="lead">可愛いカフェへの素直な反応で人柄を出す。自己紹介パート1をここで小出しに。食事は流れで。</p>
+      <div class="sec-h cam">📦 撮る画</div>
+      <ul class="mat">
+        <li><input type="checkbox"><span>【道中】駅から店へ歩く足元・街並み（引き＋足元主観／各5〜10秒・カスタム1）</span></li>
+        <li><input type="checkbox"><span>店の外観の引き（のれん・看板・入口／10秒・カスタム1）</span></li>
+        <li><input type="checkbox"><span>セージグリーンの店内の雰囲気（引き／10秒・許可＆無人で・カスタム1）</span></li>
+        <li><input type="checkbox"><span>メニューを眺める手元（寄り／5〜10秒・カスタム2）</span></li>
+        <li><input type="checkbox"><span>【食事の流れ】配膳→丼の引き（10秒）→鶏肉飯の寄り（10秒以上）→ひとくちの手元主観（箸・れんげ／5〜10秒）→リアクション</span></li>
+        <li><input type="checkbox"><span>可愛いディテール（食器・店内の置物などの寄り／各5秒・カスタム2）</span></li>
+        <li><input type="checkbox"><span>【音素材】すする音・食器の音を単体で</span></li>
+      </ul>
+      <div class="sec-h sub">💬 字幕案</div>
+      <div class="subs">
+        <div class="sub-line sub-tame"><span class="tag tag-tame">タメ</span>下北沢に、やってきました〜！</div>
+        <div class="sub-line sub-tame"><span class="tag tag-tame">タメ</span>お目当ては、この台湾料理の『猫米』さん。店内、セージグリーンで可愛い…！こういうの好きなんだよね。</div>
+        <div class="sub-line sub-yobi"><span class="tag tag-yobi">敬語</span>（自己紹介①）はじめまして、えなみんです。休みの日に、気になった場所をのんびり巡るのが好きで。</div>
+        <div class="sub-line sub-tame"><span class="tag tag-tame">タメ</span>（配膳で）うわ、きた。鶏肉飯（ジーロー飯）定食！</div>
+        <div class="sub-line sub-yobi"><span class="tag tag-yobi">敬語</span>そういえば、旅の一食目って、なんでこんなに美味しいんでしょうね。</div>
+        <div class="sub-line sub-info"><span class="tag tag-info">📋①</span>猫米（まおみい）／台湾料理・下北沢｜営業11:30〜15:30（L.O.15:00）／定休：月火水</div>
+      </div>
+      <div class="meta">
+        <div><span class="k">🎵 音：</span>到着まで音楽オン→席についたら<b>音楽オフ</b>（環境音だけ・没入）。</div>
+        <div><span class="k">🎙 声：</span>「うまっ」など短いリアクション＋注文・お礼の声はOK</div>
+      </div>
+      <div class="warnbox">⚠ 入店時に「店内撮影してもいいですか？」とサラッと一声確認。基本は手元・料理・店内オブジェのみ、他のお客様・スタッフは一切写さない（万一の写り込みはぼかし）。🅱 NGなら外観＋手元の料理寄りだけで構成、店内引きはカット。</div>
+    </div>
+  </details>
+
+  <!-- ② -->
+  <details class="scene">
+    <summary><span class="badge">②</span><span class="title">移動：下北沢→新宿→渋谷</span><span class="time">12:35〜13:00</span><span class="chev">▶</span></summary>
+    <div class="body">
+      <p class="lead">場面転換。「出発→道中→到着」の3点セットで説得力。モバイルSuicaでスムーズに。</p>
+      <div class="sec-h cam">📦 撮る画</div>
+      <ul class="mat">
+        <li><input type="checkbox"><span>【出発】下北沢駅に入る・ホームで待つ足元（5〜10秒・カスタム1）</span></li>
+        <li><input type="checkbox"><span>電車が来る（引き／5〜10秒・カスタム1）</span></li>
+        <li><input type="checkbox"><span>【道中】車窓の流れ（10秒以上・カスタム1／反射はPLフィルターで軽減）</span></li>
+        <li><input type="checkbox"><span>乗り換えの階段・案内表示の手元/足元（5秒・カスタム1）</span></li>
+        <li><input type="checkbox"><span>【到着】渋谷の改札を出る手元（人は特定できないように／5〜10秒）</span></li>
+      </ul>
+      <div class="sec-h sub">💬 字幕案</div>
+      <div class="subs">
+        <div class="sub-line sub-tame"><span class="tag tag-tame">タメ</span>さて、下北沢から電車でひと移動。新宿で乗り換えて…渋谷へ。</div>
+        <div class="sub-line sub-yobi"><span class="tag tag-yobi">敬語</span>ところで、モバイルSuicaにしてから乗り換えがほんとラクになったんですけど、みなさんはもう使ってますか？</div>
+      </div>
+      <div class="meta">
+        <div><span class="k">🎵 音：</span>音楽オン（移動）。発車メロディ・走行音・車内アナウンスは単体でも録る。</div>
+        <div><span class="k">🎙 声：</span>なし　<span class="k">✅ 許可：</span>不要（車内・改札で他のお客さんの顔を写さない）</div>
+      </div>
+      <div class="warnbox">🅱 混雑で撮りにくければ車窓と足元だけで繋ぐ。</div>
+    </div>
+  </details>
+
+  <!-- ③ -->
+  <details class="scene">
+    <summary><span class="badge">③</span><span class="title">🏙️ 渋谷ヒカリエ スカイロビー<span class="tagnew">追加</span></span><span class="time">13:00〜13:35</span><span class="chev">▶</span></summary>
+    <div class="body">
+      <p class="lead">雨でも楽しめる屋内展望のちょっとした寄り道。“おとぼけ寄り道”感。</p>
+      <div class="sec-h cam">📦 撮る画</div>
+      <ul class="mat">
+        <li><input type="checkbox"><span>ヒカリエ到着・エレベーターで上がる手元（5〜10秒・カスタム2）</span></li>
+        <li><input type="checkbox"><span>11階からの眺めの引き（スクランブル交差点方面／10秒以上・カスタム1）</span></li>
+        <li><input type="checkbox"><span>窓ガラス越しの街（PLフィルターで反射対策／10秒・カスタム1）</span></li>
+        <li><input type="checkbox"><span>窓に映る雨・街の対比（余韻用・カスタム1 or 3スロー）</span></li>
+      </ul>
+      <div class="sec-h sub">💬 字幕案</div>
+      <div class="subs">
+        <div class="sub-line sub-tame"><span class="tag tag-tame">タメ</span>渋谷ヒカリエの、11階まで来ました〜。ここのスカイロビー、無料で入れて、しかも屋内。雨の日の救世主。</div>
+        <div class="sub-line sub-tame"><span class="tag tag-tame">タメ</span>うわ、渋谷が一望…！</div>
+        <div class="sub-line sub-yobi"><span class="tag tag-yobi">敬語</span>思ったんですけど、雨の日って、こういう屋内から街を眺めるのも案外いいですよね。</div>
+      </div>
+      <div class="meta">
+        <div><span class="k">🎵 音：</span>音楽オン（軽め）※展望の余韻は一瞬オフにして雨音・環境音でも可。</div>
+        <div><span class="k">🎙 声：</span>なし（「お〜」程度のとっさは可）</div>
+      </div>
+      <div class="warnbox">⚠ 公開スペースだが商業施設内。他のお客さん・オフィス利用者を写さない。🅱 混んでいたら窓の外の画だけで成立。</div>
+    </div>
+  </details>
+
+  <!-- ④ -->
+  <details class="scene">
+    <summary><span class="badge">④</span><span class="title">🎨 微わかる展2＋小さいすぎるよ展</span><span class="time">14:00〜15:00</span><span class="chev">▶</span></summary>
+    <div class="body">
+      <p class="lead">この日のメインの一つ。期待→違和感の小さな下げ。「わかるようなわからないような」を素直な字幕で楽しむ。</p>
+      <div class="sec-h cam">📦 撮る画</div>
+      <ul class="mat">
+        <li><input type="checkbox"><span>西武渋谷店へ向かう道中の足元・街（雨／5〜10秒・カスタム1）</span></li>
+        <li><input type="checkbox"><span>会場入口・タイトル看板の引き（10秒・カスタム1）</span></li>
+        <li><input type="checkbox"><span>展示を見る手元・目線の主観（撮影可の範囲で／各5〜10秒・カスタム2）</span></li>
+        <li><input type="checkbox"><span>気に入った展示の寄り（撮影可のものだけ／10秒・カスタム2）</span></li>
+        <li><input type="checkbox"><span>会場の雰囲気の引き（他のお客さんを写さないタイミング／10秒）</span></li>
+      </ul>
+      <div class="sec-h sub">💬 字幕案</div>
+      <div class="subs">
+        <div class="sub-line sub-tame"><span class="tag tag-tame">タメ</span>やってきました、話題の『微わかる展2』。“微妙にわかるかも、わからないかも”っていう、絶妙なやつ。</div>
+        <div class="sub-line sub-tame"><span class="tag tag-tame">タメ</span>あ〜、わかる…いや、わかんない。笑</div>
+        <div class="sub-line sub-yobi"><span class="tag tag-yobi">敬語</span>みなさんは、こういう“言葉にできないモヤッ”、ありませんか？</div>
+        <div class="sub-line sub-info"><span class="tag tag-info">📋②</span>微わかる展2＋小さいすぎるよ展｜西武渋谷店B館4階｜休日2,100円／〜20:00（最終入場19:30）</div>
+      </div>
+      <div class="meta">
+        <div><span class="k">🎵 音：</span>音楽オフ（環境音・展示の音だけ）で没入。導入の到着だけ軽く音楽可。</div>
+        <div><span class="k">🎙 声：</span>「へぇ〜」「なにこれ笑」程度のとっさのみ</div>
+      </div>
+      <div class="warnbox">⚠ 会場の撮影可否を現地で確認（SNS話題展示は撮影OK区画/NG区画が分かれることが多い）。撮影NG作品は写さない。他のお客さん厳禁。🅱 館内NGなら入口看板＋道中＋出てきた後の感想字幕で構成。</div>
+    </div>
+  </details>
+
+  <!-- ⑤ -->
+  <details class="scene">
+    <summary><span class="badge">⑤</span><span class="title">移動：渋谷→新宿→荻窪（JR）</span><span class="time">15:00〜15:35</span><span class="chev">▶</span></summary>
+    <div class="body">
+      <p class="lead">舞台を荻窪へ。自己紹介パート2をここで小出しに。夕方の空気に切り替える。</p>
+      <div class="sec-h cam">📦 撮る画</div>
+      <ul class="mat">
+        <li><input type="checkbox"><span>渋谷駅に入る・電車が来る（各5〜10秒・カスタム1）</span></li>
+        <li><input type="checkbox"><span>車窓（新宿→中央線快速で西へ／10秒以上・カスタム1）</span></li>
+        <li><input type="checkbox"><span>乗り換えの足元・案内表示（5秒・カスタム1）</span></li>
+        <li><input type="checkbox"><span>荻窪駅の改札・駅名標（無人狙い／10秒・カスタム1／夕方の光があれば拾う）</span></li>
+      </ul>
+      <div class="sec-h sub">💬 字幕案</div>
+      <div class="subs">
+        <div class="sub-line sub-tame"><span class="tag tag-tame">タメ</span>渋谷から、新宿でまた乗り換えて…荻窪へ。だんだん、夕方の匂いになってきた。</div>
+        <div class="sub-line sub-yobi"><span class="tag tag-yobi">敬語</span>（自己紹介②）温泉や神社、ローカル線とか。のんびりしたのが好きなんです。電車で景色が変わっていく時間って、ちょっと好きなんですよね。</div>
+      </div>
+      <div class="meta">
+        <div><span class="k">🎵 音：</span>音楽オン（移動）。走行音・アナウンス。</div>
+        <div><span class="k">🎙 声：</span>なし　<span class="k">✅ 許可：</span>不要（人を写さない配慮）</div>
+      </div>
+      <div class="warnbox">🅱 車窓と足元で繋ぐ。</div>
+    </div>
+  </details>
+
+  <!-- ⑥ -->
+  <details class="scene">
+    <summary><span class="badge">⑥</span><span class="title">☕ カフェ休憩・CAFFE STRADA<span class="tagnew">追加</span></span><span class="time">15:40〜16:40</span><span class="chev">▶</span></summary>
+    <div class="body">
+      <p class="lead">隠れ家カフェの発見の喜び。ラテアートへの素直な反応で“ほっこり”。ギャップ→ポジティブ変換の型。</p>
+      <div class="sec-h cam">📦 撮る画</div>
+      <ul class="mat">
+        <li><input type="checkbox"><span>【隠れ家探し】ビルの通路奥へ入る足元・看板を見つける手元（5〜10秒・カスタム1）</span></li>
+        <li><input type="checkbox"><span>店の外観・入口の引き（10秒・カスタム1）</span></li>
+        <li><input type="checkbox"><span>店内の雰囲気（許可＆無人／10秒・カスタム1）</span></li>
+        <li><input type="checkbox"><span>【流れ】配膳→カップの引き（10秒）→ラテアートの寄り（10秒以上・カスタム2）→ひとくちの手元主観（5〜10秒）→リアクション</span></li>
+        <li><input type="checkbox"><span>湯気・エスプレッソマシンの動き（余韻/インサート・カスタム2 or 3スロー）</span></li>
+      </ul>
+      <div class="sec-h sub">💬 字幕案</div>
+      <div class="subs">
+        <div class="sub-line sub-tame"><span class="tag tag-tame">タメ</span>荻窪に到着！まずはカフェで、ひと休み。このお店、ビルの奥にひっそり…看板、危うく見落とすとこだった。笑</div>
+        <div class="sub-line sub-tame"><span class="tag tag-tame">タメ</span>でも、こういう隠れ家、見つけると嬉しいんだよなぁ。（配膳で）わ、ラテアート可愛い…！</div>
+        <div class="sub-line sub-yobi"><span class="tag tag-yobi">敬語</span>ところで、旅の途中のカフェ休憩って、なんだかご褒美みたいじゃないですか？</div>
+      </div>
+      <div class="meta">
+        <div><span class="k">🎵 音：</span>到着まで音楽オン→席についたら<b>音楽オフ</b>（環境音だけ）。マシン音・カップの音は単体でも録る。</div>
+        <div><span class="k">🎙 声：</span>「ほぁ〜」など短いリアクション＋注文・お礼の声はOK</div>
+      </div>
+      <div class="warnbox">⚠ 入店時に「店内撮影OKか」を一声確認。基本は手元・ドリンク・店内オブジェのみ、他のお客様・スタッフは写さない（写り込みはぼかし）。🅱 NGなら外観＋手元のカフェモカ寄りだけ。</div>
+    </div>
+  </details>
+
+  <!-- ⑦ -->
+  <details class="scene climax">
+    <summary><span class="badge">⑦</span><span class="title">🍽️ 夕食・ORCHESTRA荻窪（予約済み）★山</span><span class="time">17:00〜18:30</span><span class="chev">▶</span></summary>
+    <div class="body">
+      <p class="lead">食の見せ場。手元と料理だけで“美味しい”を伝える。食事は流れで（配膳→引き→寄り→ひとくち→リアクション）。</p>
+      <div class="sec-h cam">📦 撮る画</div>
+      <ul class="mat">
+        <li><input type="checkbox"><span>店の外観・入口の引き（10秒・カスタム1）</span></li>
+        <li><input type="checkbox"><span>カウンターの手元まわり（自分の席範囲のみ／5〜10秒・カスタム2）</span></li>
+        <li><input type="checkbox"><span>① 季節の前菜盛り合わせ：配膳→引き（10秒）→寄り（10秒以上）→ひとくち主観</span></li>
+        <li><input type="checkbox"><span>② 金目鯛のカツレツ デュグレレソース：同上の流れ</span></li>
+        <li><input type="checkbox"><span>③ 鹿肉ボロネーゼのラザニア：同上の流れ</span></li>
+        <li><input type="checkbox"><span>ナイフ・フォークを入れる手元の主観（各5〜10秒・カスタム2）</span></li>
+        <li><input type="checkbox"><span>（飲むなら）グラスワインの寄り／【音素材】ナイフを入れる音・ソースの音</span></li>
+      </ul>
+      <div class="sec-h sub">💬 字幕案</div>
+      <div class="subs">
+        <div class="sub-line sub-tame"><span class="tag tag-tame">タメ</span>さあ、今日いちばんのお楽しみ。フレンチのディナーです。1名でカウンター、予約しといた。ひとりディナー、贅沢〜。</div>
+        <div class="sub-line sub-tame"><span class="tag tag-tame">タメ</span>（前菜で）うわ、綺麗…！ （金目鯛で）ソースが、もう。 うま…</div>
+        <div class="sub-line sub-yobi"><span class="tag tag-yobi">敬語</span>思ったんですけど、ひとりで良いお店に入るのって、最初ちょっと勇気いりません？でも、慣れるとやめられないんですよね。</div>
+        <div class="sub-line sub-yobi"><span class="tag tag-yobi">敬語</span>よかったら、ひとりディナー派か、みんな派か、コメントで教えてください。</div>
+        <div class="sub-line sub-info"><span class="tag tag-info">📋③</span>季節の前菜盛り合わせ／金目鯛のカツレツ デュグレレソース／鹿肉ボロネーゼのラザニア</div>
+      </div>
+      <div class="meta">
+        <div><span class="k">🎵 音：</span>入店まで音楽オン→料理が来たら<b>音楽オフ</b>（没入）。</div>
+        <div><span class="k">🎙 声：</span>「うまっ」など短いリアクション＋注文・お礼の声はOK</div>
+      </div>
+      <div class="warnbox">⚠ 予約時に「手元・料理のみ撮影、他のお客様・スタッフは映さない」旨を伝達済み。当日も一声。許可を得ている旨を字幕で添えると信頼度アップ。🅱 混んでいて撮りづらい場合は料理の真上からの寄りと手元のみに絞る。</div>
+    </div>
+  </details>
+
+  <!-- ⑧ -->
+  <details class="scene">
+    <summary><span class="badge">⑧</span><span class="title">🚶 徒歩で杉並公会堂へ（開場待ち）</span><span class="time">18:35〜19:00</span><span class="chev">▶</span></summary>
+    <div class="body">
+      <p class="lead">満腹のまま歩いて、今日いちばんの楽しみへ。期待を持たせる。夜の街と会場の“これから”感。</p>
+      <div class="sec-h cam">📦 撮る画</div>
+      <ul class="mat">
+        <li><input type="checkbox"><span>夜の荻窪の街を歩く足元・街灯（雨なら濡れた路面が綺麗／5〜10秒・カスタム1）</span></li>
+        <li><input type="checkbox"><span>杉並公会堂の外観の引き（10秒以上・カスタム1）</span></li>
+        <li><input type="checkbox"><span>入口・案内サイン・チケット（teket画面）の手元（5秒・カスタム2／個人情報は写さない）</span></li>
+        <li><input type="checkbox"><span>ホール前ロビーの雰囲気（他のお客さんを写さない範囲／10秒）</span></li>
+      </ul>
+      <div class="sec-h sub">💬 字幕案</div>
+      <div class="subs">
+        <div class="sub-line sub-tame"><span class="tag tag-tame">タメ</span>そして最後は…杉並公会堂。今日の締めは、クラシックコンサート。</div>
+        <div class="sub-line sub-yobi"><span class="tag tag-yobi">敬語</span>じつは今日、これがいちばん楽しみだったんです。</div>
+      </div>
+      <div class="meta">
+        <div><span class="k">🎵 音：</span>音楽オン（移動〜到着）。夜の街の音・雨音・ロビーのざわめきも。</div>
+        <div><span class="k">🎙 声：</span>なし</div>
+      </div>
+      <div class="warnbox">⚠ ロビー内の撮影可否は当日スタッフに確認。客席・他の来場者は写さない。🅱 確認が取れない場合は外観と入口看板のみ。</div>
+    </div>
+  </details>
+
+  <!-- ⑨ -->
+  <details class="scene climax">
+    <summary><span class="badge">⑨</span><span class="title">🎼 オーケストラ・ファンダメンタルズ第4回演奏会 ★この旅いちばん</span><span class="time">19:30〜21:00</span><span class="chev">▶</span></summary>
+    <div class="body">
+      <p class="lead">頂点。演奏中の撮影は基本NG想定なので、開演前後の空気感で勝負する。</p>
+      <div class="sec-h cam">📦 撮る画</div>
+      <ul class="mat">
+        <li><input type="checkbox"><span>開演前のステージの引き（撮影可の時間帯のみ／楽器・譜面台の無人カット／10秒以上・カスタム1）</span></li>
+        <li><input type="checkbox"><span>プログラム（紙）の手元寄り（5〜10秒・カスタム2）</span></li>
+        <li><input type="checkbox"><span>開演直前の場内の空気（人を写さない／10秒）</span></li>
+        <li><input type="checkbox"><span>※演奏中は撮らない。終演後の拍手のざわめき・幕の余韻（撮影可なら・カスタム1）</span></li>
+      </ul>
+      <div class="sec-h sub">💬 字幕案（最小限に）</div>
+      <div class="subs">
+        <div class="sub-line sub-tame"><span class="tag tag-tame">タメ</span>シューマンの、あまり演奏されない曲たち。生で聴けるの楽しみすぎる…！</div>
+        <div class="sub-line sub-yobi"><span class="tag tag-yobi">敬語</span>※ここからは、演奏に集中。撮影はここまでにしました。</div>
+        <div class="sub-line sub-tame"><span class="tag tag-tame">タメ</span>（終演後）……はぁ。良かった。ことばにならない。</div>
+        <div class="sub-line sub-yobi"><span class="tag tag-yobi">敬語</span>生の音って、やっぱり違いますね。みなさんは最近、生演奏を聴きましたか？</div>
+        <div class="sub-line sub-info"><span class="tag tag-info">📋④</span>入場無料・任意寄付制。teketで無料会員登録の上、事前予約推奨。指揮・ピアノ：平林遼</div>
+      </div>
+      <div class="meta">
+        <div><span class="k">🎵 音：</span><b>音楽オフ</b>（演奏そのものは映像に基本使えない前提）。開演前の高揚と終演後の余韻に権利フリーBGMを薄く（甘茶の音楽工房）。</div>
+        <div><span class="k">🎙 声：</span>演奏中は声を出さない。解説は厳禁。</div>
+      </div>
+      <div class="warnbox">⚠★最重要：演奏中の撮影・録音は著作権・他の観客への配慮から基本NGの会場が多い。事前に主催・会場へ撮影可否を必ず確認。🅱 NGの場合は開演前ロビー・外観・チケット・プログラムのみで構成し、感想はすべて字幕で。「許可を得て撮影しています」と言えない場合は演奏中カットを一切使わない判断を。</div>
+    </div>
+  </details>
+
+  <!-- ED -->
+  <details class="scene">
+    <summary><span class="badge">ED</span><span class="title">エンディング（無人カット・荻窪）</span><span class="time">荻窪で撮影・締め</span><span class="chev">▶</span></summary>
+    <div class="body">
+      <p class="lead">感情の波を前向きに着地。雨で始まった空気を夜の荻窪で回収して余韻を残す。自己紹介パート3・コメント誘導もここで。帰路（自宅方面）は撮らない／使わない。</p>
+      <div class="sec-h cam">📦 撮る画</div>
+      <ul class="mat">
+        <li><input type="checkbox"><span>夜の荻窪駅・駅名標・改札の引き（無人狙い／10秒以上・カスタム1）</span></li>
+        <li><input type="checkbox"><span>改札へ向かう足元（雨上がり or 濡れた路面／5〜10秒・カスタム1）</span></li>
+        <li><input type="checkbox"><span>夜の街灯・余韻の一枚（カスタム1 or 3スロー）</span></li>
+        <li><input type="checkbox"><span>（頭の下北沢の雨と対になる）夜空・傘を畳む手元など“回収”カット（カスタム2/3）</span></li>
+      </ul>
+      <div class="sec-h sub">💬 字幕案</div>
+      <div class="subs">
+        <div class="sub-line sub-tame"><span class="tag tag-tame">タメ</span>荻窪駅まで、戻ってきました。雨で始まった一日だったけど…最後はいい夜になったなぁ。</div>
+        <div class="sub-line sub-yobi"><span class="tag tag-yobi">敬語</span>（自己紹介③）このチャンネルでは、温泉や神社、ローカル線、こういう街めぐりを気ままに続けていきます。また、ふらっと覗いてもらえたら嬉しいです。</div>
+        <div class="sub-line sub-yobi"><span class="tag tag-yobi">敬語</span>今日も最後まで、一緒に旅してくれてありがとうございました！よかったら、いちばん気になったスポットをコメントで教えてください。</div>
+      </div>
+      <div class="meta">
+        <div><span class="k">🎵 音：</span>音楽オン（締めの余韻BGM／甘茶の音楽工房、フェードアウト）。夜の駅の音・雨音を薄く。</div>
+        <div><span class="k">🎙 声：</span>なし</div>
+      </div>
+      <div class="warnbox">⚠ ここで動画は終了。荻窪→自宅方面の電車・駅カットは撮らない、または撮っても編集で使わない。🅱 無人が撮れなければ足元・夜空で締める。</div>
+    </div>
+  </details>
+
+  <!-- 撮影前チェック -->
+  <details class="scene">
+    <summary><span class="badge" style="background:var(--sumi)">✓</span><span class="title">撮影前・最終チェック</span><span class="time">事前</span><span class="chev">▶</span></summary>
+    <div class="body">
+      <div class="sec-h warn">📋 予約・確保</div>
+      <ul class="mat">
+        <li><input type="checkbox"><span>ORCHESTRA荻窪 17:00・1名・カウンター席の予約確認</span></li>
+        <li><input type="checkbox"><span>微わかる展 14:00入場の日時指定チケット（購入済み）を再確認</span></li>
+        <li><input type="checkbox"><span>オーケストラ・ファンダメンタルズ teket 無料会員登録＋事前予約</span></li>
+      </ul>
+      <div class="sec-h warn">📋 撮影許可（取れたら字幕で一言）</div>
+      <ul class="mat">
+        <li><input type="checkbox"><span>猫米 入店時に「店内撮影OK？」を一声（手元・料理・オブジェのみ／人はぼかし）</span></li>
+        <li><input type="checkbox"><span>CAFFE STRADA 入店時に「店内撮影OK？」を一声（同上）</span></li>
+        <li><input type="checkbox"><span>微わかる展 館内撮影の可否を現地で確認（区画ごとに異なる場合あり）</span></li>
+        <li><input type="checkbox"><span>ORCHESTRA荻窪 手元・料理のみの撮影、予約時に伝達済み（当日も一声）</span></li>
+        <li><input type="checkbox"><span>杉並公会堂 演奏中の撮影可否を必ず事前確認（基本NG想定）</span></li>
+      </ul>
+      <div class="sec-h warn">📋 プライバシー配慮（今回の要）</div>
+      <div class="meta">
+        <div>・動画は<b>下北沢スタート・荻窪エンド</b>で構成。自宅最寄り駅・自宅→下北沢間の移動・荻窪→自宅間の帰路は撮影しない、または撮っても編集で使用しない</div>
+        <div>・自己紹介や語りかけ字幕でも、自宅の地域が特定できる固有名詞は避ける</div>
+      </div>
+      <div class="sec-h warn">📋 時間の注意</div>
+      <div class="meta">
+        <div>・猫米は開店11:30と同時入店予定、滞在は最大1時間で12:30頃に切り上げ（予約不可店なので開店直後を逃すと混雑・待ちの可能性）</div>
+        <div>・ヒカリエ→西武渋谷店は駅を挟んで反対側で徒歩12〜15分。14:00入場に遅れないよう13:35頃には移動開始</div>
+        <div>・コンサートは無料・任意寄付制だが、当日21:00まで購入可能でも埋まる可能性あり。早めの確保が安心</div>
+        <div>・電車の時刻はすべて目安（指定席なし・本数の多い路線）。出発前に乗換案内アプリで最新時刻を確認</div>
+      </div>
+      <div class="sec-h warn">📋 天気・その他</div>
+      <ul class="mat">
+        <li><input type="checkbox"><span>雨予報。折り畳み傘は必携（傘・雫は“その日ならではの画”として活かす）</span></li>
+        <li><input type="checkbox"><span>屋内中心のプランなので雨天でも大きな影響なし</span></li>
+      </ul>
+      <div class="sec-h warn">📋 機材プリセット早見</div>
+      <div class="meta">
+        <div><span class="k">カスタム1（広角）：</span>風景・車窓・歩き</div>
+        <div><span class="k">カスタム2（狭角）：</span>物撮り・手元・料理の寄り</div>
+        <div><span class="k">カスタム3（120fps）：</span>雨・湯気・ラテ・のれんなど余韻スロー</div>
+        <div><span class="k">カスタム4：</span>揺れを活かしたいシーン</div>
+      </div>
+      <div class="sec-h warn">📋 撮り忘れ防止の合言葉</div>
+      <div class="meta">
+        <div>・1カットは長め（動き5〜10秒／止め画10秒以上）</div>
+        <div>・同じ対象は「引き・寄り・主観」3点セット</div>
+        <div>・移動＝出発→道中→到着／食事＝配膳→引き→寄り→ひとくち→リアクション</div>
+        <div>・オープニング用・締め用の“無人の綺麗な画”を下北沢・荻窪それぞれで確保</div>
+        <div>・コンサートは演奏中カットが撮れない前提で、開演前後の素材を多めに確保</div>
+        <div>・📋情報字幕は最終3〜5枚に絞る</div>
+      </div>
+      <div class="warnbox">📦 持ち物：カメラ／予備バッテリー／microSD／モバイルバッテリー／ミニ三脚／PLフィルター／レンズクロス／モバイルSuica／teketのチケット画面（スクショ推奨）／折り畳み傘</div>
+    </div>
+  </details>
+
+  <footer>
+    ※情報は撮影時点のものです。最新は公式でご確認ください。<br>
+    えなみん！の旅びより ／ 行ってよかった！を集めてます
+  </footer>
+</div>
+
+<div class="foot-fixed">困ったら<b>多めに撮る</b>。「使うか分からないけど一応」を現場で潰す方が、後悔より安い。</div>
+
+<script>
+  const KEY = "shibuya_ogikubo_biwakaru_concert_2026_v3_checks";
+  const boxes = Array.from(document.querySelectorAll('input[type=checkbox]'));
+  boxes.forEach((b,i)=> b.dataset.k = "c"+i);
+
+  function load(){
+    let saved = {};
+    try{ saved = JSON.parse(localStorage.getItem(KEY)) || {}; }catch(e){}
+    boxes.forEach(b=>{ if(saved[b.dataset.k]) b.checked = true; });
+  }
+  function save(){
+    const o = {};
+    boxes.forEach(b=>{ if(b.checked) o[b.dataset.k]=1; });
+    try{ localStorage.setItem(KEY, JSON.stringify(o)); }catch(e){}
+  }
+  function updateProgress(){
+    const camBoxes = boxes.filter(b=> b.closest('.scene') && !b.closest('.scene').querySelector('.sec-h.warn'));
+    const done = camBoxes.filter(b=>b.checked).length;
+    document.getElementById('pcount').textContent = done;
+    document.getElementById('ptotal').textContent = camBoxes.length;
+    document.getElementById('pfill').style.width = (done/camBoxes.length*100)+"%";
+  }
+  boxes.forEach(b=> b.addEventListener('change', ()=>{ save(); updateProgress(); }));
+
+  function toggleAll(open){ document.querySelectorAll('details.scene').forEach(d=> d.open = open); }
+  function resetChecks(){
+    if(!confirm("チェックを全部消す？")) return;
+    boxes.forEach(b=> b.checked=false);
+    save(); updateProgress();
+  }
+
+  load(); updateProgress();
+</script>
+</body>
+</html>
