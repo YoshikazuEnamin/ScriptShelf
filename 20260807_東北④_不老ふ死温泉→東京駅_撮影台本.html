@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>東北④不老ふ死温泉→東京駅｜当日撮影台本</title>
+<style>
+  :root{
+    --kinari:#F5EFE0; --gray:#D9D2C5; --shu:#C75B39; --green:#7A8B5A; --sumi:#3A3A3A;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+  body{
+    margin:0;background:var(--kinari);color:var(--sumi);
+    font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
+    line-height:1.7;font-size:16px;padding-bottom:64px;
+  }
+  header{
+    background:var(--shu);color:#fff;padding:18px 16px 14px;position:sticky;top:0;z-index:20;
+    box-shadow:0 2px 10px rgba(58,58,58,.18);
+  }
+  header h1{margin:0;font-size:18px;letter-spacing:.02em;}
+  header .sub{font-size:12.5px;opacity:.92;margin-top:4px;}
+  .wrap{max-width:720px;margin:0 auto;padding:14px 12px 0;}
+
+  .bar{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 14px;}
+  .bar button{
+    flex:1;min-width:120px;border:none;border-radius:10px;padding:10px;font-size:13px;font-weight:700;
+    background:var(--gray);color:var(--sumi);cursor:pointer;
+  }
+  .bar button.reset{background:#fff;border:1px solid var(--gray);}
+  .progress{background:#fff;border:1px solid var(--gray);border-radius:12px;padding:12px 14px;margin-bottom:16px;}
+  .progress .num{font-size:22px;font-weight:800;color:var(--shu);}
+  .pbar{height:8px;border-radius:5px;background:var(--gray);overflow:hidden;margin-top:8px;}
+  .pbar > i{display:block;height:100%;background:var(--green);width:0;transition:width .3s;}
+
+  .note{background:#fff;border-left:5px solid var(--green);border-radius:8px;padding:11px 13px;font-size:13.5px;margin-bottom:16px;}
+  .note b{color:var(--green);}
+  .note.upd{border-left-color:var(--shu);}
+  .note.upd b{color:var(--shu);}
+
+  details.scene{background:#fff;border:1px solid var(--gray);border-radius:14px;margin-bottom:12px;overflow:hidden;}
+  details.scene[open]{box-shadow:0 2px 12px rgba(58,58,58,.10);}
+  summary{list-style:none;cursor:pointer;padding:14px 14px;display:flex;align-items:center;gap:10px;}
+  summary::-webkit-details-marker{display:none;}
+  .badge{
+    flex:none;width:30px;height:30px;border-radius:50%;background:var(--shu);color:#fff;
+    display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;
+  }
+  .climax .badge{background:var(--green);}
+  .newsc .badge{background:#b8860b;}
+  summary .title{font-weight:800;font-size:15px;flex:1;}
+  summary .time{font-size:11px;color:#fff;background:var(--sumi);padding:2px 8px;border-radius:20px;flex:none;}
+  summary .chev{flex:none;color:var(--gray);transition:transform .2s;font-size:13px;}
+  details[open] summary .chev{transform:rotate(90deg);color:var(--shu);}
+  .tagnew{font-size:9.5px;font-weight:800;background:#b8860b;color:#fff;border-radius:4px;padding:1px 5px;margin-left:4px;}
+
+  .body{padding:2px 14px 16px;}
+  .lead{font-size:13px;color:#6a665c;font-style:italic;margin:2px 0 12px;}
+
+  .sec-h{font-size:13px;font-weight:800;margin:14px 0 7px;display:flex;align-items:center;gap:6px;}
+  .sec-h.cam{color:var(--shu);}
+  .sec-h.sub{color:var(--sumi);}
+  .sec-h.warn{color:#a8431f;}
+
+  ul.mat{list-style:none;padding:0;margin:0;}
+  ul.mat li{display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-bottom:1px dashed var(--gray);font-size:14px;}
+  ul.mat li:last-child{border-bottom:none;}
+  ul.mat input{
+    appearance:none;-webkit-appearance:none;flex:none;width:22px;height:22px;margin-top:1px;
+    border:2px solid var(--green);border-radius:6px;background:#fff;cursor:pointer;position:relative;
+  }
+  ul.mat input:checked{background:var(--green);}
+  ul.mat input:checked::after{content:"✓";color:#fff;font-size:14px;font-weight:900;position:absolute;left:3px;top:-2px;}
+  ul.mat input:checked + span{color:#9a958a;text-decoration:line-through;}
+
+  .subs{display:flex;flex-direction:column;gap:7px;}
+  .sub-line{padding:8px 11px;border-radius:9px;font-size:13.5px;}
+  .sub-yobi{background:#eef0e6;border-left:4px solid var(--green);}
+  .sub-tame{background:#faf3ea;border-left:4px solid var(--shu);}
+  .sub-info{background:#fff;border:1.5px solid var(--sumi);border-radius:9px;font-size:12.5px;}
+  .tag{font-size:10.5px;font-weight:800;padding:1px 6px;border-radius:5px;margin-right:6px;vertical-align:middle;}
+  .tag-yobi{background:var(--green);color:#fff;}
+  .tag-tame{background:var(--shu);color:#fff;}
+  .tag-info{background:var(--sumi);color:#fff;}
+
+  .meta{font-size:13px;background:#f7f4ec;border-radius:9px;padding:9px 11px;margin-top:6px;}
+  .meta div{margin:3px 0;}
+  .meta .k{font-weight:800;}
+  .warnbox{background:#fdf0eb;border:1px solid #e3b8a8;border-radius:9px;padding:9px 11px;font-size:13px;margin-top:8px;}
+
+  .legend{background:#fff;border:1px solid var(--gray);border-radius:12px;padding:12px 14px;margin:4px 0 18px;font-size:12.5px;}
+  .legend span{display:inline-block;margin:3px 8px 3px 0;}
+  .dot{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:4px;vertical-align:middle;}
+
+  footer{text-align:center;font-size:11.5px;color:#8a8678;padding:20px 16px 8px;}
+  .foot-fixed{position:fixed;left:0;right:0;bottom:0;background:var(--sumi);color:#fff;text-align:center;font-size:12px;padding:9px;z-index:30;}
+  .foot-fixed b{color:#ffd9cd;}
+</style>
+</head>
+<body>
+<header>
+  <h1>🍎 東北④ 不老ふ死温泉 → 東京駅（帰路・五能線→新幹線）</h1>
+  <div class="sub">当日撮影台本｜2026/8/7(金)　送迎バス → 東京駅到着｜顔出しNG・字幕主体</div>
+</header>
+
+<div class="wrap">
+
+  <div class="bar">
+    <button onclick="toggleAll(true)">▼ 全部ひらく</button>
+    <button onclick="toggleAll(false)">▲ 全部とじる</button>
+    <button class="reset" onclick="resetChecks()">☐ チェック全消し</button>
+  </div>
+
+  <div class="progress">
+    <div>撮影クリア　<span class="num" id="pcount">0</span> / <span id="ptotal">0</span> カット</div>
+    <div class="pbar"><i id="pfill"></i></div>
+  </div>
+
+  <div class="note upd">
+    <b>この動画の範囲</b>：不老ふ死温泉の送迎バスから、<b>東京駅に到着</b>するまで（DAY4）。全4本シリーズの最終④＝旅の締め。目安15〜25分。
+  </div>
+
+  <div class="note">
+    <b>物語の軸（今回の武器）</b>：五能線の車窓（千畳敷）で名残を惜しみ、青森でお土産＆駅弁、そして新幹線でしみじみ帰る<b>“余韻の回”</b>。①〜③の思い出を字幕で軽く回収して締める。📋情報字幕は全体で5枚まで。
+  </div>
+
+  <div class="legend">
+    <b>字幕の色分け</b><br>
+    <span><span class="dot" style="background:var(--green)"></span>語りかけ＝敬語</span>
+    <span><span class="dot" style="background:var(--shu)"></span>自分語り＝タメ口</span>
+    <span><span class="dot" style="background:var(--sumi)"></span>📋情報字幕（白枠）</span><br>
+    <span style="color:#6a665c">📦のチェックは自動保存（同じ端末で次に開いても残るよ）</span>
+  </div>
+
+  <!-- ① -->
+  <details class="scene" open>
+    <summary><span class="badge">①</span><span class="title">オープニング（無人カット）</span><span class="time">開始前撮影</span><span class="chev">▶</span></summary>
+    <div class="body">
+      <p class="lead">最終回。旅を振り返る余韻トーンで。海と鉄路の画で“帰路”を予感させる。</p>
+      <div class="sec-h cam">📦 撮る画</div>
+      <ul class="mat">
+        <li><input type="checkbox"><span>朝の日本海・無人の水平線（引き／10秒以上）※この動画の“顔”</span></li>
+        <li><input type="checkbox"><span>千畳敷の奇岩の車窓（後で撮って頭に先出し／引き・10秒）</span></li>
+        <li><input type="checkbox"><span>りんごジュース・駅弁など“おみやげ”の寄り（先出し／5秒）</span></li>
+        <li><input type="checkbox"><span>波・線路のゆらぎ（カスタム3スロー／10秒）</span></li>
+        <li><input type="checkbox"><span>新幹線ホーム・時刻表の寄り（インサート／5秒）</span></li>
+      </ul>
+      <div class="sec-h sub">💬 字幕案</div>
+      <div class="subs">
+        <div class="sub-line sub-tame"><span class="tag tag-tame">タメ</span>（最後に1枚だけ）4日間の旅も、今日で最終日</div>
+      </div>
+      <div class="meta">
+        <div><span class="k">🎵 音：</span>音楽オン（しっとり・締めトーン）。最後の海カットだけ波音をチラ。</div>
+        <div><span class="k">🎙 声：</span>なし　<span class="k">✅ 許可：</span>不要（無人画のみ）</div>
+      </div>
+    </div>
+  </details>
+
+  <!-- ② -->
+  <details class="scene">
+    <summary><span class="badge">②</span><span class="title">送迎バス → ウェスパ椿山駅</span><span class="time">10:10〜10:38</span><span class="chev">▶</span></summary>
+    <div class="body">
+      <p class="lead">名残の出発。宿と海に「またね」を。前回③の締めからの繋ぎ。</p>
+      <div class="sec-h cam">📦 撮る画</div>
+      <ul class="mat">
+        <li><input type="checkbox"><span>宿の外観・海を振り返る引き（10秒）名残カット</span></li>
+        <li><input type="checkbox"><span>送迎バスに乗り込む足元（主観／5秒）／車窓の海（カスタム1／10秒）</span></li>
+        <li><input type="checkbox"><span>ウェスパ椿山 駅名標／ホームの引き（10秒）</span></li>
+      </ul>
+      <div class="sec-h sub">💬 字幕案</div>
+      <div class="subs">
+        <div class="sub-line sub-tame"><span class="tag tag-tame">タメ</span>朝の海に「またね」。名残惜しいけど、そろそろ帰ります</div>
+        <div class="sub-line sub-yobi"><span class="tag tag-yobi">敬語</span>いい宿に泊まると、帰る朝がちょっとさみしくなりませんか？</div>
+      </div>
+      <div class="meta">
+        <div><span class="k">🎵 音：</span>音楽オン（しっとり）。走行音を薄く。</div>
+        <div><span class="k">🎙 声：</span>基本なし</div>
+      </div>
+    </div>
+  </details>
+
+  <!-- ③ -->
+  <details class="scene climax">
+    <summary><span class="badge">③</span><span class="title">リゾートしらかみ1号・車窓（千畳敷）★最後の海</span><span class="time">10:38〜13:34</span><span class="chev">▶</span></summary>
+    <div class="body">
+      <p class="lead">帰りもしらかみ。今度は千畳敷を徐行で。旅の総集編を車窓に重ねる余韻の見せ場。</p>
+      <div class="sec-h cam">📦 撮る画</div>
+      <ul class="mat">
+        <li><input type="checkbox"><span>ホームにしらかみが入ってくる（引き／10秒）／乗り込む主観</span></li>
+        <li><input type="checkbox"><span>★千畳敷の奇岩の車窓（徐行区間・カスタム1広角／たっぷり長回し）</span></li>
+        <li><input type="checkbox"><span>流れる日本海・波のゆらぎ（カスタム3スロー／10秒）PL対策</span></li>
+        <li><input type="checkbox"><span>車内でくつろぐ手元・お茶（インサート）</span></li>
+        <li><input type="checkbox"><span>青森駅 駅名標／降りる足元（主観）</span></li>
+      </ul>
+      <div class="sec-h sub">💬 字幕案</div>
+      <div class="subs">
+        <div class="sub-line sub-tame"><span class="tag tag-tame">タメ</span>帰りもしらかみ。今度は千畳敷、ゆっくり見られるやつだ</div>
+        <div class="sub-line sub-yobi"><span class="tag tag-yobi">敬語</span>石段に、竿燈に、青池に、海の露天。…振り返ると、よく歩いた4日間でした</div>
+        <div class="sub-line sub-tame"><span class="tag tag-tame">タメ</span>この海も見納めか〜。名残惜しいなぁ</div>
+        <div class="sub-line sub-info"><span class="tag tag-info">📋①</span>リゾートしらかみ1号は千畳敷を徐行運転。奇岩の絶景を車窓からたっぷり楽しめます</div>
+      </div>
+      <div class="meta">
+        <div><span class="k">🎵 音：</span>音楽オン→千畳敷の徐行区間は<b>音楽オフ</b>で走行音＋波。旅の回想字幕はここに重ねる。</div>
+        <div><span class="k">🎙 声：</span>「うわ、すごい岩」などとっさのみ</div>
+      </div>
+      <div class="warnbox">⚠ 車内は他のお客さんを写さない。窓・自席まわり中心で。</div>
+    </div>
+  </details>
+
+  <!-- ④ -->
+  <details class="scene">
+    <summary><span class="badge">④</span><span class="title">青森駅・みちのくりんご店</span><span class="time">13:34〜14:00</span><span class="chev">▶</span></summary>
+    <div class="body">
+      <p class="lead">駅前ロータリー徒歩1分。一升瓶のりんごジュースが名物。買い物の手元を楽しく。</p>
+      <div class="sec-h cam">📦 撮る画</div>
+      <ul class="mat">
+        <li><input type="checkbox"><span>店構えの引き（10秒）／店内のりんご商品の寄り（カスタム2）</span></li>
+        <li><input type="checkbox"><span>★一升瓶のりんごジュースを手に取る手元（主観／5〜10秒）</span></li>
+        <li><input type="checkbox"><span>会計・袋を持つ手元（インサート）／瓶の重さの“おとぼけ”リアクション</span></li>
+      </ul>
+      <div class="sec-h sub">💬 字幕案</div>
+      <div class="subs">
+        <div class="sub-line sub-tame"><span class="tag tag-tame">タメ</span>青森といえば、りんご。一升瓶のジュースって聞いて気になってた</div>
+        <div class="sub-line sub-tame"><span class="tag tag-tame">タメ</span>…重っ。でもこれは買って帰るしかないでしょ（笑）</div>
+        <div class="sub-line sub-yobi"><span class="tag tag-yobi">敬語</span>ご当地の“ここでしか”に弱いの、わかってもらえますか？</div>
+        <div class="sub-line sub-info"><span class="tag tag-info">📋②</span>みちのくりんご店は青森駅前ロータリー徒歩1分。一升瓶のりんごジュースが名物（重いのでキャリーへ）</div>
+      </div>
+      <div class="meta">
+        <div><span class="k">🎵 音：</span>音楽オン（軽やか）。店内のざわめきは薄く。</div>
+        <div><span class="k">🎙 声：</span>「重っ」などとっさ＋お礼はOK</div>
+      </div>
+      <div class="warnbox">⚠ 店内撮影は一声。他のお客さんは写さない。🅱 立ち寄り時間は短いので、瓶の寄り＋手元だけでも成立。</div>
+    </div>
+  </details>
+
+  <!-- ⑤ -->
+  <details class="scene">
+    <summary><span class="badge">⑤</span><span class="title">青森 → 新青森（奥羽本線）</span><span class="time">14:01〜14:05</span><span class="chev">▶</span></summary>
+    <div class="body">
+      <p class="lead">わずか4分の移動。テンポよく繋ぐインサート。</p>
+      <div class="sec-h cam">📦 撮る画</div>
+      <ul class="mat">
+        <li><input type="checkbox"><span>青森駅ホーム・電車に乗り込む足元（主観／5秒）</span></li>
+        <li><input type="checkbox"><span>短い車窓（カスタム1／10秒）</span></li>
+        <li><input type="checkbox"><span>新青森駅 駅名標／改札を出る主観（5秒）</span></li>
+      </ul>
+      <div class="sec-h sub">💬 字幕案</div>
+      <div class="subs">
+        <div class="sub-line sub-tame"><span class="tag tag-tame">タメ</span>新青森まではあっという間。さあ、最後のお土産タイム</div>
+      </div>
+      <div class="meta">
+        <div><span class="k">🎵 音：</span>音楽オン（テンポよく）。</div>
+        <div><span class="k">🎙 声：</span>なし</div>
+      </div>
+    </div>
+  </details>
+
+  <!-- ⑥ -->
+  <details class="scene">
+    <summary><span class="badge">⑥</span><span class="title">新青森駅・お土産（あおもり旬味館）</span><span class="time">14:05〜14:55</span><span class="chev">▶</span></summary>
+    <div class="body">
+      <p class="lead">最後の買い物。選ぶ楽しさ＝人柄。試飲やかわいい反応を素直に。</p>
+      <div class="sec-h cam">📦 撮る画</div>
+      <ul class="mat">
+        <li><input type="checkbox"><span>旬味館の通路・店構えの引き（10秒）／商品棚の寄り（カスタム2）</span></li>
+        <li><input type="checkbox"><span>青森シードル・ほたて煎餅・ヒバ雑貨・にんにく加工品の寄り</span></li>
+        <li><input type="checkbox"><span>★選ぶ手元・かごに入れる手元（主観／5〜10秒）</span></li>
+        <li><input type="checkbox"><span>試飲する手元（あれば）／袋を持つ手元（インサート）</span></li>
+      </ul>
+      <div class="sec-h sub">💬 字幕案</div>
+      <div class="subs">
+        <div class="sub-line sub-tame"><span class="tag tag-tame">タメ</span>ばらまき用と、自分用と…つい両方買っちゃうやつ</div>
+        <div class="sub-line sub-tame"><span class="tag tag-tame">タメ</span>シードル、試飲できるんだ。ちょっとだけ（笑）</div>
+        <div class="sub-line sub-yobi"><span class="tag tag-yobi">敬語</span>お土産、誰の顔を思い浮かべながら選びますか？それも旅の楽しみですよね</div>
+        <div class="sub-line sub-info"><span class="tag tag-info">📋③</span>あおもり旬味館（新青森駅改札外）。青森シードル・ほたて・ヒバ雑貨・にんにく加工品など</div>
+      </div>
+      <div class="meta">
+        <div><span class="k">🎵 音：</span>音楽オン（軽やか）。ざわめきは薄く。</div>
+        <div><span class="k">🎙 声：</span>とっさ＋お礼はOK</div>
+      </div>
+      <div class="warnbox">⚠ 店内撮影は一声。他のお客さん・レジは写さない。</div>
+    </div>
+  </details>
+
+  <!-- ⑦ -->
+  <details class="scene">
+    <summary><span class="badge">⑦</span><span class="title">駅弁を選ぶ → 新幹線ホームへ</span><span class="time">〜15:17</span><span class="chev">▶</span></summary>
+    <div class="body">
+      <p class="lead">駅弁選びのわくわく。車内で食べる“ごほうび”への助走。</p>
+      <div class="sec-h cam">📦 撮る画</div>
+      <ul class="mat">
+        <li><input type="checkbox"><span>駅弁売り場の引き（10秒）／並ぶ駅弁の寄り（カスタム2）</span></li>
+        <li><input type="checkbox"><span>★選ぶ手元・手に取る駅弁の寄り（主観／5〜10秒）</span></li>
+        <li><input type="checkbox"><span>新幹線ホーム・はやぶさが入ってくる（引き／10秒以上）</span></li>
+        <li><input type="checkbox"><span>乗り込む足元・席に座る主観（5秒）</span></li>
+      </ul>
+      <div class="sec-h sub">💬 字幕案</div>
+      <div class="subs">
+        <div class="sub-line sub-tame"><span class="tag tag-tame">タメ</span>駅弁選び、これがいちばん迷う…うに？ 海峡漬け？ いかめし？</div>
+        <div class="sub-line sub-yobi"><span class="tag tag-yobi">敬語</span>帰りの新幹線で食べる駅弁って、旅の最後のお楽しみですよね</div>
+        <div class="sub-line sub-info"><span class="tag tag-info">📋④</span>駅弁いろいろ：うにとホタテ／海峡漬け丼／いかめし など（陸奥湾の恵み）</div>
+      </div>
+      <div class="meta">
+        <div><span class="k">🎵 音：</span>音楽オン。ホームのアナウンス・発車ベルは薄く生かす。</div>
+        <div><span class="k">🎙 声：</span>「どれにしよ〜」などとっさのみ</div>
+      </div>
+    </div>
+  </details>
+
+  <!-- ⑧ -->
+  <details class="scene climax">
+    <summary><span class="badge">⑧</span><span class="title">はやぶさ60号・車内で駅弁 ★旅のごほうび</span><span class="time">15:17発</span><span class="chev">▶</span></summary>
+    <div class="body">
+      <p class="lead">帰りの新幹線＝ごほうびタイム。駅弁は食事の流れで。旅の余韻を字幕でしみじみ。</p>
+      <div class="sec-h cam">📦 撮る画</div>
+      <ul class="mat">
+        <li><input type="checkbox"><span>駅弁を開ける手元（主観／5〜10秒）→中身の全体の引き→具の寄り（カスタム2）</span></li>
+        <li><input type="checkbox"><span>★ひとくちの手元・リアクション</span></li>
+        <li><input type="checkbox"><span>車窓を流れる景色（カスタム1／15秒）</span></li>
+        <li><input type="checkbox"><span>りんごジュースやお土産をちらり（インサート）</span></li>
+        <li><input type="checkbox"><span>缶やお茶で“おつかれ乾杯”の手元（あれば）</span></li>
+      </ul>
+      <div class="sec-h sub">💬 字幕案</div>
+      <div class="subs">
+        <div class="sub-line sub-yobi"><span class="tag tag-yobi">敬語</span>それでは、自分に。4日間、おつかれさまでした</div>
+        <div class="sub-line sub-tame"><span class="tag tag-tame">タメ</span>……うまっ。旅の締めが駅弁って、最高すぎる</div>
+        <div class="sub-line sub-tame"><span class="tag tag-tame">タメ</span>窓の外、どんどん景色が変わってく。あ〜、帰ってきちゃうな</div>
+        <div class="sub-line sub-info"><span class="tag tag-info">📋⑤</span>はやぶさ60号／新青森15:17発→東京18:32着（全席指定・事前にきっぷ確保を）</div>
+      </div>
+      <div class="meta">
+        <div><span class="k">🎵 音：</span>駅弁を食べる間は<b>音楽オフ</b>気味（咀嚼音）。車窓の回想は音楽オンでしっとり。</div>
+        <div><span class="k">🎙 声：</span>「うまっ」など短く</div>
+      </div>
+      <div class="warnbox">⚠ 車内は他のお客さんを写さない。自席・手元・窓中心で。</div>
+    </div>
+  </details>
+
+  <!-- ⑨ -->
+  <details class="scene">
+    <summary><span class="badge">⑨</span><span class="title">エンディング・東京駅到着で締め</span><span class="time">18:32着</span><span class="chev">▶</span></summary>
+    <div class="body">
+      <p class="lead">シリーズの締め。①の羽田出発と対の“到着の駅画”で4日間を閉じる。無人カットで余韻を残して終わる。</p>
+      <div class="sec-h cam">📦 撮る画（締め）</div>
+      <ul class="mat">
+        <li><input type="checkbox"><span>東京駅に到着・ホームの引き（10秒）／降りる足元の主観</span></li>
+        <li><input type="checkbox"><span>駅名標「東京」の寄り（カスタム2／5秒）旅の終点</span></li>
+        <li><input type="checkbox"><span>キャリー＋お土産（一升瓶）を持って歩く後ろ姿（首から下）</span></li>
+        <li><input type="checkbox"><span>★締め用無人カット：旅の総集編（羽黒山・竿燈・青池・海の露天）を数秒ずつ回収</span></li>
+        <li><input type="checkbox"><span>最後の一枚：朝 or 夕の海の無人カット（余韻）</span></li>
+      </ul>
+      <div class="sec-h sub">💬 字幕案</div>
+      <div class="subs">
+        <div class="sub-line sub-tame"><span class="tag tag-tame">タメ</span>東京、到着。…あっという間の4日間だったなぁ</div>
+        <div class="sub-line sub-yobi"><span class="tag tag-yobi">敬語</span>石段に、お祭りに、青い池に、海の露天。全部、行ってよかったです</div>
+        <div class="sub-line sub-yobi"><span class="tag tag-yobi">敬語</span>みなさんの“また行きたい東北”、よかったらコメントで教えてください</div>
+        <div class="sub-line sub-tame"><span class="tag tag-tame">タメ</span>（最後の無人カットに1枚）行ってよかった！また、どこかへ</div>
+      </div>
+      <div class="meta">
+        <div><span class="k">🎵 音：</span>音楽オン（締めの余韻・OPと同じ曲で回収）。最後の無人カットで音を抜いて終わる。</div>
+        <div><span class="k">🎙 声：</span>なし</div>
+      </div>
+      <div class="warnbox">🅱 総集編カットは①〜③のベスト画を流用。全4本を見た人が「いい旅だったな」と思える締めに。</div>
+    </div>
+  </details>
+
+  <!-- 撮影前チェック -->
+  <details class="scene">
+    <summary><span class="badge" style="background:var(--sumi)">✓</span><span class="title">撮影前・最終チェック</span><span class="time">事前</span><span class="chev">▶</span></summary>
+    <div class="body">
+      <div class="sec-h warn">📋 予約・確保</div>
+      <ul class="mat">
+        <li><input type="checkbox"><span>リゾートしらかみ1号（ウェスパ椿山10:38発→青森13:34着）指定席券</span></li>
+        <li><input type="checkbox"><span>はやぶさ60号（新青森15:17発→東京18:32着）指定席 ※JR公式2026確認済</span></li>
+        <li><input type="checkbox"><span>不老ふ死温泉 送迎バス（ウェスパ椿山行）時刻を宿に確認</span></li>
+      </ul>
+      <div class="sec-h warn">📋 撮影許可（取れたら字幕で一言）</div>
+      <ul class="mat">
+        <li><input type="checkbox"><span>みちのくりんご店 店内撮影 一声</span></li>
+        <li><input type="checkbox"><span>あおもり旬味館 各店 店内撮影 一声</span></li>
+      </ul>
+      <div class="sec-h warn">📋 時間の注意（今回の要）</div>
+      <div class="meta">
+        <div>・青森13:34着→みちのくりんご店（徒歩1分）→14:01発で新青森へ（次は14:45発）</div>
+        <div>・新青森 お土産＆駅弁は14:05〜14:55（はやぶさ60号15:17発まで）</div>
+        <div>・一升瓶ジュースは重い→キャリーに入れて新幹線へ</div>
+      </div>
+      <div class="sec-h warn">📋 天気・運行</div>
+      <ul class="mat">
+        <li><input type="checkbox"><span>当日朝：リゾートしらかみ・新幹線の運転状況を再確認</span></li>
+        <li><input type="checkbox"><span>千畳敷の車窓（天候で見え方が変わる／PL持参）</span></li>
+      </ul>
+      <div class="sec-h warn">📋 機材プリセット早見</div>
+      <div class="meta">
+        <div><span class="k">カスタム1（広角）：</span>車窓・歩き・ホームの引き</div>
+        <div><span class="k">カスタム2（狭角）：</span>駅弁・お土産・りんご瓶の寄り</div>
+        <div><span class="k">カスタム3（120fps）：</span>波・線路のゆらぎのスロー</div>
+        <div><span class="k">カスタム4：</span>揺れを活かしたいシーン</div>
+        <div><span class="k">PLフィルター：</span>海・ガラス越しの車窓</div>
+      </div>
+      <div class="sec-h warn">📋 撮り忘れ防止の合言葉</div>
+      <div class="meta">
+        <div>・1カットは長め（動き5〜10秒／止め画10秒以上）</div>
+        <div>・同じ対象は「引き・寄り・主観」3点セット</div>
+        <div>・移動＝出発→道中→到着／食事＝配膳→引き→寄り→ひとくち→リアクション</div>
+        <div>・締め用の“無人の綺麗な画”＋①〜③の総集編カットを必ず確保</div>
+        <div>・音素材（波音・駅弁を開ける音・発車ベル）は単体でも録る</div>
+        <div>・★①羽田出発と対の“東京駅到着”でシリーズを閉じる</div>
+      </div>
+      <div class="warnbox">📦 持ち物：カメラ／予備バッテリー／microSD／外付けSSD／モバイルバッテリー／ミニ三脚／PLフィルター／レンズクロス／お土産を入れる余裕のあるキャリー（一升瓶！）</div>
+    </div>
+  </details>
+
+  <footer>
+    ※情報は撮影時点のものです。最新は公式でご確認ください。<br>
+    えなみん！の旅びより ／ 行ってよかった！を集めてます<br>
+    BGM：甘茶の音楽工房／効果音：効果音ラボ
+  </footer>
+</div>
+
+<div class="foot-fixed">困ったら<b>多めに撮る</b>。「使うか分からないけど一応」を現場で潰す方が、後悔より安い。</div>
+
+<script>
+  const KEY = "tohoku4_20260807_v1_checks";
+  const boxes = Array.from(document.querySelectorAll('input[type=checkbox]'));
+  boxes.forEach((b,i)=> b.dataset.k = "c"+i);
+  function load(){
+    let saved = {};
+    try{ saved = JSON.parse(localStorage.getItem(KEY)) || {}; }catch(e){}
+    boxes.forEach(b=>{ if(saved[b.dataset.k]) b.checked = true; });
+  }
+  function save(){
+    const o = {};
+    boxes.forEach(b=>{ if(b.checked) o[b.dataset.k]=1; });
+    try{ localStorage.setItem(KEY, JSON.stringify(o)); }catch(e){}
+  }
+  function updateProgress(){
+    const camBoxes = boxes.filter(b=> b.closest('.scene') && !b.closest('.scene').querySelector('.sec-h.warn'));
+    const done = camBoxes.filter(b=>b.checked).length;
+    document.getElementById('pcount').textContent = done;
+    document.getElementById('ptotal').textContent = camBoxes.length;
+    document.getElementById('pfill').style.width = (done/camBoxes.length*100)+"%";
+  }
+  boxes.forEach(b=> b.addEventListener('change', ()=>{ save(); updateProgress(); }));
+  function toggleAll(open){ document.querySelectorAll('details.scene').forEach(d=> d.open = open); }
+  function resetChecks(){
+    if(!confirm("チェックを全部消す？")) return;
+    boxes.forEach(b=> b.checked=false);
+    save(); updateProgress();
+  }
+  load(); updateProgress();
+</script>
+</body>
+</html>

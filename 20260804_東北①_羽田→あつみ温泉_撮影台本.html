@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>東北①羽田→あつみ温泉｜当日撮影台本</title>
+<style>
+  :root{
+    --kinari:#F5EFE0; --gray:#D9D2C5; --shu:#C75B39; --green:#7A8B5A; --sumi:#3A3A3A;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+  body{
+    margin:0;background:var(--kinari);color:var(--sumi);
+    font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
+    line-height:1.7;font-size:16px;padding-bottom:64px;
+  }
+  header{
+    background:var(--shu);color:#fff;padding:18px 16px 14px;position:sticky;top:0;z-index:20;
+    box-shadow:0 2px 10px rgba(58,58,58,.18);
+  }
+  header h1{margin:0;font-size:18px;letter-spacing:.02em;}
+  header .sub{font-size:12.5px;opacity:.92;margin-top:4px;}
+  .wrap{max-width:720px;margin:0 auto;padding:14px 12px 0;}
+
+  .bar{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 14px;}
+  .bar button{
+    flex:1;min-width:120px;border:none;border-radius:10px;padding:10px;font-size:13px;font-weight:700;
+    background:var(--gray);color:var(--sumi);cursor:pointer;
+  }
+  .bar button.reset{background:#fff;border:1px solid var(--gray);}
+  .progress{background:#fff;border:1px solid var(--gray);border-radius:12px;padding:12px 14px;margin-bottom:16px;}
+  .progress .num{font-size:22px;font-weight:800;color:var(--shu);}
+  .pbar{height:8px;border-radius:5px;background:var(--gray);overflow:hidden;margin-top:8px;}
+  .pbar > i{display:block;height:100%;background:var(--green);width:0;transition:width .3s;}
+
+  .note{background:#fff;border-left:5px solid var(--green);border-radius:8px;padding:11px 13px;font-size:13.5px;margin-bottom:16px;}
+  .note b{color:var(--green);}
+  .note.upd{border-left-color:var(--shu);}
+  .note.upd b{color:var(--shu);}
+
+  details.scene{background:#fff;border:1px solid var(--gray);border-radius:14px;margin-bottom:12px;overflow:hidden;}
+  details.scene[open]{box-shadow:0 2px 12px rgba(58,58,58,.10);}
+  summary{list-style:none;cursor:pointer;padding:14px 14px;display:flex;align-items:center;gap:10px;}
+  summary::-webkit-details-marker{display:none;}
+  .badge{
+    flex:none;width:30px;height:30px;border-radius:50%;background:var(--shu);color:#fff;
+    display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;
+  }
+  .climax .badge{background:var(--green);}
+  .newsc .badge{background:#b8860b;}
+  summary .title{font-weight:800;font-size:15px;flex:1;}
+  summary .time{font-size:11px;color:#fff;background:var(--sumi);padding:2px 8px;border-radius:20px;flex:none;}
+  summary .chev{flex:none;color:var(--gray);transition:transform .2s;font-size:13px;}
+  details[open] summary .chev{transform:rotate(90deg);color:var(--shu);}
+  .tagnew{font-size:9.5px;font-weight:800;background:#b8860b;color:#fff;border-radius:4px;padding:1px 5px;margin-left:4px;}
+
+  .body{padding:2px 14px 16px;}
+  .lead{font-size:13px;color:#6a665c;font-style:italic;margin:2px 0 12px;}
+
+  .sec-h{font-size:13px;font-weight:800;margin:14px 0 7px;display:flex;align-items:center;gap:6px;}
+  .sec-h.cam{color:var(--shu);}
+  .sec-h.sub{color:var(--sumi);}
+  .sec-h.warn{color:#a8431f;}
+
+  ul.mat{list-style:none;padding:0;margin:0;}
+  ul.mat li{display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-bottom:1px dashed var(--gray);font-size:14px;}
+  ul.mat li:last-child{border-bottom:none;}
+  ul.mat input{
+    appearance:none;-webkit-appearance:none;flex:none;width:22px;height:22px;margin-top:1px;
+    border:2px solid var(--green);border-radius:6px;background:#fff;cursor:pointer;position:relative;
+  }
+  ul.mat input:checked{background:var(--green);}
+  ul.mat input:checked::after{content:"✓";color:#fff;font-size:14px;font-weight:900;position:absolute;left:3px;top:-2px;}
+  ul.mat input:checked + span{color:#9a958a;text-decoration:line-through;}
+
+  .subs{display:flex;flex-direction:column;gap:7px;}
+  .sub-line{padding:8px 11px;border-radius:9px;font-size:13.5px;}
+  .sub-yobi{background:#eef0e6;border-left:4px solid var(--green);}
+  .sub-tame{background:#faf3ea;border-left:4px solid var(--shu);}
+  .sub-info{background:#fff;border:1.5px solid var(--sumi);border-radius:9px;font-size:12.5px;}
+  .tag{font-size:10.5px;font-weight:800;padding:1px 6px;border-radius:5px;margin-right:6px;vertical-align:middle;}
+  .tag-yobi{background:var(--green);color:#fff;}
+  .tag-tame{background:var(--shu);color:#fff;}
+  .tag-info{background:var(--sumi);color:#fff;}
+
+  .meta{font-size:13px;background:#f7f4ec;border-radius:9px;padding:9px 11px;margin-top:6px;}
+  .meta div{margin:3px 0;}
+  .meta .k{font-weight:800;}
+  .warnbox{background:#fdf0eb;border:1px solid #e3b8a8;border-radius:9px;padding:9px 11px;font-size:13px;margin-top:8px;}
+
+  .legend{background:#fff;border:1px solid var(--gray);border-radius:12px;padding:12px 14px;margin:4px 0 18px;font-size:12.5px;}
+  .legend span{display:inline-block;margin:3px 8px 3px 0;}
+  .dot{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:4px;vertical-align:middle;}
+
+  footer{text-align:center;font-size:11.5px;color:#8a8678;padding:20px 16px 8px;}
+  .foot-fixed{position:fixed;left:0;right:0;bottom:0;background:var(--sumi);color:#fff;text-align:center;font-size:12px;padding:9px;z-index:30;}
+  .foot-fixed b{color:#ffd9cd;}
+</style>
+</head>
+<body>
+<header>
+  <h1>🗻 東北① 羽田 → あつみ温泉（出羽三山）</h1>
+  <div class="sub">当日撮影台本｜2026/8/4(火)〜5(水)朝　羽田 → あつみ温泉 萬国屋CO｜顔出しNG・字幕主体</div>
+</header>
+
+<div class="wrap">
+
+  <div class="bar">
+    <button onclick="toggleAll(true)">▼ 全部ひらく</button>
+    <button onclick="toggleAll(false)">▲ 全部とじる</button>
+    <button class="reset" onclick="resetChecks()">☐ チェック全消し</button>
+  </div>
+
+  <div class="progress">
+    <div>撮影クリア　<span class="num" id="pcount">0</span> / <span id="ptotal">0</span> カット</div>
+    <div class="pbar"><i id="pfill"></i></div>
+  </div>
+
+  <div class="note upd">
+    <b>この動画の範囲</b>：羽田空港の出発から、あつみ温泉 萬国屋を<b>チェックアウト</b>するまで（DAY1〜DAY2朝）。全4本シリーズの①。目安15〜25分。
+  </div>
+
+  <div class="note">
+    <b>物語の軸（今回の武器）</b>：朝いち出発の高揚 → 羽黒山2446段の“上げ下げ上げ” → 湯殿山の静けさ → あつみ温泉のご褒美、と<b>賑やかと静かの対比</b>。<b>自己紹介はパート1〜3で分散</b>。📋情報字幕は全体で5枚まで。
+  </div>
+
+  <div class="legend">
+    <b>字幕の色分け</b><br>
+    <span><span class="dot" style="background:var(--green)"></span>語りかけ＝敬語</span>
+    <span><span class="dot" style="background:var(--shu)"></span>自分語り＝タメ口</span>
+    <span><span class="dot" style="background:var(--sumi)"></span>📋情報字幕（白枠）</span><br>
+    <span style="color:#6a665c">📦のチェックは自動保存（同じ端末で次に開いても残るよ）</span>
+  </div>
+
+  <!-- ① -->
+  <details class="scene" open>
+    <summary><span class="badge">①</span><span class="title">オープニング（無人カット）</span><span class="time">開始前撮影</span><span class="chev">▶</span></summary>
+    <div class="body">
+      <p class="lead">まだ言葉はいらない。綺麗な画だけで「これから始まる東北の旅」へ。</p>
+      <div class="sec-h cam">📦 撮る画</div>
+      <ul class="mat">
+        <li><input type="checkbox"><span>羽黒山 杉並木・石段の無人カット（引き／10秒以上）※この動画の“顔”</span></li>
+        <li><input type="checkbox"><span>朝の羽田・滑走路や飛行機の無人カット（引き／10秒）</span></li>
+        <li><input type="checkbox"><span>あつみ温泉 客室露天の湯面（カスタム3スロー／10秒）夜に撮って頭に先出し</span></li>
+        <li><input type="checkbox"><span>湯けむり or 川面のゆらぎ（カスタム3スロー／10秒）</span></li>
+        <li><input type="checkbox"><span>駅名標・時刻表の寄り（インサート／5秒）</span></li>
+      </ul>
+      <div class="sec-h sub">💬 字幕案</div>
+      <div class="subs">
+        <div class="sub-line sub-tame"><span class="tag tag-tame">タメ</span>（最後に1枚だけ）東北を、3泊4日でのんびり巡ってきました。</div>
+      </div>
+      <div class="meta">
+        <div><span class="k">🎵 音：</span>音楽オン（しっとり）。最後の石段カットだけ環境音をチラ。</div>
+        <div><span class="k">🎙 声：</span>なし　<span class="k">✅ 許可：</span>不要（無人画のみ）</div>
+      </div>
+    </div>
+  </details>
+
+  <!-- ② -->
+  <details class="scene">
+    <summary><span class="badge">②</span><span class="title">羽田空港・出発（ラウンジ〜搭乗）</span><span class="time">05:55〜07:15</span><span class="chev">▶</span></summary>
+    <div class="body">
+      <p class="lead">旅のはじまり。早朝のまったり＆出発の高揚を上げる。自己紹介パート1もここで。</p>
+      <div class="sec-h cam">📦 撮る画</div>
+      <ul class="mat">
+        <li><input type="checkbox"><span>第2ターミナルの朝の雰囲気（引き／10秒）</span></li>
+        <li><input type="checkbox"><span>出発案内板「庄内」の寄り（カスタム2／5〜10秒）行き先が伝わる</span></li>
+        <li><input type="checkbox"><span>ラウンジ：コーヒーを注ぐ手元（主観／5〜10秒）／窓の外の飛行機（引き）</span></li>
+        <li><input type="checkbox"><span>保安ゲート・搭乗口を進む足元（主観／5秒）</span></li>
+        <li><input type="checkbox"><span>機内から見える翼＋朝の空（引き／10秒）</span></li>
+      </ul>
+      <div class="sec-h sub">💬 字幕案</div>
+      <div class="subs">
+        <div class="sub-line sub-tame"><span class="tag tag-tame">タメ</span>まだ外は薄暗いのに、空港はもう賑わってる</div>
+        <div class="sub-line sub-tame"><span class="tag tag-tame">タメ</span>とりあえずコーヒー。旅のはじまりはこれがないと</div>
+        <div class="sub-line sub-yobi"><span class="tag tag-yobi">敬語</span>はじめまして！休みの日に出かけるのが好きで、気になった場所をのんびり巡っています。よかったら一緒に楽しんでください！</div>
+        <div class="sub-line sub-info"><span class="tag tag-info">📋①</span>今回は朝いちの便で山形・庄内空港へ。ラウンジは対象カードで無料でした</div>
+      </div>
+      <div class="meta">
+        <div><span class="k">🎵 音：</span>音楽オン（軽やか）。空港アナウンス・ざわめきは薄く。</div>
+        <div><span class="k">🎙 声：</span>コーヒー一口で「ん〜、うま」などとっさのみ</div>
+      </div>
+      <div class="warnbox">⚠ ラウンジ・空港内は他のお客さんを写さない。手元・自席まわり中心で。飛行機や案内板は人が入らない角度で。</div>
+    </div>
+  </details>
+
+  <!-- ③ -->
+  <details class="scene">
+    <summary><span class="badge">③</span><span class="title">庄内空港着 → 連絡バス → 鶴岡</span><span class="time">08:15〜08:55</span><span class="chev">▶</span></summary>
+    <div class="body">
+      <p class="lead">移動の3点セット（出発→道中→到着）。1時間で山形、の“もう別世界”感を。</p>
+      <div class="sec-h cam">📦 撮る画</div>
+      <ul class="mat">
+        <li><input type="checkbox"><span>着陸→翼の外に庄内の田園（引き／10秒）</span></li>
+        <li><input type="checkbox"><span>庄内空港の建物・看板（引き＋寄り／各10秒）</span></li>
+        <li><input type="checkbox"><span>連絡バスに乗り込む足元（主観／5秒）</span></li>
+        <li><input type="checkbox"><span>★車窓に流れる田んぼ（カスタム1広角／15秒以上）</span></li>
+        <li><input type="checkbox"><span>鶴岡駅前に着いた引き（10秒）＋駅名標の寄り（カスタム2）</span></li>
+      </ul>
+      <div class="sec-h sub">💬 字幕案</div>
+      <div class="subs">
+        <div class="sub-line sub-tame"><span class="tag tag-tame">タメ</span>1時間で、もう山形。飛行機ってすごい</div>
+        <div class="sub-line sub-tame"><span class="tag tag-tame">タメ</span>窓の外、一面の田んぼ。空気がもう違う気がする</div>
+        <div class="sub-line sub-yobi"><span class="tag tag-yobi">敬語</span>そういえば、旅の最初に見る景色って、なんだかずっと覚えていませんか？</div>
+      </div>
+      <div class="meta">
+        <div><span class="k">🎵 音：</span>音楽オン→車窓の田園は一瞬引いてバスの走行音＋風で移動感。</div>
+        <div><span class="k">🎙 声：</span>基本なし</div>
+      </div>
+    </div>
+  </details>
+
+  <!-- ④ -->
+  <details class="scene">
+    <summary><span class="badge">④</span><span class="title">鶴岡でカーシェア → 羽黒山へ</span><span class="time">09:00〜09:50</span><span class="chev">▶</span></summary>
+    <div class="body">
+      <p class="lead">今日は出羽三山を2つ巡る欲ばりプラン。ここからは車で。</p>
+      <div class="sec-h cam">📦 撮る画</div>
+      <ul class="mat">
+        <li><input type="checkbox"><span>車のキー／ハンドルを握る手元（主観／5秒・カスタム2）</span></li>
+        <li><input type="checkbox"><span>★フロントガラス越しの流れる道（カスタム1／15秒）PLで反射対策</span></li>
+        <li><input type="checkbox"><span>「羽黒山」方面の道路標識の寄り（カスタム2／5秒）</span></li>
+        <li><input type="checkbox"><span>随神門前の駐車場に着いた引き（10秒）</span></li>
+      </ul>
+      <div class="sec-h sub">💬 字幕案</div>
+      <div class="subs">
+        <div class="sub-line sub-tame"><span class="tag tag-tame">タメ</span>ここからは車で。今日は出羽三山を2つ巡る欲ばりプラン</div>
+        <div class="sub-line sub-info"><span class="tag tag-info">📋②</span>平日はシャトルバスがお休みなので、羽黒山＋湯殿山を1日で回るならレンタカー／カーシェアが現実的でした</div>
+      </div>
+      <div class="meta">
+        <div><span class="k">🎵 音：</span>音楽オン（軽快なドライブ調）。</div>
+        <div><span class="k">🎙 声：</span>なし　<span class="k">✅ 許可：</span>不要</div>
+      </div>
+      <div class="warnbox">⚠ 運転中の撮影は固定マウント任せで。手持ち操作はしない。安全第一。🅱 駅前ステーションが無ければ駅前レンタカーで代替。</div>
+    </div>
+  </details>
+
+  <!-- ⑤ -->
+  <details class="scene climax">
+    <summary><span class="badge">⑤</span><span class="title">羽黒山 石段2446段フル ★山</span><span class="time">09:55〜11:00</span><span class="chev">▶</span></summary>
+    <div class="body">
+      <p class="lead">この動画いちばんの見せ場。感情の波を石段で作る（到着で上げ→バテて下げ→杉並木で上げ）。</p>
+      <div class="sec-h cam">📦 撮る画</div>
+      <ul class="mat">
+        <li><input type="checkbox"><span>随神門の引き（10秒）＋くぐる主観（5秒）</span></li>
+        <li><input type="checkbox"><span>★国宝・五重塔：全体の引き（10秒）／見上げ主観（10秒）／杉と絡めた縦構図（カスタム2）3点必ず</span></li>
+        <li><input type="checkbox"><span>苔むす石段を登る足元（主観／10秒・カスタム1歩き）</span></li>
+        <li><input type="checkbox"><span>杉並木を見上げる引き（10秒・無人狙い）</span></li>
+        <li><input type="checkbox"><span>石段脇の杉・木漏れ日のゆらぎ（カスタム3スロー／10秒）</span></li>
+        <li><input type="checkbox"><span>足音・鳥の声を単体でも録る（音素材）</span></li>
+      </ul>
+      <div class="sec-h sub">💬 字幕案</div>
+      <div class="subs">
+        <div class="sub-line sub-yobi"><span class="tag tag-yobi">敬語</span>羽黒山にやってきました〜！さあ、2446段</div>
+        <div class="sub-line sub-tame"><span class="tag tag-tame">タメ</span>五重塔、でかい…！杉に囲まれて立ってるの、かっこよすぎる</div>
+        <div class="sub-line sub-tame"><span class="tag tag-tame">タメ</span>…正直まだ三分の一。脚がもう相談してくる</div>
+        <div class="sub-line sub-tame"><span class="tag tag-tame">タメ</span>でも、この杉並木の中を歩けてるだけで、来てよかった</div>
+        <div class="sub-line sub-yobi"><span class="tag tag-yobi">敬語</span>思ったんですけど、長い石段って、登りきると景色より“登れた自分”が嬉しかったりしませんか？</div>
+        <div class="sub-line sub-info"><span class="tag tag-info">📋③</span>2026年は12年に一度の「午歳御縁年」。石段は全2446段、随神門〜山頂まで約1.5〜2時間でした</div>
+      </div>
+      <div class="meta">
+        <div><span class="k">🎵 音：</span><b>音楽オフ推奨</b>の見せ場。足音・鳥・杉の風をそのまま。移動の繋ぎだけ薄く音楽。</div>
+        <div><span class="k">🎙 声：</span>「ほぁ〜」「…着いた〜」などとっさのみ</div>
+      </div>
+      <div class="warnbox">🅱 下りは山頂12:00発の路線バスで随神門（車のところ）へ降りて脚を温存が◎。効能・ご利益は断定せず「〜と言われているそうです」程度に。</div>
+    </div>
+  </details>
+
+  <!-- ⑥ -->
+  <details class="scene">
+    <summary><span class="badge">⑥</span><span class="title">二の坂茶屋で力餅＆甘酒</span><span class="time">〜11:00</span><span class="chev">▶</span></summary>
+    <div class="body">
+      <p class="lead">石段の途中で一服。食事は流れで（配膳→引き→寄り→ひとくち）。</p>
+      <div class="sec-h cam">📦 撮る画</div>
+      <ul class="mat">
+        <li><input type="checkbox"><span>茶屋の外観・のれん（引き／10秒）</span></li>
+        <li><input type="checkbox"><span>力餅／甘酒の配膳→全体の引き→寄り→ひとくちの主観（カスタム2・一連で）</span></li>
+        <li><input type="checkbox"><span>茶屋から見える景色の引き（10秒）</span></li>
+      </ul>
+      <div class="sec-h sub">💬 字幕案</div>
+      <div class="subs">
+        <div class="sub-line sub-tame"><span class="tag tag-tame">タメ</span>ここで一服。石段の途中に茶屋があるって、わかってる</div>
+        <div class="sub-line sub-tame"><span class="tag tag-tame">タメ</span>あま〜い甘酒に、やわらか力餅。染みる…生き返る</div>
+        <div class="sub-line sub-yobi"><span class="tag tag-yobi">敬語</span>疲れたあとの甘いもの、ずるいくらい美味しいですよね</div>
+      </div>
+      <div class="meta">
+        <div><span class="k">🎵 音：</span><b>音楽オフ</b>。食べる音・お茶をすする音を主役に。</div>
+        <div><span class="k">🎙 声：</span>「うまっ」「あ〜生き返る」など短く</div>
+      </div>
+      <div class="warnbox">⚠ 店内・他のお客さんは写さない。手元・自席の料理中心。撮影可か一声かけると安心。</div>
+    </div>
+  </details>
+
+  <!-- ⑦ -->
+  <details class="scene">
+    <summary><span class="badge">⑦</span><span class="title">山頂・三神合祭殿 → 下山</span><span class="time">11:30〜12:15</span><span class="chev">▶</span></summary>
+    <div class="body">
+      <p class="lead">登りきったご褒美。茅葺きのぶ厚さを寄りで。自己紹介は無理に入れず“のんびり旅のコツ”をひとこと。</p>
+      <div class="sec-h cam">📦 撮る画</div>
+      <ul class="mat">
+        <li><input type="checkbox"><span>三神合祭殿の茅葺き屋根：全体の引き（10秒）／屋根の厚みの寄り（カスタム2）</span></li>
+        <li><input type="checkbox"><span>お参りする後ろ姿（首から下／10秒）</span></li>
+        <li><input type="checkbox"><span>御縁年記念品「生胡麻豆腐」を受け取る手元（主観・カスタム2）</span></li>
+        <li><input type="checkbox"><span>下山バス：乗り込む足元／車窓の杉並木（カスタム1／15秒）</span></li>
+      </ul>
+      <div class="sec-h sub">💬 字幕案</div>
+      <div class="subs">
+        <div class="sub-line sub-tame"><span class="tag tag-tame">タメ</span>登りきった〜！この茅葺き屋根、想像の3倍ぶ厚い</div>
+        <div class="sub-line sub-tame"><span class="tag tag-tame">タメ</span>御縁年の記念に、生胡麻豆腐をいただく。おみやげにも</div>
+        <div class="sub-line sub-yobi"><span class="tag tag-yobi">敬語</span>下りは脚を温存してバスに。無理しないのも、のんびり旅のコツだと思っています</div>
+      </div>
+      <div class="meta">
+        <div><span class="k">🎵 音：</span>お参りは音楽オフ（鈴・風）。下山バスは音楽オンで移動感。</div>
+        <div><span class="k">🎙 声：</span>とっさのみ</div>
+      </div>
+    </div>
+  </details>
+
+  <!-- ⑧ -->
+  <details class="scene">
+    <summary><span class="badge">⑧</span><span class="title">昼食・そば処 大梵字（道の駅月山）</span><span class="time">13:05〜13:50</span><span class="chev">▶</span></summary>
+    <div class="body">
+      <p class="lead">羽黒→湯殿の道中ランチ。食の見せ場。すする音がごちそう。</p>
+      <div class="sec-h cam">📦 撮る画</div>
+      <ul class="mat">
+        <li><input type="checkbox"><span>道の駅・店の外観（引き／10秒）＋のれん／看板（寄り・カスタム2）</span></li>
+        <li><input type="checkbox"><span>十割そば：配膳→全体の引き→ざるの寄り（カスタム2／10秒）</span></li>
+        <li><input type="checkbox"><span>★すすろうとする手元の主観（カスタム2／5〜10秒）</span></li>
+        <li><input type="checkbox"><span>薬味・そば湯など小物の寄り（カスタム2）／すする音を単体でも録る</span></li>
+      </ul>
+      <div class="sec-h sub">💬 字幕案</div>
+      <div class="subs">
+        <div class="sub-line sub-tame"><span class="tag tag-tame">タメ</span>お腹ぺこぺこ。地元のそば粉100%の十割そばだって</div>
+        <div class="sub-line sub-tame"><span class="tag tag-tame">タメ</span>…ん、香りが違う。のど越しで“そば食べてる”って感じ</div>
+        <div class="sub-line sub-yobi"><span class="tag tag-yobi">敬語</span>旅先のお昼、有名店より“道中で見つけた一杯”の方が記憶に残ること、ありませんか？</div>
+        <div class="sub-line sub-info"><span class="tag tag-info">📋④</span>そば処 大梵字／朝日産そば粉100%の手打ち十割・名物「大ざる」※定休が変動する場合あり、事前に電話確認を（☎0235-53-3413）</div>
+      </div>
+      <div class="meta">
+        <div><span class="k">🎵 音：</span>入店まで音楽オン→料理が来たら<b>音楽オフ</b>（没入）。</div>
+        <div><span class="k">🎙 声：</span>「うまっ」など短く＋注文・お礼はOK</div>
+      </div>
+      <div class="warnbox">⚠ 店内撮影は一声。他のお客さんは写さない。🅱 8/4(火)は定休の可能性→湯殿山目の前・仙人沢の「湯殿山レストハウス」（開山期間毎日営業）に切替。台本上は店名を差し替えるだけでOK。</div>
+    </div>
+  </details>
+
+  <!-- ⑨ -->
+  <details class="scene">
+    <summary><span class="badge">⑨</span><span class="title">湯殿山神社 本宮（裸足参拝・撮影禁止）</span><span class="time">14:15〜15:05</span><span class="chev">▶</span></summary>
+    <div class="body">
+      <p class="lead">“語るなかれ”の聖域。撮れないぶんを誠実に見せるのが、逆に信頼になる。</p>
+      <div class="sec-h cam">📦 撮る画</div>
+      <ul class="mat">
+        <li><input type="checkbox"><span>有料道路の車窓・山深い道（カスタム1／15秒流し撮り）</span></li>
+        <li><input type="checkbox"><span>仙人沢駐車場・大鳥居の引き（10秒）＋参拝バス乗り込みの足元</span></li>
+        <li><input type="checkbox"><span>本宮エリア手前までの道・鳥居・自然（引き＋寄り）※ご神体エリアは撮影禁止</span></li>
+        <li><input type="checkbox"><span>裸足になる足元（境内入口手前で・主観／5秒）</span></li>
+      </ul>
+      <div class="sec-h sub">💬 字幕案</div>
+      <div class="subs">
+        <div class="sub-line sub-tame"><span class="tag tag-tame">タメ</span>ここから先は、写真も動画もNG。“語るなかれ”の聖域</div>
+        <div class="sub-line sub-yobi"><span class="tag tag-yobi">敬語</span>撮れないぶん、しっかり目に焼き付けてきました。気になった方は、ぜひ実際に訪ねてみてください</div>
+        <div class="sub-line sub-info"><span class="tag tag-info">📋⑤</span>湯殿山本宮はご神体エリアが撮影禁止・裸足でお参り。開山は6月〜11月初旬（詳しい様子はぜひご自身の足で）</div>
+      </div>
+      <div class="meta">
+        <div><span class="k">🎵 音：</span>道中は音楽オン→本宮手前で音楽オフ、水の音・自然音に。禁止エリアは鳥居の画＋字幕でつなぐ。</div>
+        <div><span class="k">🎙 声：</span>なし　<span class="k">✅ 許可：</span>ご神体エリアは撮影厳禁（絶対に撮らない）</div>
+      </div>
+      <div class="warnbox">⚠ 撮影厳禁エリアは信頼に直結。“撮らなかったこと”自体を誠実に見せる。効能は断定せず、分析書などの掲示があれば寄りで。</div>
+    </div>
+  </details>
+
+  <!-- ⑩ -->
+  <details class="scene">
+    <summary><span class="badge">⑩</span><span class="title">鶴岡 → あつみ温泉（いなほ10号）→ 宿へ</span><span class="time">16:23〜17:00</span><span class="chev">▶</span></summary>
+    <div class="body">
+      <p class="lead">移動の3点セットで到着へ。よく歩いた一日を締める“着いた感”を。自己紹介パート2もここで。</p>
+      <div class="sec-h cam">📦 撮る画</div>
+      <ul class="mat">
+        <li><input type="checkbox"><span>鶴岡駅ホーム・特急が入ってくる（引き／10秒・カスタム1）</span></li>
+        <li><input type="checkbox"><span>乗り込む足元／車内から流れる景色（カスタム1／15秒）</span></li>
+        <li><input type="checkbox"><span>あつみ温泉駅の駅名標（寄り・カスタム2）＋降りる足元</span></li>
+        <li><input type="checkbox"><span>宿の送迎車→萬国屋の外観・エントランスの引き（10秒）</span></li>
+      </ul>
+      <div class="sec-h sub">💬 字幕案</div>
+      <div class="subs">
+        <div class="sub-line sub-tame"><span class="tag tag-tame">タメ</span>石段のあとの特急、座った瞬間ちょっと寝そう</div>
+        <div class="sub-line sub-yobi"><span class="tag tag-yobi">敬語</span>あつみ温泉に到着です！今日はよく歩きました</div>
+        <div class="sub-line sub-yobi"><span class="tag tag-yobi">敬語</span>温泉に神社、ローカル線。こういうのをのんびり巡るのが好きで。今日はまさに、な一日でした</div>
+      </div>
+      <div class="meta">
+        <div><span class="k">🎵 音：</span>音楽オン（到着＝盛り上げ）。走行音・アナウンスは薄く。</div>
+        <div><span class="k">🎙 声：</span>とっさのみ</div>
+      </div>
+    </div>
+  </details>
+
+  <!-- ⑪ -->
+  <details class="scene climax">
+    <summary><span class="badge">⑪</span><span class="title">萬国屋 客室露天＆夕食 ★この旅いちばんのご褒美</span><span class="time">夕〜夜</span><span class="chev">▶</span></summary>
+    <div class="body">
+      <p class="lead">静のクライマックス。かけ湯は“音で浸らせる”見せ場。字幕を控えて湯の音に。効能は断定しない。</p>
+      <div class="sec-h cam">📦 撮る画</div>
+      <ul class="mat">
+        <li><input type="checkbox"><span>客室に入る扉→部屋の引き（10秒）</span></li>
+        <li><input type="checkbox"><span>★客室露天：湯面の寄り（カスタム2）／湯を張る・かけ湯する手元（主観）／湯けむりのゆらぎ（カスタム3スロー）</span></li>
+        <li><input type="checkbox"><span>窓の外・温泉街や空の引き（カスタム1／10秒）</span></li>
+        <li><input type="checkbox"><span>夕食：配膳→会席全体の引き→のどぐろ／岩牡蠣／山形牛の寄り（カスタム2）→ひとくち主観の一連</span></li>
+        <li><input type="checkbox"><span>お酒を注ぐ手元（カスタム2・地酒があれば）／湯の音を単体でも録る</span></li>
+      </ul>
+      <div class="sec-h sub">💬 字幕案</div>
+      <div class="subs">
+        <div class="sub-line sub-tame"><span class="tag tag-tame">タメ</span>お部屋にお風呂ついてる…！贅沢だ〜</div>
+        <div class="sub-line sub-tame"><span class="tag tag-tame">タメ</span>のどぐろ、脂がすごい。ひとりでこれ食べていいの…？</div>
+        <div class="sub-line sub-yobi"><span class="tag tag-yobi">敬語</span>歩いたあとの温泉とごはん。今日いちばんのご褒美タイムです</div>
+        <div class="sub-line sub-yobi" style="border-left-color:var(--gray);background:#f3f1ea"><span class="tag" style="background:var(--gray);color:var(--sumi)">控えめ</span>かけ湯のシーンは字幕を控えて湯の音に浸らせる</div>
+      </div>
+      <div class="meta">
+        <div><span class="k">🎵 音：</span>部屋に入る瞬間だけ音楽オン→客室露天と夕食は<b>音楽オフ</b>（湯の音・咀嚼音・注ぐ音を主役に）。</div>
+        <div><span class="k">🎙 声：</span>「はぁ〜…」「うまっ」など短く</div>
+      </div>
+      <div class="warnbox">⚠ 大浴場を撮るなら事前許可が必須・他のお客さんは絶対写さない。基本は客室露天で完結が安全。許可済みの旨を字幕で示すと信頼UP。効能は「美肌の湯と言われているそうです」程度に。</div>
+    </div>
+  </details>
+
+  <!-- ⑫ -->
+  <details class="scene">
+    <summary><span class="badge">⑫</span><span class="title">2日目・朝：あつみ温泉さんぽ＋温泉神社</span><span class="time">6:45〜7:45</span><span class="chev">▶</span></summary>
+    <div class="body">
+      <p class="lead">静かな朝。浴衣＋下駄の音でのんびり。自己紹介パート3（今後への誘い）をここで。</p>
+      <div class="sec-h cam">📦 撮る画</div>
+      <ul class="mat">
+        <li><input type="checkbox"><span>朝の露天でひとっ風呂・湯面（カスタム2）／窓の朝の光（カスタム1）</span></li>
+        <li><input type="checkbox"><span>浴衣＋下駄で歩く足元（主観・カスタム1歩き／10秒）</span></li>
+        <li><input type="checkbox"><span>温泉神社の鳥居・階段（引き＋見上げ）／お参りの後ろ姿</span></li>
+        <li><input type="checkbox"><span>朝市広場・温海川沿い・足湯の引き＆寄り</span></li>
+        <li><input type="checkbox"><span>川の流れ・朝の湯けむりのゆらぎ（カスタム3スロー／10秒）</span></li>
+      </ul>
+      <div class="sec-h sub">💬 字幕案</div>
+      <div class="subs">
+        <div class="sub-line sub-tame"><span class="tag tag-tame">タメ</span>朝いちの露天、貸切みたいで最高</div>
+        <div class="sub-line sub-tame"><span class="tag tag-tame">タメ</span>浴衣に下駄。カランコロン鳴らして歩くの、ちょっと楽しい</div>
+        <div class="sub-line sub-yobi"><span class="tag tag-yobi">敬語</span>気ままに更新していくので、また覗きに来てもらえたら嬉しいです</div>
+      </div>
+      <div class="meta">
+        <div><span class="k">🎵 音：</span>音楽オフ気味で、下駄の音・川の音・鳥の声を主役に。歩き出しだけ音楽オン。</div>
+        <div><span class="k">🎙 声：</span>「気持ちいい〜」など短く　<span class="k">✅ 許可：</span>不要（温泉街・参道）。他の人は写さない</div>
+      </div>
+    </div>
+  </details>
+
+  <!-- ⑬ -->
+  <details class="scene">
+    <summary><span class="badge">⑬</span><span class="title">エンディング・朝食 → チェックアウト</span><span class="time">8:00〜9:30</span><span class="chev">▶</span></summary>
+    <div class="body">
+      <p class="lead">余韻で締めて、次回（秋田・竿燈）へ。OPの朝の空と締めの空をつなぐと“1日の物語”に。</p>
+      <div class="sec-h cam">📦 撮る画（締め）</div>
+      <ul class="mat">
+        <li><input type="checkbox"><span>朝食：配膳→全体の引き→寄り→ひとくちの一連（カスタム2）</span></li>
+        <li><input type="checkbox"><span>荷物をまとめる手元／部屋を出る後ろ姿（首から下）</span></li>
+        <li><input type="checkbox"><span>★締め用無人カット：誰もいない朝の温泉街・宿の外観・川沿い（引き／10秒・カスタム1）</span></li>
+        <li><input type="checkbox"><span>あつみ温泉駅へ向かう足元・駅名標（次回への引き）</span></li>
+      </ul>
+      <div class="sec-h sub">💬 字幕案</div>
+      <div class="subs">
+        <div class="sub-line sub-tame"><span class="tag tag-tame">タメ</span>朝ごはんもりもり食べて、いざチェックアウト</div>
+        <div class="sub-line sub-tame"><span class="tag tag-tame">タメ</span>いい宿だったな…また来たい</div>
+        <div class="sub-line sub-yobi"><span class="tag tag-yobi">敬語</span>1日目、これにて終了です。次は、ここから秋田へ。よかったら続きも一緒に旅してください</div>
+        <div class="sub-line sub-yobi"><span class="tag tag-yobi">敬語</span>出羽三山、行ったことありますか？よかったらコメントで教えてください</div>
+      </div>
+      <div class="meta">
+        <div><span class="k">🎵 音：</span>音楽オン（OPと同じ曲でしっとり回収）。無人カットで余韻→次回予告→エンドカード。</div>
+        <div><span class="k">🎙 声：</span>なし</div>
+      </div>
+      <div class="warnbox">🅱 次回②（あつみ温泉駅→秋田・竿燈）の画を2〜3秒チラ見せすると継続視聴に効く。</div>
+    </div>
+  </details>
+
+  <!-- 撮影前チェック -->
+  <details class="scene">
+    <summary><span class="badge" style="background:var(--sumi)">✓</span><span class="title">撮影前・最終チェック</span><span class="time">事前</span><span class="chev">▶</span></summary>
+    <div class="body">
+      <div class="sec-h warn">📋 予約・確保</div>
+      <ul class="mat">
+        <li><input type="checkbox"><span>ANA393（羽田07:15発→庄内08:15着）※予約済み</span></li>
+        <li><input type="checkbox"><span>いなほ10号（鶴岡16:23発→あつみ温泉16:43着）※予約済み</span></li>
+        <li><input type="checkbox"><span>カーシェア／レンタカー 事前予約（鶴岡駅前ステーション有無を確認）</span></li>
+        <li><input type="checkbox"><span>萬国屋 早出チェックアウト（09:30）連絡済み</span></li>
+      </ul>
+      <div class="sec-h warn">📋 撮影許可（取れたら字幕で一言）</div>
+      <ul class="mat">
+        <li><input type="checkbox"><span>二の坂茶屋 店内撮影 一声</span></li>
+        <li><input type="checkbox"><span>そば処 大梵字 店内撮影 一声</span></li>
+        <li><input type="checkbox"><span>萬国屋 浴室（大浴場）事前許可（NGなら客室露天でB）</span></li>
+        <li><input type="checkbox"><span>湯殿山 本宮ご神体エリアは撮影厳禁（絶対に撮らない）</span></li>
+      </ul>
+      <div class="sec-h warn">📋 時間の注意（今回の要）</div>
+      <div class="meta">
+        <div>・湯殿山有料道路 8:15〜16:40（夏季ゲート閉鎖16:20）／本宮参拝バス 平日12〜13時運休→午後イチ着の動線</div>
+        <div>・大梵字は8/4(火)定休の可能性→当日朝に電話確認、休みならレストハウスへ即切替</div>
+        <div>・参拝が早ければ 鶴岡15:22発普通→15:53着 で前倒しも可</div>
+      </div>
+      <div class="sec-h warn">📋 天気・運行</div>
+      <ul class="mat">
+        <li><input type="checkbox"><span>当日朝：ANA運航情報・庄内空港連絡バスを確認</span></li>
+        <li><input type="checkbox"><span>羽黒山・湯殿山の天候（雨だと石段が滑る／PLフィルター持参）</span></li>
+      </ul>
+      <div class="sec-h warn">📋 機材プリセット早見</div>
+      <div class="meta">
+        <div><span class="k">カスタム1（広角）：</span>風景・車窓・歩き</div>
+        <div><span class="k">カスタム2（狭角）：</span>物撮り・手元・そば/料理の寄り</div>
+        <div><span class="k">カスタム3（120fps）：</span>杉の木漏れ日・湯面・川面の余韻スロー</div>
+        <div><span class="k">カスタム4：</span>揺れを活かしたいシーン</div>
+        <div><span class="k">PLフィルター：</span>湯・川面・ガラス越し・空/緑の発色</div>
+      </div>
+      <div class="sec-h warn">📋 撮り忘れ防止の合言葉</div>
+      <div class="meta">
+        <div>・1カットは長め（動き5〜10秒／止め画10秒以上）</div>
+        <div>・同じ対象は「引き・寄り・主観」3点セット</div>
+        <div>・移動＝出発→道中→到着／食事＝配膳→引き→寄り→ひとくち→リアクション</div>
+        <div>・オープニング用・締め用の“無人の綺麗な画”を必ず確保</div>
+        <div>・音素材（足音・すする音・湯の音）は単体でも録る</div>
+        <div>・★羽黒山の石段は“上げ→下げ→上げ”の波を意識して撮る</div>
+      </div>
+      <div class="warnbox">📦 持ち物：カメラ／予備バッテリー／microSD／外付けSSD／モバイルバッテリー／ミニ三脚／PLフィルター／レンズクロス／歩きやすい靴（石段2446段！）</div>
+    </div>
+  </details>
+
+  <footer>
+    ※情報は撮影時点のものです。最新は公式でご確認ください。<br>
+    えなみん！の旅びより ／ 行ってよかった！を集めてます<br>
+    BGM：甘茶の音楽工房／効果音：効果音ラボ
+  </footer>
+</div>
+
+<div class="foot-fixed">困ったら<b>多めに撮る</b>。「使うか分からないけど一応」を現場で潰す方が、後悔より安い。</div>
+
+<script>
+  const KEY = "tohoku1_20260804_v1_checks";
+  const boxes = Array.from(document.querySelectorAll('input[type=checkbox]'));
+  boxes.forEach((b,i)=> b.dataset.k = "c"+i);
+  function load(){
+    let saved = {};
+    try{ saved = JSON.parse(localStorage.getItem(KEY)) || {}; }catch(e){}
+    boxes.forEach(b=>{ if(saved[b.dataset.k]) b.checked = true; });
+  }
+  function save(){
+    const o = {};
+    boxes.forEach(b=>{ if(b.checked) o[b.dataset.k]=1; });
+    try{ localStorage.setItem(KEY, JSON.stringify(o)); }catch(e){}
+  }
+  function updateProgress(){
+    const camBoxes = boxes.filter(b=> b.closest('.scene') && !b.closest('.scene').querySelector('.sec-h.warn'));
+    const done = camBoxes.filter(b=>b.checked).length;
+    document.getElementById('pcount').textContent = done;
+    document.getElementById('ptotal').textContent = camBoxes.length;
+    document.getElementById('pfill').style.width = (done/camBoxes.length*100)+"%";
+  }
+  boxes.forEach(b=> b.addEventListener('change', ()=>{ save(); updateProgress(); }));
+  function toggleAll(open){ document.querySelectorAll('details.scene').forEach(d=> d.open = open); }
+  function resetChecks(){
+    if(!confirm("チェックを全部消す？")) return;
+    boxes.forEach(b=> b.checked=false);
+    save(); updateProgress();
+  }
+  load(); updateProgress();
+</script>
+</body>
+</html>
