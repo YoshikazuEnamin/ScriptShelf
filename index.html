@@ -44,6 +44,20 @@
     border-radius:6px;padding:2px 8px;}
 
   .count{font-size:12.5px;color:#8a8678;margin:2px 4px 12px;}
+
+  /* カテゴリ見出し */
+  .section{display:flex;align-items:center;gap:9px;margin:22px 4px 10px;}
+  .section:first-of-type{margin-top:6px;}
+  .section .lbl{font-weight:800;font-size:13px;padding:5px 13px;border-radius:999px;color:#fff;letter-spacing:.04em;}
+  .section .lbl.now{background:var(--shu);}
+  .section .lbl.wait{background:var(--green);}
+  .section .lbl.done{background:var(--gray);color:#5c584d;}
+  .section .n{font-size:12px;color:#8a8678;}
+  /* カード上のカテゴリバッジ */
+  .card .badge{flex:none;font-size:10.5px;font-weight:800;padding:2px 8px;border-radius:999px;color:#fff;letter-spacing:.03em;}
+  .card .badge.now{background:var(--shu);}
+  .card .badge.wait{background:var(--green);}
+  .card .badge.done{background:var(--gray);color:#5c584d;}
   footer{text-align:center;font-size:11.5px;color:#8a8678;padding:24px 16px 8px;}
   .spin{display:inline-block;width:16px;height:16px;border:3px solid var(--gray);
     border-top-color:var(--shu);border-radius:50%;animation:sp .8s linear infinite;vertical-align:-3px;margin-right:8px;}
@@ -78,10 +92,34 @@
   const statusEl = document.getElementById('status');
   const countEl  = document.getElementById('count');
 
-  // ファイル名から日付っぽい部分をゆるく拾って並べ替え用キーに
-  function sortKey(name){
-    const m = name.match(/(\d{3,8})/);
-    return m ? m[1].padStart(8,'9') : name; // 数字なしは後ろへ
+  // 今日（時刻を0時に丸めて日付だけで比較）
+  const today = new Date(); today.setHours(0,0,0,0);
+
+  // ファイル名の先頭から撮影日を拾う（単日 YYYYMMDD ／ 範囲 YYYYMMDD~MMDD 等に対応）
+  function parseDates(name){
+    const m = name.match(/(\d{4})(\d{2})(\d{2})/);
+    if(!m) return null;
+    const y = +m[1], mo = +m[2], d = +m[3];
+    const start = new Date(y, mo-1, d);
+    let end = new Date(y, mo-1, d);
+    // 「~」「〜」「-」に続く終了日（例：20260804~0807）
+    const rest = name.slice(m.index + m[0].length);
+    const rm = rest.match(/^\s*[~〜\-]\s*(\d{2,8})/);
+    if(rm){
+      const g = rm[1];
+      if(g.length === 8)      end = new Date(+g.slice(0,4), +g.slice(4,6)-1, +g.slice(6,8));
+      else if(g.length === 4) end = new Date(y, +g.slice(0,2)-1, +g.slice(2,4));
+      else if(g.length === 2) end = new Date(y, mo-1, +g);
+    }
+    return { start, end };
+  }
+
+  // カテゴリ判定：撮影中(now)＝今日を含む／撮影待ち(wait)＝未来／撮影完了(done)＝過去
+  function categorize(dates){
+    if(!dates) return "done"; // 日付が読めないものは最後（撮影完了）へ
+    if(dates.start <= today && today <= dates.end) return "now";
+    if(dates.start > today) return "wait";
+    return "done";
   }
 
   async function getTitle(fileName){
@@ -119,23 +157,57 @@
         return;
       }
 
-      // 新しい日付が上に来るように降順
-      htmls.sort((a,b) => sortKey(b.name).localeCompare(sortKey(a.name)));
-
       const metas = await Promise.all(htmls.map(f => getTitle(f.name)));
 
-      const frag = document.createDocumentFragment();
-      htmls.forEach((f, i) => {
-        const m = metas[i];
-        const a = document.createElement('a');
-        a.className = "card";
-        a.href = f.name;
-        a.innerHTML =
-          '<div class="t">' + escapeHtml(m.title) + '<span class="arrow">›</span></div>' +
-          (m.sub ? '<div class="s">' + escapeHtml(m.sub) + '</div>' : '') +
-          '<span class="f">' + escapeHtml(f.name) + '</span>';
-        frag.appendChild(a);
+      // 各台本に日付・カテゴリを付与
+      const items = htmls.map((f, i) => {
+        const dates = parseDates(f.name);
+        return { f, meta: metas[i], dates, cat: categorize(dates) };
       });
+
+      // カテゴリごとに仕分け
+      const groups = { now: [], wait: [], done: [] };
+      items.forEach(it => groups[it.cat].push(it));
+
+      // 撮影中・撮影待ちは今日→未来へ（昇順）、撮影完了は新しい→古い（降順）
+      const byStartAsc  = (a, b) => (a.dates ? a.dates.start : 0) - (b.dates ? b.dates.start : 0);
+      const byStartDesc = (a, b) => (b.dates ? b.dates.start : 0) - (a.dates ? a.dates.start : 0);
+      groups.now.sort(byStartAsc);
+      groups.wait.sort(byStartAsc);
+      groups.done.sort(byStartDesc);
+
+      const SECTIONS = [
+        { key:"now",  label:"撮影中" },
+        { key:"wait", label:"撮影待ち" },
+        { key:"done", label:"撮影完了" },
+      ];
+
+      const frag = document.createDocumentFragment();
+      SECTIONS.forEach(sec => {
+        const arr = groups[sec.key];
+        if(arr.length === 0) return;
+
+        const head = document.createElement('div');
+        head.className = "section";
+        head.innerHTML =
+          '<span class="lbl ' + sec.key + '">' + sec.label + '</span>' +
+          '<span class="n">' + arr.length + ' 本</span>';
+        frag.appendChild(head);
+
+        arr.forEach(it => {
+          const a = document.createElement('a');
+          a.className = "card";
+          a.href = it.f.name;
+          a.innerHTML =
+            '<div class="t">' + escapeHtml(it.meta.title) +
+              '<span class="badge ' + sec.key + '">' + sec.label + '</span>' +
+              '<span class="arrow">›</span></div>' +
+            (it.meta.sub ? '<div class="s">' + escapeHtml(it.meta.sub) + '</div>' : '') +
+            '<span class="f">' + escapeHtml(it.f.name) + '</span>';
+          frag.appendChild(a);
+        });
+      });
+
       listEl.appendChild(frag);
       statusEl.remove();
       countEl.textContent = htmls.length + " 本の台本";
