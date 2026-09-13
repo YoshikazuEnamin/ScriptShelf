@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>有馬・淡路島・鳴門・徳島 2泊3日｜2026/11/20-22</title>
+<style>
+:root{--bg:#f7f5f0;--card:#fff;--ink:#232a2e;--sub:#64707a;--line:#dfe3e0;--accent:#1f6f8b;--accent2:#2f7d5c;--warn:#c8842b;--danger:#b23b3b;--chip:#eaf0f2;--shadow:0 1px 3px rgba(0,0,0,.06),0 6px 20px rgba(0,0,0,.05)}
+html[data-theme="dark"]{--bg:#0f1417;--card:#1a2126;--ink:#e4ebee;--sub:#93a2ab;--line:#2c363c;--accent:#6fb9d4;--accent2:#68c69b;--warn:#e0ac5e;--danger:#e07373;--chip:#232d33;--shadow:0 1px 3px rgba(0,0,0,.4),0 6px 20px rgba(0,0,0,.3)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Noto Sans JP",sans-serif;line-height:1.85;font-size:16px;-webkit-text-size-adjust:100%}
+.wrap{max-width:840px;margin:0 auto;padding:0 16px 90px}
+header.hero{background:linear-gradient(160deg,#1f6f8b,#15495c 55%,#123b3a);color:#fff;padding:34px 20px 28px;text-align:center}
+header.hero h1{margin:0 0 6px;font-size:1.45rem;letter-spacing:.02em;line-height:1.5}
+header.hero .date{opacity:.9;font-size:.9rem}
+header.hero .lead{margin:14px auto 0;max-width:660px;font-size:.9rem;opacity:.95;text-align:left;line-height:1.8}
+nav.sticky{position:sticky;top:0;z-index:20;background:var(--card);border-bottom:1px solid var(--line);display:flex;gap:6px;overflow-x:auto;padding:8px 10px;box-shadow:var(--shadow)}
+nav.sticky a{flex:0 0 auto;text-decoration:none;color:var(--sub);background:var(--chip);padding:6px 12px;border-radius:999px;font-size:.82rem;white-space:nowrap}
+nav.sticky a:hover{color:var(--accent)}
+#themeBtn{position:fixed;right:14px;bottom:14px;z-index:30;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:10px 14px;font-size:.85rem;box-shadow:var(--shadow);cursor:pointer}
+section{margin:26px 0}
+h2{font-size:1.15rem;border-left:5px solid var(--accent);padding-left:10px;margin:34px 0 12px}
+h3{font-size:1rem;margin:22px 0 8px;color:var(--accent2)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin:12px 0;box-shadow:var(--shadow)}
+.callout{border-left:4px solid var(--accent2);background:var(--chip);border-radius:0 10px 10px 0;padding:12px 14px;margin:12px 0;font-size:.92rem}
+.callout.warn{border-left-color:var(--warn)}
+.callout.danger{border-left-color:var(--danger)}
+.callout .t{font-weight:700;display:block;margin-bottom:4px}
+table{width:100%;border-collapse:collapse;font-size:.87rem;margin:10px 0}
+th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+th{background:var(--chip);font-weight:600}
+.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+pre{background:var(--chip);border-radius:10px;padding:12px;overflow-x:auto;font-size:.78rem;line-height:1.7}
+.tl{list-style:none;padding:0;margin:0}
+.tl li{display:flex;gap:12px;padding:9px 0;border-bottom:1px dashed var(--line)}
+.tl li:last-child{border-bottom:none}
+.tl .t{flex:0 0 58px;font-variant-numeric:tabular-nums;font-weight:700;color:var(--accent);font-size:.9rem;padding-top:1px}
+.tl .b{flex:1;font-size:.92rem}
+.tl .b small{display:block;color:var(--sub);font-size:.81rem;line-height:1.65}
+.tl li.bath{background:linear-gradient(90deg,rgba(47,125,92,.12),transparent);border-radius:8px;padding-left:8px}
+.tl li.star{background:linear-gradient(90deg,rgba(31,111,139,.16),transparent);border-radius:8px;padding-left:8px}
+details{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 16px;margin:12px 0;box-shadow:var(--shadow)}
+details>summary{cursor:pointer;font-weight:700;font-size:.97rem;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary::before{content:"▸ ";color:var(--accent)}
+details[open]>summary::before{content:"▾ "}
+.chk{list-style:none;padding:0;margin:6px 0}
+.chk li{padding:5px 0;font-size:.92rem}
+.chk input{margin-right:9px;transform:scale(1.15)}
+.chk input:checked + span{opacity:.45;text-decoration:line-through}
+.tag{display:inline-block;background:var(--chip);color:var(--sub);border-radius:6px;padding:1px 7px;font-size:.75rem;margin-right:5px}
+.big{font-size:1.25rem;font-weight:700;color:var(--accent)}
+a{color:var(--accent)}
+footer{text-align:center;color:var(--sub);font-size:.8rem;margin-top:40px}
+ul.plain{padding-left:1.2em;font-size:.92rem}
+.pick{display:grid;gap:10px;grid-template-columns:1fr}
+@media(min-width:680px){.pick{grid-template-columns:1fr 1fr}}
+.pick .opt{background:var(--card);border:2px solid var(--line);border-radius:14px;padding:14px}
+.pick .opt.best{border-color:var(--accent)}
+.pick .opt h4{margin:0 0 8px;font-size:.98rem}
+.badge{display:inline-block;background:var(--accent);color:#fff;border-radius:6px;padding:1px 8px;font-size:.72rem;margin-left:6px;vertical-align:middle}
+</style>
+</head>
+<body>
+<header class="hero">
+  <h1>♨️🌊 有馬・淡路島・鳴門・徳島 2泊3日</h1>
+  <div class="date">2026/11/20(金)〜11/22(日)　v2　｜　本厚木発・男3人旅</div>
+  <p class="lead">DAY1は朝イチの新幹線で新神戸へ。バス1本で有馬に入って金の湯・銀の湯をはしごし、夕方に明石へ移動して魚の棚と明石焼、夜は昼網の魚で乾杯。DAY2は高速バスで一気に福良へ渡り、10時から8時間のレンタカーで淡路島を走る。夕方に車を返して、南あわじの宿で海鮮三昧＋温泉。DAY3は<strong>11/22の渦潮の見頃10:20にドンピシャで</strong>観潮船に乗り、渦の道を歩いてから徳島へ。17:40の便で羽田に戻ります。</p>
+</header>
+
+<nav class="sticky">
+  <a href="#decide">v2の確定</a>
+  <a href="#outline">概要</a>
+  <a href="#day1">DAY1</a>
+  <a href="#day2">DAY2</a>
+  <a href="#day3">DAY3</a>
+  <a href="#book">予約</a>
+  <a href="#risk">注意</a>
+  <a href="#yado">宿候補</a>
+  <a href="#budget">予算</a>
+  <a href="#pack">持ち物</a>
+  <a href="#todo">要確認</a>
+</nav>
+
+<div class="wrap">
+
+<section id="decide">
+<h2>✅ v2で確定したこと</h2>
+<div class="card">
+<div class="scroll"><table>
+<tr><th></th><th>v1（提案）</th><th>v2（確定）</th></tr>
+<tr><td>レンタカー</td><td>洲本 or 福良の2案</td><td><strong>福良（カムカムレンタルサービス）10:00〜17:30</strong></td></tr>
+<tr><td>DAY2ルート</td><td>🅰北回り／🅱南回り</td><td><strong>🅰 北回り「国生み神話」コース</strong></td></tr>
+<tr><td>南あわじの宿</td><td>プラザ淡路島／休暇村南淡路を推奨</td><td>🔴<strong>2軒とも11/21は満室</strong>。福良の3軒に総入れ替え</td></tr>
+</table></div>
+</div>
+<div class="callout danger"><span class="t">🔴 v1で推していた2軒は、両方とも満室でした</span>
+2026-09-13にじゃらんで <strong>11/21(土)・3名1室</strong> で実際に検索した結果です。<br>
+・<strong>ホテルニューアワジ プラザ淡路島</strong> … 11/21 <strong>×（満室）</strong><br>
+・<strong>休暇村 南淡路</strong> … 11/21 <strong>×（満室）</strong><br>
+やはり3連休の土曜です。<strong>残っている宿も「あと1部屋」が多い</strong>ので、宿候補から選んだら即おさえてください。</div>
+</section>
+
+<section id="outline">
+<h2>① 旅の概要</h2>
+<div class="card">
+<p style="margin-top:0"><strong>テーマ</strong>：日本三古湯の金泉・銀泉ではしご湯 → 瀬戸内の魚 → 国生みの島をドライブ → 渦の真上へ</p>
+<ul class="plain">
+<li>有馬の<strong>金泉（茶褐色・含鉄ナトリウム塩化物強塩泉）と銀泉（無色透明の炭酸泉＋ラジウム泉）</strong>を外湯2つで1日ではしご</li>
+<li>明石の<strong>昼網</strong>の魚と、出汁で食べる本場の明石焼</li>
+<li>淡路島を<strong>3人でドライブ</strong>。公共交通だと絶対に届かない場所へ</li>
+<li><strong>11/22の渦潮の見頃が午前10:20</strong>。最終日の朝イチで、いちばん渦が巻く時間に船の上にいられる</li>
+<li>最後は徳島で阿波おどりか眉山の夕景、空港ラウンジでひと息ついて羽田へ</li>
+</ul>
+<p><span class="tag">想定予算</span><span class="big">約¥83,000〜108,000／人</span>（航空券の取り方でかなり変わります）<br>
+<span class="tag">おすすめ度</span>★★★★☆（3連休と重なるのだけが心配。宿と航空券は早めに）</p>
+</div>
+
+<details>
+<summary>🗺 旅の骨格（ルート図）</summary>
+<pre>DAY1 11/20(金)
+  本厚木 ──小田急──&gt; 町田 ──横浜線──&gt; 新横浜 ──のぞみ115号──&gt; 新神戸
+     06:00            06:28           07:00                09:20
+  新神戸 ──神姫バス1本──&gt; 有馬温泉 [金の湯・銀の湯・温泉街]
+     09:35                 09:59〜14:09
+  有馬温泉 ──神鉄+地下鉄+JR──&gt; 明石 [魚の棚・天文科学館・明石城] 泊
+     14:09                       15:07
+
+DAY2 11/21(土)
+  明石 ──JR──&gt; 舞子 ──高速バス直通──&gt; 福良
+   08:38        08:43   08:55          09:58
+  福良 [レンタカー 10:00〜17:30] ── 淡路島ドライブ ──&gt; 福良
+  福良 ──宿の送迎10分──&gt; 南あわじの宿 泊（海鮮三昧＋温泉）
+
+DAY3 11/22(日)
+  宿 ──&gt; 福良 ──UZSバス──&gt; 大塚国際美術館 ──徒歩10分──&gt; 亀浦観光港
+          09:00             09:40                      09:50
+  ★わんだーなると 10:20発（渦の見頃ドンピシャ）→ 渦の道 → 鳴門公園
+  鳴門公園 ──徳島バス──&gt; 徳島駅前 [徳島ラーメン・眉山 or 阿波おどり会館]
+     12:45                14:25頃
+  徳島駅前 ──リムジン──&gt; 徳島空港 ──JAL462──&gt; 羽田
+     16:15                16:43        17:40</pre>
+</details>
+</section>
+
+<section id="day1">
+<h2>🗾 DAY1｜11/20(金)　有馬で金泉・銀泉はしご湯 → 明石泊</h2>
+<div class="card">
+<ul class="tl">
+<li><span class="t">06:00</span><span class="b"><strong>本厚木発</strong> 小田急小田原線 快速急行（新宿行）3番線<small>町田06:17着</small></span></li>
+<li><span class="t">06:28</span><span class="b">町田発 JR横浜線（桜木町行）1番線<small>新横浜06:50着</small></span></li>
+<li><span class="t">07:00</span><span class="b"><strong>新横浜発 のぞみ115号（博多行）</strong> 4番線<small>自由席¥4,960／新神戸09:20着</small></span></li>
+<li><span class="t">09:35</span><span class="b"><strong>新神戸駅前</strong> 神姫バス（神戸三田プレミアムアウトレット行）<small>¥600／有馬温泉(太閤橋)09:59着。乗換なしでラク</small></span></li>
+<li><span class="t">10:00</span><span class="b"><strong>有馬温泉着</strong>。太閤橋・ねね橋から湯本坂へ<small>荷物はコインロッカーか金の湯のロッカーへ</small></span></li>
+<li><span class="t">10:15</span><span class="b">湯本坂の温泉街さんぽ<small>三津森本舗の焼きたて炭酸せんべい／川上商店の佃煮</small></span></li>
+<li class="bath"><span class="t">10:45</span><span class="b"><strong>♨️ 金の湯</strong>（平日¥650・8:00〜22:00）<small>茶褐色の金泉。含鉄ナトリウム塩化物強塩高温泉で、空気に触れて赤茶に変わる。外の無料足湯も名物</small></span></li>
+<li><span class="t">11:45</span><span class="b">昼食（温泉街で。3人なら座敷のある店を）<small>有馬は昼が早じまいの店が多いので11:30〜12:00に入るのが安全</small></span></li>
+<li><span class="t">12:45</span><span class="b"><strong>湯泉神社</strong>（とうせんじんじゃ）参拝<small>有馬温泉の守護神。石段を上がると温泉街が見下ろせます</small></span></li>
+<li class="bath"><span class="t">13:10</span><span class="b"><strong>♨️ 銀の湯</strong>（平日¥550・9:00〜21:00）<small>無色透明の銀泉。炭酸泉＋ラジウム泉で金泉とは全く別物。スチームサウナあり</small></span></li>
+<li><span class="t">14:09</span><span class="b"><strong>有馬温泉発</strong> 神鉄有馬線→有馬口14:13/14:14→谷上14:25/14:27（地下鉄北神線）→三宮14:37<small>¥1,130</small></span></li>
+<li><span class="t">14:52</span><span class="b">三ノ宮発 JR神戸線 新快速（姫路行）4番線<small><strong>明石15:07着</strong></small></span></li>
+<li><span class="t">15:15</span><span class="b"><strong>魚の棚商店街</strong>（うおんたな）<small>明石駅から南へ徒歩5分。昼網の魚・タコ・練り物。夕方で閉める店が多いので先にここ</small></span></li>
+<li><span class="t">15:30</span><span class="b"><strong>明石焼（玉子焼）</strong>をおやつに<small>出汁につけて食べる本場の味。商店街内に専門店が複数</small></span></li>
+<li><span class="t">16:20</span><span class="b"><strong>明石市立天文科学館</strong>（¥700・9:30〜17:00／<strong>入館は16:30まで</strong>）<small>山陽電車「人丸前」から北へ徒歩3分。日本標準時 東経135度の上に建つ塔時計</small></span></li>
+<li><span class="t">17:05</span><span class="b"><strong>柿本神社</strong>（人丸山・天文科学館のすぐ隣）<small>柿本人麻呂を祀る。高台から明石海峡大橋</small></span></li>
+<li><span class="t">17:30</span><span class="b">明石城／明石公園<small>櫓のライトアップ。日没17:00頃。時間が押したらカット可</small></span></li>
+<li class="star"><span class="t">18:30</span><span class="b"><strong>夕食：昼網の魚と地酒で乾杯</strong><small>魚の棚周辺は個室のある海鮮居酒屋が複数。3人なら要予約</small></span></li>
+<li><span class="t">20:30</span><span class="b">明石駅前のホテルへ<small>⚠️宿は未定</small></span></li>
+</ul>
+</div>
+<div class="callout"><span class="t">💡 有馬の湯の入り方</span>先に<strong>金の湯</strong>（濃い塩泉で芯から温まる・湯あたりしやすいので短めに）、後に<strong>銀の湯</strong>（さっぱり上がれる）の順がおすすめ。金泉は色が濃いので<strong>白タオルは持ち込まないほうが無難</strong>です。両館ともタオルは有料なので各自1本持参を。</div>
+<div class="callout warn"><span class="t">💡 2館券（¥1,200）は今回は不要</span>金の湯・銀の湯とも平日料金があり、<strong>11/20は金曜なので¥650+¥550＝¥1,200で2館券と同額</strong>。券売機で個別に買って大丈夫です。</div>
+</section>
+
+<section id="day2">
+<h2>🚗 DAY2｜11/21(土)　高速バスで福良へ → 淡路島ドライブ → 南あわじ泊</h2>
+<div class="card">
+<ul class="tl">
+<li><span class="t">07:30</span><span class="b">朝食・チェックアウト準備</span></li>
+<li><span class="t">08:38</span><span class="b"><strong>明石発</strong> JR神戸線（高槻行）2番線 → 舞子08:43着<small>¥180</small></span></li>
+<li><span class="t">08:45</span><span class="b">舞子駅から<strong>高速舞子バスのりば</strong>（高架5階）へ徒歩6分<small>エレベーターあり</small></span></li>
+<li class="star"><span class="t">08:55</span><span class="b"><strong>高速舞子発 神姫バス「ハーバーライナー」福良行</strong><small>¥2,350・予約不要（前乗り後払い）／全国共通ICカード可</small></span></li>
+<li><span class="t">09:58</span><span class="b"><strong>福良着</strong>（福良バスターミナル）<small>明石からの合計 ¥2,530</small></span></li>
+<li class="star"><span class="t">10:00</span><span class="b"><strong>レンタカー受取</strong>｜カムカムレンタルサービス<small>南あわじ市福良甲512-87・BTから徒歩3分・☎0799-52-0333・10:00〜19:00／⚠️要事前予約</small></span></li>
+<li class="star"><span class="t">10:00<br>〜17:30</span><span class="b"><strong>淡路島ドライブ（🅰 北回りで確定）</strong><small>伊弉諾神宮→道の駅あわじ→絵島→あわじ花さじき→洲本城</small></span></li>
+<li><span class="t">17:30</span><span class="b">福良で<strong>給油して返却</strong><small>⚠️土曜夕方の営業時間を事前確認</small></span></li>
+<li><span class="t">17:35</span><span class="b"><strong>宿へ</strong><small>クボタなら徒歩2分／海上ホテルなら福良BTまで送迎</small></span></li>
+<li class="bath"><span class="t">18:00</span><span class="b"><strong>チェックイン → 温泉</strong></span></li>
+<li class="star"><span class="t">19:00</span><span class="b"><strong>夕食：海鮮三昧</strong><small>11月の淡路は とらふぐ・寒ハモ・鯛・淡路牛 が出そろう時期</small></span></li>
+</ul>
+</div>
+
+<details open>
+<summary>🅰 北回り「国生み神話」コース　←★これで確定</summary>
+<pre>10:00 福良 ─[高速 淡路島南IC→津名一宮IC 約55分]─&gt; 11:00 伊弉諾神宮
+11:50 ─[約25分]─&gt; 12:15 道の駅あわじ（明石海峡大橋の真下・生しらす丼）
+13:15 ─[約10分]─&gt; 13:25 絵島（岩屋・おのころ島伝承地）
+13:45 ─[約30分]─&gt; 14:15 あわじ花さじき（入場無料・丘から大阪湾）
+14:55 ─[約55分]─&gt; 15:50 洲本城（三熊山・天守台から洲本湾）
+16:35 ─[約45分]─&gt; 17:20 福良着・給油 → 17:30 返却</pre>
+<ul class="plain">
+<li><strong>伊弉諾神宮</strong>（淡路市多賀740）：国生みを終えたイザナギが余生を過ごしたと伝わる、日本最古の神社のひとつ。淡路国一宮。樹齢900年の夫婦大楠が見事</li>
+<li><strong>道の駅あわじ</strong>：明石海峡大橋の真下。生しらす丼とあわじ島バーガー。橋を下から見上げる迫力は想像以上</li>
+<li><strong>絵島</strong>：小さな砂岩の島。国生み神話の「おのころ島」伝承地のひとつ</li>
+<li><strong>あわじ花さじき</strong>：11月はコスモス〜ビオラの切り替え時期。⚠️見頃は要確認</li>
+</ul>
+</details>
+
+<details>
+<summary>🅱 南回り（今回は不採用・雨天時の差し替え候補として残します）</summary>
+<pre>10:00 福良 ─[約15分]─&gt; 10:20 うずの丘 大鳴門橋記念館（うずしお科学館・展望）
+11:15 ─[約8分]─&gt; 11:25 道の駅うずしお（大鳴門橋の絶景・ランチ）
+12:30 ─[約35分]─&gt; 13:10 おのころ島神社（高さ21.7mの大鳥居）
+13:50 ─[約35分]─&gt; 14:30 慶野松原（日本の夕陽百選・黒松と白砂）
+15:10 ─[約20分]─&gt; 15:35 福良 → 16:00 洲本城 → 17:30 福良返却
+ ※淡路人形座を入れるなら「13:30公演」に合わせ、慶野松原か洲本城をカット</pre>
+<ul class="plain">
+<li><strong>淡路人形座</strong>（南あわじ市甲1528-1・福良BT徒歩1分）：公演10:00／11:10／13:30／15:00の1日4回・約45分・大人¥1,800・<strong>水曜休</strong>。ミシュラン・グリーンガイド二つ星</li>
+<li><strong>うずの丘 大鳴門橋記念館</strong>：丘の上から鳴門海峡を一望。たまねぎキャッチャーと巨大たまねぎオブジェ</li>
+<li><strong>道の駅うずしお</strong>：大鳴門橋のたもと。あわじ島オニオンビーフバーガーは日本一に輝いた一品</li>
+</ul>
+</details>
+
+<div class="callout"><span class="t">💡 荷物は車に積みっぱなしでOK</span>福良で借りて福良で返すので、大きい荷物はずっと車の中。宿へは送迎で運べます。</div>
+</section>
+
+<section id="day3">
+<h2>🌊 DAY3｜11/22(日)　渦の真上へ → 徳島 → 羽田</h2>
+<div class="callout danger"><span class="t">🔴 11/22の潮（渦の道 公式潮見表より・2026-09-13確認）</span>
+<strong>南流（干潮）最速 10:20</strong>／北流（満潮）最速 16:10。この日は<strong>中潮</strong>で、中潮は「最速時刻の前後1時間半」が見頃 ＝ <strong>8:50〜11:50が勝負時間</strong>。つまり<strong>10:20発の観潮船が、この日のいちばんいい船</strong>です。</div>
+<div class="card">
+<ul class="tl">
+<li class="bath"><span class="t">07:00</span><span class="b">朝風呂</span></li>
+<li><span class="t">07:30</span><span class="b">朝食</span></li>
+<li><span class="t">08:30</span><span class="b">チェックアウト・宿の送迎で福良BTへ<small>⚠️宿ごとに送迎時刻が違うので予約時に確認</small></span></li>
+<li><span class="t">09:00</span><span class="b"><strong>福良発 UZS BUS（ウズバス／徳島バス便）</strong><small>¥1,200・この便は予約不要／大塚国際美術館09:40着</small></span></li>
+<li><span class="t">09:50</span><span class="b">大塚国際美術館前から<strong>徒歩約10分</strong>で<strong>亀浦観光港</strong>へ<small>下り坂。うずしお観潮船の発券所</small></span></li>
+<li class="star"><span class="t">10:20</span><span class="b"><strong>★ うずしお観潮船「わんだーなると」</strong>（大人¥1,800・所要30分・予約不要）<small>大型船で渦の真上まで。大鳴門橋をくぐる瞬間が圧巻</small></span></li>
+<li><span class="t">10:50</span><span class="b">下船</span></li>
+<li class="star"><span class="t">11:10</span><span class="b"><strong>渦の道</strong>（¥510・10〜2月は9:00〜17:00／最終入館16:30）<small>大鳴門橋の桁下450mの遊歩道。ガラス床から45m下の渦を真上から見下ろせます</small></span></li>
+<li><span class="t">12:05</span><span class="b">鳴門公園で昼食<small>鯛料理・鳴門うどん・わかめ。展望レストランあり</small></span></li>
+<li><span class="t">12:45</span><span class="b"><strong>鳴門公園発 徳島バス 鳴門線（徳島駅前行）</strong><small>¥870／徳島駅前14:25頃着（約100分・乗換なし）</small></span></li>
+<li><span class="t">14:30</span><span class="b"><strong>徳島ラーメン</strong><small>甘辛い豚バラと生卵の茶系スープ。駅前に店が複数</small></span></li>
+<li><span class="t">15:10</span><span class="b"><strong>A案：眉山ロープウェイ</strong>（往復¥1,500・片道6分・11月は9:00〜17:30）<small>阿波おどり会館5Fから発車。山頂から徳島平野と紀伊水道</small></span></li>
+<li><span class="t">15:00</span><span class="b"><strong>B案：阿波おどり会館 昼公演</strong>（¥1,300・約40分・14:00/15:00/16:00）<small>有名連の本格的な阿波おどり。最後は客席も一緒に踊れます</small></span></li>
+<li><span class="t">16:00</span><span class="b">お土産（阿波おどり会館1F／駅前アミコ）<small>すだち・鳴門金時・金長まんじゅう。重い酒類は空港で</small></span></li>
+<li><span class="t">16:15</span><span class="b"><strong>徳島駅前 15番のりば発 空港リムジンバス</strong><small>¥800・約28分・予約不要／徳島空港16:43着</small></span></li>
+<li><span class="t">16:50</span><span class="b">チェックイン後、<strong>空港ラウンジ</strong>でひと休み<small>Oliveゴールドのカードラウンジが使えます</small></span></li>
+<li class="star"><span class="t">17:40</span><span class="b"><strong>JAL462 → 羽田</strong><small>⚠️到着時刻は予約時に確認（所要約1時間15分）</small></span></li>
+</ul>
+</div>
+<div class="callout"><span class="t">💡 観潮船は2種類あります</span>大型の<strong>わんだーなると</strong>（¥1,800・予約不要・デッキから見下ろす）と、小型水中観潮船<strong>アクアエディ</strong>（要予約・水中展望室あり・10:15/10:45発）。3人でワイワイ見るなら断然わんだーなるとです。</div>
+<div class="callout warn"><span class="t">💡 バスの選択肢</span>渦の道を短めにして<strong>11:25発</strong>のバスなら徳島13:05着で、徳島に3時間強。ゆっくりなら<strong>13:25発</strong>（徳島15:05着）もありますが徳島で1時間しか取れません。<strong>12:45発が一番バランスがいい</strong>と思います。</div>
+</section>
+
+<section id="book">
+<h2>③ 予約リスト</h2>
+<div class="card">
+<h3>🔴 いますぐ押さえるもの（3連休なので早いほど有利）</h3>
+<ul class="chk">
+<li><label><input type="checkbox"><span><strong>徳島→羽田 JAL462（11/22 17:40）</strong> ×3　※早いほど安い</span></label></li>
+<li><label><input type="checkbox"><span><strong>南あわじの宿</strong>（3名1室・1泊2食）　※11/21は3連休初日の土曜。<strong>最優先</strong></span></label></li>
+<li><label><input type="checkbox"><span><strong>明石のホテル</strong>（11/20金・3名）</span></label></li>
+<li><label><input type="checkbox"><span><strong>レンタカー</strong>（カムカムレンタルサービス／福良 10:00〜17:30・☎0799-52-0333）</span></label></li>
+</ul>
+<h3>🟡 予約推奨</h3>
+<ul class="chk">
+<li><label><input type="checkbox"><span>明石の夕食（海鮮居酒屋・3名）</span></label></li>
+<li><label><input type="checkbox"><span>新幹線 のぞみ115号（新横浜07:00発）※3人並びたいなら指定席</span></label></li>
+<li><label><input type="checkbox"><span>淡路人形座（🅱案を選ぶ場合）</span></label></li>
+</ul>
+<h3>⚪ 予約不要（当日でOK）</h3>
+<ul class="plain">
+<li>新神戸→有馬温泉の神姫バス（¥600）／高速舞子→福良の高速バス（前乗り後払い・¥2,350）</li>
+<li>UZS BUS 福良09:00発（徳島バス便は予約不要。※17:25発・18:25発は要予約）</li>
+<li>うずしお観潮船 わんだーなると（¥1,800）／渦の道（¥510）／金の湯／銀の湯／天文科学館</li>
+<li>徳島駅前→徳島空港 リムジンバス（¥800）</li>
+</ul>
+</div>
+</section>
+
+<section id="risk">
+<h2>④ 注意事項・リスク</h2>
+<div class="callout danger"><span class="t">🔴 いちばんの注意：11/21〜11/23は3連休</span>
+11/23(月)が勤労感謝の日なので<strong>11/21(土)〜11/23(月)は3連休</strong>。淡路島南部の海鮮宿は連休の土曜がいちばん取りにくいので、<strong>宿はすぐ動いてください</strong>。観潮船・渦の道も混みますが、朝10時台なら比較的マシです。</div>
+<div class="callout warn"><span class="t">⚠️ 欠航リスク（渦潮）</span>観潮船は強風・高波で欠航します。<strong>欠航時の代替</strong>は渦の道（橋の遊歩道なので強風でも開いていることが多い）＋うずの丘 大鳴門橋記念館の「うずしお科学館」。渦の道のガラス床からでも渦はしっかり見えます。</div>
+<div class="card">
+<h3>乗り継ぎで気をつけるところ</h3>
+<div class="scroll"><table>
+<tr><th>区間</th><th>リスク</th><th>保険</th></tr>
+<tr><td>新横浜 07:00 のぞみ115号</td><td>06:50着→07:00発の<strong>10分乗換</strong></td><td>1本前の横浜線に乗れば余裕。のぞみは次便もすぐ</td></tr>
+<tr><td>高速舞子 08:55 福良行</td><td>予約不要＝<strong>定員制</strong>。満席なら乗れない</td><td>次は09:50発（福良10:53着）。レンタカーを11:00受取に後ろ倒しでリカバー可</td></tr>
+<tr><td>福良 09:00 UZSバス</td><td>満席時は次が10:25で<strong>1時間半空く</strong>→見頃を逃す</td><td><strong>08:45にはBTへ</strong>。心配なら前日に徳島バス☎088-622-1811で空き確認</td></tr>
+<tr><td>鳴門公園 12:45 バス</td><td>1本逃すと次は13:25（徳島15:05着）</td><td>13:25でも17:40の便には十分。徳島観光が短くなるだけ</td></tr>
+</table></div>
+<h3>天候リスク</h3>
+<p style="font-size:.92rem">11月下旬の瀬戸内は日中15〜17℃、朝晩10℃前後。<strong>船の上は体感が5℃くらい下がります</strong>。雨天時は有馬・明石ともほぼ影響なし（屋内で完結）、DAY2のドライブも花さじきを外して施設中心に組み替えれば成立します。</p>
+</div>
+</section>
+
+<section id="yado">
+<h2>⑥ 宿の候補（2026-09-13 じゃらん実検索・11/21(土) 3名1室）</h2>
+<div class="card">
+<p style="font-size:.92rem;margin-top:0">福良バスターミナルからの距離は、住所を国土地理院の住所検索APIで座標化して直線距離を出しています（宿の公称値ともほぼ一致）。</p>
+<div class="scroll"><table>
+<tr><th></th><th>宿</th><th>福良BTから</th><th>温泉</th><th>夕食</th><th>1名2食付</th><th>残</th></tr>
+<tr><td>★<strong>本命</strong></td><td><strong>粋な男の料理宿 クボタ</strong><br>福良甲1530-33<br>☎0799-52-2637</td><td><strong>直線約150m／徒歩2分</strong></td><td><strong>南淡路温泉郷 潮崎温泉（天然温泉100%）</strong></td><td>活造り＋宝楽焼・<strong>朝夕とも個室食</strong></td><td><strong>¥16,500</strong>／宝楽焼＋伊勢海老＆アワビ <strong>¥20,900</strong>／<strong>3年とらふぐフルコース ¥19,800</strong>／最上級 ¥23,100</td><td><strong>あと3部屋</strong></td></tr>
+<tr><td>対抗</td><td><strong>淡路島 海上ホテル</strong><br>福良甲21-1</td><td>直線約740m／徒歩12〜15分<br><strong>福良BTまで送迎あり（予約制）</strong></td><td><strong>うずしお温泉「霑の湯」<br>露天風呂あり</strong></td><td><strong>部屋食</strong>・御食国会席（ミニ船盛＋淡路牛陶板焼）</td><td>¥28,600<br>※じゃらんの<strong>¥22,000クーポン</strong>が使えれば実質 約¥21,300</td><td>あと1部屋</td></tr>
+<tr><td>立地枠</td><td><strong>長尾屋〈あわじ島〉</strong><br>福良乙23</td><td>直線約300m／徒歩5分</td><td>🔴<strong>温泉なし</strong><br>（高濃度水素風呂）</td><td>海鮮会席</td><td>¥17,710／プチ贅沢（アワビ踊り焼 or 淡路牛陶板）¥20,240</td><td>あと1部屋</td></tr>
+<tr><td>安さ枠</td><td><strong>活魚料理 民宿みたき</strong><br>阿那賀1278-1</td><td>約5.5km／車15分<br>（<strong>送迎の記載なし</strong>）</td><td>うずしお温泉（循環・<strong>貸切風呂あり</strong>）</td><td>活魚料理・部屋食</td><td>¥12,000〜</td><td>空きあり</td></tr>
+<tr><td>贅沢枠</td><td><strong>ホテルアナガ</strong><br>阿那賀</td><td>車約15分</td><td>ハイクラスリゾート<br>（温泉は🟡要確認）</td><td>淡路ビーフの美食コース</td><td>¥22,000〜</td><td>空きあり</td></tr>
+</table></div>
+<h3>🏆 私の推しは「粋な男の料理宿 クボタ」</h3>
+<ul class="plain">
+<li><strong>福良バスターミナルから徒歩2分。</strong> レンタカーを17:30に返したら、そのまま歩いて宿へ。送迎の時刻に縛られません。DAY3の朝も8:45に出れば9:00のウズバスに余裕（チェックアウトは9:30）</li>
+<li><strong>天然温泉100%の潮崎温泉。</strong> 南淡路温泉郷の美人の湯</li>
+<li><strong>朝夕とも個室食。</strong> 男3人で気兼ねなく飲めます。宝楽焼と活造りが看板</li>
+<li><strong>予算ど真ん中で、まだ3部屋空いている。</strong> しかも<strong>3年とらふぐフルコースが¥19,800</strong>。11月下旬はとらふぐが始まる時期で、この値段は相当お得</li>
+</ul>
+<div class="callout warn"><span class="t">⚠️ クボタの注意点</span>現地でのクレジットカード払い不可（<strong>現金</strong>）／バスタオルは有料¥100／6畳和室は<strong>バス・トイレなし</strong>（共同）／全館禁煙／チェックイン15:00・チェックアウト9:30。宿としては素朴です。<strong>設備より料理と温泉と立地</strong>、と割り切れるならベスト。</div>
+<div class="callout"><span class="t">💡 設備の快適さを取るなら「淡路島 海上ホテル」</span>全室オーシャンビューの和室で<strong>部屋食</strong>、<strong>露天風呂つきのうずしお温泉</strong>、福良BTまで送迎あり。素の料金は¥28,600ですが、じゃらんの¥22,000クーポンが取れれば3人で¥63,800＝<strong>1人¥21,267</strong>。ただし<strong>あと1部屋</strong>。</div>
+<h3>明石（11/20金・3名）</h3>
+<p style="font-size:.92rem">明石駅周辺のビジネスホテルで、ツイン＋シングルかトリプル1室。夕食は外で食べるので素泊まり／朝食付きで十分。金曜なので比較的取りやすいはず。🟡具体的な宿は未調査。</p>
+</div>
+</section>
+
+<section id="budget">
+<h2>⑤ 予算</h2>
+<details>
+<summary>💰 内訳を開く（1人あたり）</summary>
+<div class="scroll"><table>
+<tr><th colspan="2">交通</th></tr>
+<tr><td>本厚木→新神戸（新幹線自由席込み）</td><td>¥14,971</td></tr>
+<tr><td>新神戸→有馬温泉（神姫バス）</td><td>¥600</td></tr>
+<tr><td>有馬温泉→明石</td><td>¥1,130</td></tr>
+<tr><td>明石→福良（JR＋高速バス）</td><td>¥2,530</td></tr>
+<tr><td>レンタカー7.5h 3人割（ガソリン・高速代込み）</td><td>¥4,000〜5,500 ⚠️</td></tr>
+<tr><td>福良→大塚国際美術館（ウズバス）</td><td>¥1,200</td></tr>
+<tr><td>鳴門公園→徳島駅前</td><td>¥870</td></tr>
+<tr><td>徳島駅前→徳島空港</td><td>¥800</td></tr>
+<tr><td>徳島→羽田 JAL462</td><td>¥15,000〜28,000 ⚠️</td></tr>
+<tr><th>小計</th><th>¥41,100〜55,600</th></tr>
+<tr><th colspan="2">宿泊</th></tr>
+<tr><td>明石（素泊まり／朝食付）</td><td>¥8,000〜11,000</td></tr>
+<tr><td>南あわじ（1泊2食）</td><td>¥18,000〜22,000</td></tr>
+<tr><th>小計</th><th>¥26,000〜33,000</th></tr>
+<tr><th colspan="2">体験・入浴</th></tr>
+<tr><td>金の湯¥650／銀の湯¥550／天文科学館¥700／観潮船¥1,800／渦の道¥510／眉山¥1,500</td><td>約¥5,700</td></tr>
+<tr><th colspan="2">食事</th></tr>
+<tr><td>DAY1昼・夜、DAY2昼、DAY3昼＋おやつ</td><td>¥10,000〜14,000</td></tr>
+<tr><th>総額目安</th><th class="big">約¥83,000〜108,000</th></tr>
+</table></div>
+</details>
+</section>
+
+<section id="pack">
+<h2>⑦ 持ち物</h2>
+<div class="card">
+<ul class="chk">
+<li><label><input type="checkbox"><span>🧥 <strong>風を通さない上着</strong>（観潮船・渦の道は風が強い）</span></label></li>
+<li><label><input type="checkbox"><span>👟 歩きやすい靴（有馬の石畳・湯本坂の坂、鳴門公園の上り下り）</span></label></li>
+<li><label><input type="checkbox"><span>🧴 <strong>タオル各自1本</strong>（金の湯・銀の湯はタオル有料。金泉は色が付くので白タオルは避ける）</span></label></li>
+<li><label><input type="checkbox"><span>💳 交通系ICカード（高速バス・路線バスとも全国共通ICが使えます）</span></label></li>
+<li><label><input type="checkbox"><span>🔋 モバイルバッテリー</span></label></li>
+<li><label><input type="checkbox"><span>👕 DAY1は温泉2回入るので着替え（特に靴下）</span></label></li>
+<li><label><input type="checkbox"><span>🪪 運転免許証（運転する人）</span></label></li>
+</ul>
+</div>
+</section>
+
+<section id="story">
+<h2>⑧ この旅について</h2>
+<div class="card">
+<h3>🌟 いちばん感動しそうな瞬間</h3>
+<p style="font-size:.93rem"><strong>11/22 10:35頃、わんだーなるとが大鳴門橋の真下に入る瞬間。</strong>この日の潮は中潮で、10:20が南流の最速。船が橋をくぐりながら、渦が生まれては消えていくのを真上から見ることになります。3人とも無言になるはずです。</p>
+<h3>🏆 ハイライト3選</h3>
+<ul class="plain">
+<li><strong>渦の真上（11/22 10:20の観潮船）</strong> — 潮の時間と船の時間が一致する、この旅の芯</li>
+<li><strong>有馬の金泉</strong> — 茶褐色で、湯から上がった後の温まり方が明らかに違う</li>
+<li><strong>淡路島ドライブ</strong> — 公共交通では絶対に届かない場所へ、3人で</li>
+</ul>
+<h3>✂️ 削ってもよい候補</h3>
+<ul class="plain">
+<li>DAY1の明石城／明石公園（時間が押したら迷わずカット）</li>
+<li>DAY1の天文科学館（魚の棚でゆっくりしたいなら）</li>
+<li>DAY2のあわじ花さじき（11月は花の端境期の可能性）</li>
+<li>DAY3の眉山ロープウェイ（お土産と余裕に回す）</li>
+</ul>
+<h3>☔ 雨天時の代替案</h3>
+<ul class="plain">
+<li><strong>DAY1</strong>：ほぼ影響なし。金の湯・銀の湯・天文科学館は屋内</li>
+<li><strong>DAY2</strong>：花さじき→うずしお科学館または淡路人形座（🅱案に寄せる）。車なので雨でも困りません</li>
+<li><strong>DAY3</strong>：観潮船が欠航なら渦の道＋大鳴門橋記念館。徳島は阿波おどり会館（全館屋内）に寄せる</li>
+</ul>
+<h3>💰 予算を抑えるなら</h3>
+<ul class="plain">
+<li>徳島→羽田を先得／スーパーバリューで早期確保（<strong>ここがいちばん効きます</strong>。¥28,000→¥13,000も）</li>
+<li>新幹線をぷらっとこだま／EX早特に（所要は伸びます）</li>
+<li>南あわじの宿を民宿に（¥12,000台〜）／明石を素泊まりに</li>
+</ul>
+<h3>💎 もっと贅沢にするなら</h3>
+<ul class="plain">
+<li>南あわじの宿を海の見える露天付き客室に。11月なら<strong>とらふぐフルコース</strong>（別注¥5,000〜）</li>
+<li>DAY3の観潮船をアクアエディ（要予約）にして水中から渦を見る</li>
+<li>徳島でもう1軒、阿波尾鶏の炭火焼きで打ち上げてから空港へ（19:20発 ANA286に変更すれば可能）</li>
+</ul>
+</div>
+</section>
+
+<section id="todo">
+<h2>🟡 要確認リスト（v2で確定していないこと）</h2>
+<div class="card">
+<ul class="chk">
+<li><label><input type="checkbox"><span>🔴 <strong>南あわじの宿の決定</strong>（クボタ／海上ホテル／長尾屋）※残室が少ないので最優先</span></label></li>
+<li><label><input type="checkbox"><span>🔴 <strong>徳島→羽田 JAL462</strong> の運賃・羽田着時刻を確認して予約</span></label></li>
+<li><label><input type="checkbox"><span>🔴 <strong>明石のホテル</strong>（未調査）</span></label></li>
+<li><label><input type="checkbox"><span>🔴 <strong>レンタカー</strong>（カムカムレンタルサービス ☎0799-52-0333・11/21 10:00〜17:30）</span></label></li>
+<li><label><input type="checkbox"><span>🟡 伊弉諾神宮・道の駅あわじ・あわじ花さじきの営業／見頃</span></label></li>
+<li><label><input type="checkbox"><span>🟡 11/22の観潮船・渦の道の連休ダイヤ／混雑（出発1週間前）</span></label></li>
+<li><label><input type="checkbox"><span>🟡 有馬・明石の食事処（3名・予約）</span></label></li>
+<li><label><input type="checkbox"><span>🟡 福良のガソリンスタンド（土曜夕方の営業）</span></label></li>
+<li><label><input type="checkbox"><span>🟡 天気予報（出発3日前・前日）</span></label></li>
+<li><label><input type="checkbox"><span>🟡 旅程JSON（ぽけたび用）— 宿が決まり次第、座標を国土地理院APIで取得して作成</span></label></li>
+</ul>
+</div>
+</section>
+
+<section id="links">
+<h2>🔗 参考リンク</h2>
+<div class="card">
+<ul class="plain">
+<li><a href="https://www.uzunomichi.jp/tide-calendar/" target="_blank" rel="noopener">渦の道 潮見表</a>／<a href="https://www.uzunomichi.jp/" target="_blank" rel="noopener">渦の道 公式</a></li>
+<li><a href="https://www.uzusio.com/" target="_blank" rel="noopener">うずしお観潮船（わんだーなると／アクアエディ）</a></li>
+<li><a href="https://uzs-bus.com/" target="_blank" rel="noopener">UZS BUS（ウズバス）公式</a></li>
+<li><a href="https://www.shinkibus.co.jp/highway/category/route_guidance/kobe_fukura.html" target="_blank" rel="noopener">神姫バス 神戸三宮・舞子−南あわじ福良線</a></li>
+<li><a href="https://www.awaji-kotsu.co.jp/local/" target="_blank" rel="noopener">淡路交通 島内路線バス</a></li>
+<li><a href="https://www.tokubus.co.jp/airportbus/" target="_blank" rel="noopener">徳島バス 空港リムジンバス</a></li>
+<li><a href="https://www.tokushima-airport.co.jp/flight/out/" target="_blank" rel="noopener">徳島阿波おどり空港 出発便時刻表</a></li>
+<li><a href="https://awajiningyoza.com/information/" target="_blank" rel="noopener">淡路人形座 ご利用案内</a></li>
+<li><a href="https://www.am12.jp/guide/" target="_blank" rel="noopener">明石市立天文科学館</a></li>
+<li><a href="https://www.awaodori-kaikan.jp/" target="_blank" rel="noopener">阿波おどり会館・眉山ロープウェイ</a></li>
+<li><a href="https://www.qkamura.or.jp/awaji/access/index.asp" target="_blank" rel="noopener">休暇村 南淡路</a>／<a href="https://www.plazaawajishima.com/access/" target="_blank" rel="noopener">ホテルニューアワジ プラザ淡路島</a></li>
+<li><a href="https://comecome-awaji.com/" target="_blank" rel="noopener">南あわじ カムカムレンタルサービス</a></li>
+<li>宿：<a href="https://awaji-kubota.com/" target="_blank" rel="noopener">粋な男の料理宿 クボタ 公式</a>／<a href="https://www.jalan.net/yad369282/" target="_blank" rel="noopener">じゃらん</a>　｜　<a href="https://www.awajishimakaijyo.com/" target="_blank" rel="noopener">淡路島 海上ホテル 公式</a>／<a href="https://www.jalan.net/yad322245/" target="_blank" rel="noopener">じゃらん</a>　｜　<a href="https://www.jalan.net/yad339152/" target="_blank" rel="noopener">長尾屋 じゃらん</a></li>
+</ul>
+</div>
+</section>
+
+<footer>
+v2 ｜ 2026-09-13 更新 ｜ 時刻・料金は 2026-09-13 時点でブラウザ確認<br>出発前に再確認してください
+</footer>
+</div>
+
+<button id="themeBtn">🌙 ダーク</button>
+<script>
+(function(){
+  var b=document.getElementById('themeBtn'),h=document.documentElement;
+  function set(t){h.setAttribute('data-theme',t);b.textContent=(t==='dark'?'☀️ ライト':'🌙 ダーク');try{localStorage.setItem('akashi-theme',t)}catch(e){}}
+  var saved='light';try{saved=localStorage.getItem('akashi-theme')||'light'}catch(e){}
+  set(saved);
+  b.addEventListener('click',function(){set(h.getAttribute('data-theme')==='dark'?'light':'dark')});
+  try{
+    document.querySelectorAll('.chk input').forEach(function(i,n){
+      var k='akashi-chk-'+n;
+      if(localStorage.getItem(k)==='1')i.checked=true;
+      i.addEventListener('change',function(){localStorage.setItem(k,i.checked?'1':'0')});
+    });
+  }catch(e){}
+})();
+</script>
+</body>
+</html>
